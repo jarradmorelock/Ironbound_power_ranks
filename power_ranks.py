@@ -5,7 +5,7 @@ CSV_path = path("exports/latest.csv")
 
 def main():
     rows = []
-    with CSV_PATH.open(newline="" encoding="utf-8") as f:
+    with CSV_PATH.open(newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             rows.append(row)
