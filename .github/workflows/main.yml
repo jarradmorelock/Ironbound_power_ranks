@@ -1,0 +1,24 @@
+name: Weekly Power Rankings
+
+on:
+  Workflow_dispatch:
+  schedule:
+    - cron: "0 10 * * 2"
+
+jobs:
+  run-power-ranks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check out repo
+        uses: actions/checkout@v4
+
+      - name: set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: run power rankings
+        run: |
+          python power_ranks.py
+      
