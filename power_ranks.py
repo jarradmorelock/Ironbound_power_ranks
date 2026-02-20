@@ -10,6 +10,9 @@ def main():
         for row in reader:
             rows.append(row)
 
+    print(rows[0].keys())
+
+
     # sort by overall rank (ascending)
     rows.sort(key=lambda r: int(r["Overall Rank"]))
 
