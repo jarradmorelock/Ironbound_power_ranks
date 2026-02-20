@@ -1,7 +1,7 @@
 import csv
 from pathlib import Path
 
-CSV_path = path("exports/latest.csv")
+CSV_path = Path("exports/latest.csv")
 
 def main():
     rows = []
