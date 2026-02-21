@@ -54,11 +54,11 @@ def main():
             delta = "—"
 
     print(f"{rank}. {team} ({delta})")
-
     new_state[team] = rank
-    
-if __name__ == "__main__":
 
-with STATE_PATH.open("w", encoding="utf-8") as f:
-    json.dump(new_state, f, indent=2)    
+
+  with STATE_PATH.open("w", encoding="utf-8") as f:
+      json.dump(new_state, f, indent=2)  
+
+if __name__ == "__main__": 
     main()
