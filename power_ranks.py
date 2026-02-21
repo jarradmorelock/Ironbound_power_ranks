@@ -57,7 +57,7 @@ def main():
     new_state[team] = rank
 
 
-  with STATE_PATH.open("w", encoding="utf-8") as f:
+    with STATE_PATH.open("w", encoding="utf-8") as f:
       json.dump(new_state, f, indent=2)  
 
 if __name__ == "__main__": 
