@@ -1,3 +1,8 @@
+import json
+from pathlib import Path
+
+STATE_PATH = Path("state.json")
+
 import csv
 from pathlib import Path
 
@@ -23,11 +28,37 @@ def main():
                 continue  # skip blanks/footer/malformed
             rows.append(dict(zip(headers, r)))
 
+    if STATE_PATH.exists():
+        with STATE_PATH.open("r", encoding="utf-8") as f:
+            prev_state = json.load(f)
+    else:
+        prev_state = {}
+
     rows.sort(key=lambda r: int(r["Overall Rank"]))
+    new_state = {}
 
     # quick sanity output
     for r in rows:
-        print(f'{r["Overall Rank"]}. {r["Team"]}')
+        team = r["Team"]
+        rank = int(r["Overall Rank"])
 
+        prev_rank = prev_state.get(team)
+
+        if prev_rank is None:
+            delta = "🆕"
+        elif rank < prev_rank:
+            delta = f"▲{prev_rank - rank}"
+        elif rank > prev_rank:
+            delta = f"▼{rank - prev_rank}"
+        else:
+            delta = "—"
+
+    print(f"{rank}. {team} ({delta})")
+
+    new_state[team] = rank
+    
 if __name__ == "__main__":
+
+with STATE_PATH.open("w", encoding="utf-8") as f:
+    json.dump(new_state, f, indent=2)    
     main()
