@@ -8,7 +8,12 @@ def main():
         reader = csv.reader(f)
 
         next(reader, None)  # skip title line
-        headers = next(reader, None)  # real headers
+        headers = None
+        for row in reader:
+            if row and any (cell.strip() for cell in row):
+                headers = row
+                break
+        
         if not headers:
             raise RuntimeError("CSV missing header row")
 
