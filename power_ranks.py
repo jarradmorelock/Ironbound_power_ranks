@@ -52,13 +52,12 @@ def main():
             delta = f"▼{rank - prev_rank}"
         else:
             delta = "—"
+        print(f"{rank}. {team} ({delta}0")
+        new_state[team] = rank
 
-    print(f"{rank}. {team} ({delta})")
-    new_state[team] = rank
+    # write updated state AFTER the loop
+    with STATE_PATH.open("w", encoding="utf-8"
+        json.dump(new_state, f, indent=2)
 
-
-    with STATE_PATH.open("w", encoding="utf-8") as f:
-      json.dump(new_state, f, indent=2)  
-
-if __name__ == "__main__": 
+if __name__ == "__main__"
     main()
