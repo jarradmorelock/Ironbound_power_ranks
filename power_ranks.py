@@ -59,5 +59,5 @@ def main():
     with STATE_PATH.open("w", encoding="utf-8") as f:
         json.dump(new_state, f, indent=2)
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     main()
