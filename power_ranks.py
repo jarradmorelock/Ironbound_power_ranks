@@ -4,6 +4,7 @@ from pathlib import Path
 STATE_PATH = Path("state.json")
 
 import csv
+import matpotlib.pyplot as plt
 import urllib.request
 from pathlib import Path
 
@@ -11,6 +12,7 @@ CSV_PATH = Path("exports/latest.csv")
 SLEEPER_LEAGUE_ID = "1314016187998294016"
 URL_PATH = Path("exports/power_ranks_url.txt")
 OUT_PATH = Path("exports/power_ranks_message.txt")
+IMG_PATH = Path("exports/power_ranks.png")
 
 def fetch_json(url: str):
     req = urllib.request.Request(url, headers={"User-Agent": "ironbound-power-ranks/1.0"})
@@ -95,6 +97,7 @@ def main():
     new_state = {}
 
     # quick sanity output
+    table_rows = []
     for r in rows:
         team = r["Team"]
         rank = int(r["Overall Rank"])
