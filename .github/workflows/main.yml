@@ -24,7 +24,7 @@ jobs:
           python power_ranks.py
 
       - name: Upload preview artifacts
-        uses: actions/upload-articact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: power-ranks-preview
           path: |
