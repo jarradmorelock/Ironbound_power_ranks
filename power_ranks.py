@@ -4,11 +4,65 @@ from pathlib import Path
 STATE_PATH = Path("state.json")
 
 import csv
+import urllib.request
 from pathlib import Path
 
 CSV_PATH = Path("exports/latest.csv")
+SLEEPER_LEAGUE_ID = "1314016187998294016"
+URL_PATH = Path("exports/power_ranks_url.txt")
+OUT_PATH = Path("exports/power_ranks_message.txt")
+
+def fetch_json(url: str):
+    req = urllib.request.Request(url, headers={"User-Agent": "ironbound-power-ranks/1.0"})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return json.loads(resp.read().decode("utf-8"))
+
+def sleeper_records_by_username(league_id: str) -> dict[str, str]:
+    users = fetch_json(f"https://api.sleeper.app/v1/league/{league_id}/users")
+    rosters = fetch_json(f"https://api.sleeper.app/v1/league/{league_id}/rosters")
+
+    #user_id -> usernames we can match
+    id_to_names: dict[str, set[str]] = {}
+    for u in users:
+        uid = u.get("user_id")
+        if not uid:
+            continue
+        names = set()
+        if u.get("username"):
+            names.add(str(u["username"]))
+        if u.get("display_name"):
+            names.add(str(u["display_name"]))
+        if names:
+            id_to_names[str(uid)] = names
+
+    out: dict[str, str] = {}
+    for r in rosters:
+        owner_id = r.get("owner_id")
+        if not owner_id:
+            continue
+
+        settings = r.get("settings") or {}
+        w = int(settings.get("wins", 0) or 0)
+        l = int(settings.get("losses", 0) or 0)
+        t = int(settings.get("ties", 0) or 0)
+
+        rec = f"{w}-{l}-{t}" if t else f"{w}-{l}"
+
+        for name in id_to_names.get(str(owner_id), set()):
+            out[name] = rec
+
+    return out
+def read_share_url() -> str:
+    if URL_PATH.exists():
+        txt = URL_PATH.read_text(encoding="utf-8").strip()
+        if txt:
+            return txt.splitlines()[0].strip()
+    return ""
 
 def main():
+    records = sleeper_records_by_username(SLEEPER_LEAGUE_ID)
+    share_url = read_share_url()
+    
     with CSV_PATH.open(newline="", encoding="utf-8") as f:
         reader = csv.reader(f)
 
@@ -35,6 +89,9 @@ def main():
         prev_state = {}
 
     rows.sort(key=lambda r: int(r["Overall Rank"]))
+    msg_lines = []
+    msg_lines.append("🏆 **Ironbound Sixteen – Dynasty Power Rankings**")
+    msg_lines.append("")
     new_state = {}
 
     # quick sanity output
@@ -53,11 +110,19 @@ def main():
         else:
             delta = "—"
         print(f"{rank}. {team} ({delta})")
+        owner = (r.get("Owner") or "").strip()
+        record = records.get(owner, records.get(owner.lower(), "-"))
+        msg_lines.append(f"**{rank}.** {team} ({delta})  '{record}'")
         new_state[team] = rank
 
     # write updated state AFTER the loop
     with STATE_PATH.open("w", encoding="utf-8") as f:
         json.dump(new_state, f, indent=2)
+    if share_url:
+        msg_lines.append("")
+        msg_lines.append(f"Interactive table: {share_url}")
+
+    OUT_PATH.write_text("\n".join(msg_lines), encoding="utf-8")
 
 if __name__ == "__main__":
     main()
