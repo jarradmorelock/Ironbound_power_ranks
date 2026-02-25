@@ -27,6 +27,9 @@ jobs:
       - name: run power rankings
         run: |
           python power_ranks.py
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DYNASTY_DADDY_SHARE_URL: ${{ secrets.DYNASTY_DADDY_SHARE_URL }}
 
       - name: Upload preview artifacts
         uses: actions/upload-artifact@v4
