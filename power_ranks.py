@@ -29,7 +29,11 @@ def post_to_discord(webhook_url: str, content: str, image_path):
         print("DISCORD_WEBHOOK_URL not set; skipping Discord post.")
     return
 
-    data = {"content": content}
+    data = {
+        "payload_json": json.dumps({
+            "content": content}
+        })
+    }
 
     with open(image_path, "rb") as f:
         files = {"file": (image_path.name, f, "image/png")}
@@ -204,13 +208,15 @@ def main():
         msg_lines.append("")
         msg_lines.append(f"Interactive table: {share_url}")
 
-    content = "/n".join(msg_lines)
+    content = "\n".join(msg_lines)
+
+    discord_webhook = os.getenv("DISCORD_WEBHOOK_URL", "").strip()
+        print("Webhook present?", bool(discord_webhook))
+        post_to_discord(discord_webhook, content, IMG_PATH)
     
     OUT_PATH.write_text(content, encoding="utf-8")
 
-    discord_webhook = os.getenv("DISCORD_WEBHOOK_URL", "").strip()
-    print("Webhook present?", bool(discord_webhook))
-    post_to_discord(discord_webhook, content, IMG_PATH)
+   
 
 if __name__ == "__main__":
     main()
