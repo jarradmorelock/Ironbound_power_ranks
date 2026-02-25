@@ -20,7 +20,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install deps
-        run: python -m pip install --upgrade pip matplotlib
+        run: python -m pip install -U pip matplotlib
       
       - name: run power rankings
         run: |
@@ -32,5 +32,6 @@ jobs:
           name: power-ranks-preview
           path: |
             exports/power_ranks_message.txt
+            exports/power_ranks.png
             state.json
       
