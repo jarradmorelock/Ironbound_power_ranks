@@ -79,6 +79,7 @@ def sleeper_records_by_username(league_id: str) -> dict[str, str]:
             out[name] = rec
 
     return out
+
 def read_share_url() -> str:
     if URL_PATH.exists():
         txt = URL_PATH.read_text(encoding="utf-8").strip()
@@ -115,7 +116,10 @@ def main():
     else:
         prev_state = {}
 
-    rows.sort(key=lambda r: int(r["Overall Rank"]))
+    def rank_key(r):
+        v = (r.get("Overall Rank") or "").strip()
+        return int(v) if v.isdigit() else 10**9
+    rows.sort(key=rank_key)
     msg_lines = []
     msg_lines.append("🏆 **Ironbound Sixteen – Dynasty Power Rankings**")
     msg_lines.append("")
