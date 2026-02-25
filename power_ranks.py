@@ -207,10 +207,12 @@ def main():
 
     content = "\n".join(msg_lines)
 
-    discord_webhook = os.getenv("DISCORD_WEBHOOK_URL", "").strip()
-        print("Webhook present?", bool(discord_webhook))
+    print("Webhook present?:", bool(discord_webhook))
+    if discord_webhook:
         post_to_discord(discord_webhook, content, IMG_PATH)
-    
+    else:
+        print("DISCORD_WEBHOOK_URL not set. Skipping Discord post.")
+
     OUT_PATH.write_text(content, encoding="utf-8")
 
    
