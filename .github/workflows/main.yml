@@ -22,7 +22,7 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install -U pip
-          python -m pip install matplatlib
+          python -m pip install matplotlib
       
       - name: run power rankings
         run: |
