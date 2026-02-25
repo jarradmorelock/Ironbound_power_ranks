@@ -30,10 +30,7 @@ def post_to_discord(webhook_url: str, content: str, image_path):
     return
 
     data = {
-        "payload_json": json.dumps({
-            "content": content}
-        })
-    }
+        "payload_json": json.dumps({"content": content})}
 
     with open(image_path, "rb") as f:
         files = {"file": (image_path.name, f, "image/png")}
