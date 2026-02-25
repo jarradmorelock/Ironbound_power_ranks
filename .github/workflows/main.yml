@@ -20,7 +20,9 @@ jobs:
           python-version: "3.11"
 
       - name: Install deps
-        run: python -m pip install -U pip matplotlib
+        run: |
+          python -m pip install -U pip
+          python -m pip install matplatlib
       
       - name: run power rankings
         run: |
