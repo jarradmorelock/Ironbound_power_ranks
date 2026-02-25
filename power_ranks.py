@@ -133,7 +133,7 @@ def main():
     col_labels = ["Rank", "Team", "Move", "W-L"]
     tbl = ax.table(
         cellText=table_rows,
-        colLabels=col_lables,
+        colLabels=col_labels,
         loc="center",
         cellLoc="left",
         colLoc="left",)
