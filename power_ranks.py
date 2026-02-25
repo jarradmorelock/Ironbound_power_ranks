@@ -126,21 +126,40 @@ def main():
         msg_lines.append("")
         msg_lines.append(f"Interactive table: {share_url}")
         
-    # ---- build PNG table ----
-    fig, ax = plt.subplots(figsize=(10, 8))
-    ax.axis("off")
+    # ---- build PNG stacked bar chart (overall strength) ----
+    def to_int(x):
+        try:
+            return int(float(str(x).replace(",", "").strip()))
+        except Exception:
+            return 0
 
-    col_labels = ["Rank", "Team", "Move", "W-L"]
-    tbl = ax.table(
-        cellText=table_rows,
-        colLabels=col_labels,
-        loc="center",
-        cellLoc="left",
-        colLoc="left",)
+    # rows should already be sorted by Overall Rank (rank 1 first)
+    teams = [r.get("Team", "").strip() for r in rows]
 
-    tbl.auto_set_font_size(False)
-    tbl.set_fontsize(10)
-    tbl.scale(1, 1.4)
+    # Try common DynastyDaddy column names (covers your CSV + future variations)
+    qb = [to_int(r.get("QB Value", 0)) for r in rows]
+    rb = [to_int(r.get("RB Value", 0)) for r in rows]
+    wr = [to_int(r.get("WR Value", 0)) for r in rows]
+    te = [to_int(r.get("TE Value", 0)) for r in rows]
+
+    # Draft capital shows up under different header names sometimes
+    dc_key_candidates = ["Draft Capital Value", "Draft Value", "Picks Value", "Draft Capital"]
+    draft = [to_int(next((r.get(k) for k in dc_key_candidates if k in r), 0)) for r in rows]
+
+    fig, ax = plt.subplots(figsize=(12, 8))
+
+    # Stacked horizontal bars (rank 1 at top)
+    left = [0] * len(rows)
+    ax.barh(teams, qb, left=left, label="QB"); left = [l + v for l, v in zip(left, qb)]
+    ax.barh(teams, rb, left=left, label="RB"); left = [l + v for l, v in zip(left, rb)]
+    ax.barh(teams, wr, left=left, label="WR"); left = [l + v for l, v in zip(left, wr)]
+    ax.barh(teams, te, left=left, label="TE"); left = [l + v for l, v in zip(left, te)]
+    ax.barh(teams, draft, left=left, label="Draft Capital")
+
+    ax.invert_yaxis()
+    ax.set_title("Ironbound Sixteen — Power Rankings (Stacked Value)")
+    ax.set_xlabel("Total Value")
+    ax.legend(loc="lower right")
 
     fig.tight_layout()
     fig.savefig(IMG_PATH, dpi=200)
