@@ -34,8 +34,8 @@ def post_to_discord(webhook_url: str, content: str, image_path):
     with open(image_path, "rb") as f:
         files = {"file": (image_path.name, f, "image/png")}
         resp = requests.post(webhook_url, data=data, files=files, timeout=30)
-        print(Discord status:", resp.status_code)
-        print(Discord response:", resp.text[:500])
+        print("Discord status:", resp.status_code)
+        print("Discord response:", resp.text[:500])
 
     if resp.status_code >= 300:
         raise RuntimeError(f"Discord webhook post failed: {resp.status_code} {resp.text}")
