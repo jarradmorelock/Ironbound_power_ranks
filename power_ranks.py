@@ -206,7 +206,7 @@ def main():
     
     OUT_PATH.write_text(content, encoding="utf-8")
 
-    post_to_discord(discord_webhook, message, IMG_PATH)
+    post_to_discord(discord_webhook, content, IMG_PATH)
 
 if __name__ == "__main__":
     main()
