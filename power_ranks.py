@@ -4,6 +4,7 @@ from pathlib import Path
 STATE_PATH = Path("state.json")
 
 import requests
+import os
 import csv
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
