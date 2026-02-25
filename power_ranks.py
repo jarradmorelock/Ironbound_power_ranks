@@ -129,7 +129,7 @@ def main():
     table_rows = []
     for r in rows:
         team = r["Team"]
-        rank = int(r["Overall Rank"])
+        rank = int(r["Overall Rank"]) if r["Overall Rank"].strip().isdigit() else None
 
         prev_rank = prev_state.get(team)
 
