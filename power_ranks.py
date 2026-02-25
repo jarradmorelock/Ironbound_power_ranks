@@ -202,9 +202,9 @@ def main():
         msg_lines.append("")
         msg_lines.append(f"Interactive table: {share_url}")
 
-    message = "/n".join(msg_lines)
+    content = "/n".join(msg_lines)
     
-    OUT_PATH.write_text("\n".join(msg_lines), encoding="utf-8")
+    OUT_PATH.write_text(content, encoding="utf-8")
 
     post_to_discord(discord_webhook, message, IMG_PATH)
 
