@@ -3,6 +3,7 @@ from pathlib import Path
 
 STATE_PATH = Path("state.json")
 
+import requests
 import csv
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
@@ -17,6 +18,26 @@ SLEEPER_LEAGUE_ID = "1314016187998294016"
 URL_PATH = Path("exports/power_ranks_url.txt")
 OUT_PATH = Path("exports/power_ranks_message.txt")
 IMG_PATH = Path("exports/power_ranks.png")
+
+def post_to_discord(webhook_url: str, content: str, image_path):
+    """
+    Posts a message + image to Discord via webhook.
+    If webhook_url is missing, do nothing (safe for testing).
+    """
+    if not webhook_url:
+        print("DISCORD_WEBHOOK_URL not set; skipping Discord post.")
+    return
+
+    data = {"content": content}
+
+    with open(image_path, "rb") as f:
+        files = {"file": (image_path.name, f, "image/png")}
+        resp = requests.post(webhook_url, data=data, files=files, timeout=30)
+
+    if resp.status_code >= 300:
+        raise RuntimeError(f"Discord webhook post failed: {resp.status_code} {resp.text}")
+
+    print("Posted to Discord.") 
 
 def fetch_json(url: str):
     req = urllib.request.Request(url, headers={"User-Agent": "ironbound-power-ranks/1.0"})
@@ -168,8 +189,19 @@ def main():
     fig.tight_layout()
     fig.savefig(IMG_PATH, dpi=200)
     plt.close(fig)
+
+    discord_webhook = os.getenv("DISCORD_WEBHOOK_URL", "").strip()
+    share_url = os.getenv("DYNASTY_DADDY_SHARE_URL", "").strip()
+
+    if share_url:
+        msg_lines.append("")
+        msg_lines.append(f"Interactive table: {share_url}")
+
+    message = "/n".join(msg_lines)
     
     OUT_PATH.write_text("\n".join(msg_lines), encoding="utf-8")
+
+    post_to_discord(discord_webhook, message, IMG_PATH)
 
 if __name__ == "__main__":
     main()
