@@ -5,8 +5,12 @@ STATE_PATH = Path("state.json")
 
 import csv
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
 import urllib.request
 from pathlib import Path
+
+rcParams["font.family"] = "DejaVu Sans"
+rcParams["axes.unicode_minus"] = False
 
 CSV_PATH = Path("exports/latest.csv")
 SLEEPER_LEAGUE_ID = "1314016187998294016"
