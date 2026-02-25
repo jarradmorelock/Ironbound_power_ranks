@@ -117,6 +117,7 @@ def main():
         record = records.get(owner, records.get(owner.lower(), "-"))
         msg_lines.append(f"**{rank}.** {team} ({delta})  '{record}'")
         new_state[team] = rank
+        table_rows.append([str(rank), team, str(delta), record])
 
     # write updated state AFTER the loop
     with STATE_PATH.open("w", encoding="utf-8") as f:
@@ -124,7 +125,27 @@ def main():
     if share_url:
         msg_lines.append("")
         msg_lines.append(f"Interactive table: {share_url}")
+        
+    # ---- build PNG table ----
+    fig, ax = plt.subplots(figsize=(10, 8))
+    ax.axis("off")
 
+    col_labels = ["Rank", "Team", "Move", "W-L"]
+    tbl = ax.table(
+        cellText=table_rows,
+        colLabels=col_lables,
+        loc="center",
+        cellLoc="left",
+        colLoc="left",)
+
+    tbl.auto_set_font_size(False)
+    tbl.set_fontsize(10)
+    tbl.scale(1, 1.4)
+
+    fig.tight_layout()
+    fig.savefig(IMG_PATH, dpi=200)
+    plt.close(fig)
+    
     OUT_PATH.write_text("\n".join(msg_lines), encoding="utf-8")
 
 if __name__ == "__main__":
