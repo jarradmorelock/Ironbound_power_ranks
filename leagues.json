@@ -1,0 +1,40 @@
+{
+  "leagues": {
+    "main": {
+      "league_id": "1314016187998294016",
+      "brand": "IRONBOUND",
+      "publication": "IRONBOUND WEEKLY",
+      "quarterback_mode": "one_qb",
+      "webhook_env": "MAIN_IRONBOUND_WEEKLY_WEBHOOK",
+      "tags_env": "MAIN_IRONBOUND_WEEKLY_TAG_IDS",
+      "theme": {
+        "background": "#0A0B0D",
+        "panel": "#2B2D31",
+        "text": "#F4E6C1",
+        "muted": "#9A9DA3",
+        "market": "#C9972F",
+        "lineup": "#9F2335",
+        "season": "#8B929C",
+        "accent": "#DDB44E"
+      }
+    },
+    "free": {
+      "league_id": "1339055357728686080",
+      "brand": "UNBOUND",
+      "publication": "UNBOUND WEEKLY",
+      "quarterback_mode": "one_qb",
+      "webhook_env": "FREE_IRONBOUND_WEEKLY_WEBHOOK",
+      "tags_env": "FREE_IRONBOUND_WEEKLY_TAG_IDS",
+      "theme": {
+        "background": "#071316",
+        "panel": "#183037",
+        "text": "#E8FAF7",
+        "muted": "#83A4A5",
+        "market": "#20C7B5",
+        "lineup": "#7357E8",
+        "season": "#F06A4B",
+        "accent": "#38E0CD"
+      }
+    }
+  }
+}
