@@ -19,7 +19,11 @@ def main() -> int:
     parser.add_argument(
         "--scheduled",
         action="store_true",
-        help="Publish only when the current America/New_York time is Saturday noon",
+        help="Publish only for the DST-correct Saturday-noon GitHub trigger",
+    )
+    parser.add_argument(
+        "--scheduled-cron",
+        help="Exact schedule expression supplied by GitHub Actions",
     )
     args = parser.parse_args()
     return run(
@@ -27,6 +31,7 @@ def main() -> int:
         publish=args.publish,
         force=args.force,
         scheduled=args.scheduled,
+        scheduled_cron=args.scheduled_cron,
     )
 
 

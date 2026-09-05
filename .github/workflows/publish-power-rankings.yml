@@ -23,11 +23,11 @@ on:
         default: false
         type: boolean
   schedule:
-    # Noon in New York is 16:00 UTC during daylight time and 17:00 UTC
-    # during standard time. The application's local-time guard lets only the
-    # correct run publish.
-    - cron: "0 16 * * 6"
-    - cron: "0 17 * * 6"
+    # 12:07 p.m. in New York is 16:07 UTC during daylight time and 17:07 UTC
+    # during standard time. The trigger-aware guard lets only the correct run
+    # publish, even when GitHub starts the job late.
+    - cron: "7 16 * * 6"
+    - cron: "7 17 * * 6"
 
 permissions:
   contents: write
@@ -65,7 +65,11 @@ jobs:
           FREE_IRONBOUND_WEEKLY_TAG_IDS: ${{ vars.FREE_IRONBOUND_WEEKLY_TAG_IDS }}
         run: |
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            python -m ironbound_rankings --league all --publish --scheduled
+            python -m ironbound_rankings \
+              --league all \
+              --publish \
+              --scheduled \
+              --scheduled-cron "${{ github.event.schedule }}"
           else
             args=(--league "${{ inputs.league }}")
             if [ "${{ inputs.dry_run }}" = "false" ]; then

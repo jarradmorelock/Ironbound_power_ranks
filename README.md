@@ -74,7 +74,7 @@ Keep **Settings → Actions → General → Workflow permissions** on GitHub's s
 
 ## Schedule and safety
 
-The workflow is triggered at both possible UTC equivalents of Saturday noon. A New York local-time guard permits only the correct daylight/standard-time run to continue, so publication remains at noon Eastern throughout the year.
+The workflow is triggered at 12:07 p.m. or 1:07 p.m. Eastern, covering both possible UTC equivalents of Saturday noon while avoiding GitHub's busiest scheduling minute. GitHub passes the exact trigger expression to the publisher, and a New York daylight/standard-time guard permits only the trigger corresponding to 12:07 p.m. to publish. Because the guard checks the intended trigger instead of the runner's eventual start time, an ordinary GitHub scheduling delay cannot suppress the post.
 
 Manual runs default to **Dry run: true**. A dry run fetches real data, builds both complete preview packages, and uploads them as a GitHub Actions artifact without contacting Discord or changing state.
 

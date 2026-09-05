@@ -29,10 +29,15 @@ def run(
     publish: bool,
     force: bool,
     scheduled: bool,
+    scheduled_cron: str | None = None,
 ) -> int:
     now = datetime.now(EASTERN)
-    if scheduled and (now.weekday() != 5 or now.hour != 12):
-        print(f"Schedule guard: {now:%A %-I:%M %p ET}; nothing to publish.")
+    if scheduled and not is_noon_eastern_schedule(now, scheduled_cron):
+        trigger = scheduled_cron or "unknown"
+        print(
+            f"Schedule guard: trigger {trigger!r} is not this week's noon "
+            f"Eastern schedule ({now:%A %-I:%M %p %Z}); nothing to publish."
+        )
         return 0
 
     configs = load_leagues()
@@ -74,6 +79,23 @@ def run(
         print(f"Completed with failures: {', '.join(failures)}")
         return 1
     return 0
+
+
+def is_noon_eastern_schedule(now: datetime, scheduled_cron: str | None) -> bool:
+    """Accept the DST-correct noon trigger even when GitHub starts it late."""
+    if now.weekday() != 5:
+        return False
+
+    # Local/manual compatibility: without GitHub's trigger expression, retain
+    # the strict Saturday-noon check.
+    if not scheduled_cron:
+        return now.hour == 12
+
+    offset = now.utcoffset()
+    if offset is None:
+        return False
+    noon_utc_hour = (12 - int(offset.total_seconds() // 3600)) % 24
+    return scheduled_cron.strip() == f"7 {noon_utc_hour} * * 6"
 
 
 def publish_league(
