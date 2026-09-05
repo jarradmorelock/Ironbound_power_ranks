@@ -70,7 +70,7 @@ Example value:
 ["123456789012345678"]
 ```
 
-Finally, ensure **Settings → Actions → General → Workflow permissions** is set to **Read and write permissions**. That allows the workflow to save only the two small state files used for movement arrows and duplicate-post protection.
+Keep **Settings → Actions → General → Workflow permissions** on GitHub's safer read-only default. The checked-in workflow explicitly requests only `contents: write`, which it needs to save the two small state files used for movement arrows and duplicate-post protection; every unspecified permission remains disabled.
 
 ## Schedule and safety
 
