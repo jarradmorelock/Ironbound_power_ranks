@@ -10,6 +10,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
+import matplotlib.patheffects as path_effects  # noqa: E402
 from matplotlib.patches import Rectangle  # noqa: E402
 
 from .models import LeagueConfig, RankingResult
@@ -48,6 +49,16 @@ def render_chart(result: RankingResult, config: LeagueConfig, output: Path) -> N
             color=theme.season,
             height=0.60,
             label="Season results (record-led)",
+        )
+
+    for y, team in zip(y_positions, teams):
+        _draw_component_values(
+            ax,
+            y=y,
+            values=(team.market_points, team.lineup_points, team.season_points),
+            has_season_results=result.has_season_results,
+            text_color=theme.text,
+            outline_color=theme.background,
         )
 
     labels = [_team_label(team) for team in teams]
@@ -165,6 +176,40 @@ def render_chart(result: RankingResult, config: LeagueConfig, output: Path) -> N
     fig.savefig(output, facecolor=fig.get_facecolor(), bbox_inches=None)
     plt.close(fig)
     result.output_image = output
+
+
+def _draw_component_values(
+    ax,
+    *,
+    y: int,
+    values: tuple[float, float, float],
+    has_season_results: bool,
+    text_color: str,
+    outline_color: str,
+) -> None:
+    """Write each non-zero contribution inside its stacked-bar segment."""
+    visible_values = values if has_season_results else values[:2]
+    left = 0.0
+    for value in visible_values:
+        if value > 0:
+            narrow = value < 3.8
+            label = ax.text(
+                left + value / 2,
+                y,
+                f"{value:.1f}",
+                va="center",
+                ha="center",
+                rotation=90 if narrow else 0,
+                fontsize=5.8 if narrow else 7.2,
+                fontweight="bold",
+                color=text_color,
+                clip_on=True,
+                zorder=4,
+            )
+            label.set_path_effects(
+                [path_effects.withStroke(linewidth=1.8, foreground=outline_color)]
+            )
+        left += value
 
 
 def _team_label(team) -> str:

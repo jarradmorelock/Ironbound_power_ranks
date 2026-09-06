@@ -3,7 +3,7 @@ from __future__ import annotations
 import unittest
 
 from ironbound_rankings.discord import escape_discord, parse_tag_ids
-from ironbound_rankings.render import safe_chart_text
+from ironbound_rankings.render import _draw_component_values, safe_chart_text
 from ironbound_rankings.sleeper import _future_pick_ownership
 from ironbound_rankings.sources import parse_pick_asset
 
@@ -54,6 +54,39 @@ class DiscordTests(unittest.TestCase):
     def test_chart_text_normalizes_decorative_unicode(self) -> None:
         self.assertEqual(safe_chart_text("卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™"), "Happy Hippies")
         self.assertEqual(safe_chart_text("🇵🇭 Barangay 828 🇵🇭"), "Barangay 828")
+
+
+class _FakeLabel:
+    def set_path_effects(self, effects) -> None:
+        self.effects = effects
+
+
+class _FakeAxes:
+    def __init__(self) -> None:
+        self.labels = []
+
+    def text(self, x, y, value, **kwargs):
+        self.labels.append((x, y, value, kwargs))
+        return _FakeLabel()
+
+
+class RenderTests(unittest.TestCase):
+    def test_component_values_are_centered_inside_visible_segments(self) -> None:
+        axes = _FakeAxes()
+
+        _draw_component_values(
+            axes,
+            y=3,
+            values=(40.0, 12.0, 8.0),
+            has_season_results=False,
+            text_color="#ffffff",
+            outline_color="#000000",
+        )
+
+        self.assertEqual(
+            [(x, y, value) for x, y, value, _ in axes.labels],
+            [(20.0, 3, "40.0"), (46.0, 3, "12.0")],
+        )
 
 
 if __name__ == "__main__":
