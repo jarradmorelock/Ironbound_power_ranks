@@ -216,14 +216,14 @@ def rank_league(
 
 
 def ranking_weights(completed_games: int) -> tuple[float, float, float]:
-    """Increase the influence of real results as the season sample grows."""
+    """Favor win-now starters while results gain influence through the season."""
     if completed_games <= 0:
-        return (0.625, 0.375, 0.0)
+        return (0.45, 0.55, 0.0)
     if completed_games <= 3:
-        return (0.50, 0.30, 0.20)
+        return (0.35, 0.45, 0.20)
     if completed_games <= 7:
-        return (0.45, 0.25, 0.30)
-    return (0.35, 0.25, 0.40)
+        return (0.30, 0.40, 0.30)
+    return (0.25, 0.35, 0.40)
 
 
 def _apply_record_guardrail(scored: list[_TeamScore]) -> None:

@@ -115,10 +115,10 @@ class EngineTests(unittest.TestCase):
         self.assertIsNone(result.teams[0].season_percentile)
 
     def test_results_gain_weight_as_the_season_progresses(self) -> None:
-        self.assertEqual(ranking_weights(0), (0.625, 0.375, 0.0))
-        self.assertEqual(ranking_weights(2), (0.50, 0.30, 0.20))
-        self.assertEqual(ranking_weights(5), (0.45, 0.25, 0.30))
-        self.assertEqual(ranking_weights(10), (0.35, 0.25, 0.40))
+        self.assertEqual(ranking_weights(0), (0.45, 0.55, 0.0))
+        self.assertEqual(ranking_weights(2), (0.35, 0.45, 0.20))
+        self.assertEqual(ranking_weights(5), (0.30, 0.40, 0.30))
+        self.assertEqual(ranking_weights(10), (0.25, 0.35, 0.40))
 
     def test_large_late_season_record_gap_limits_market_value_lead(self) -> None:
         players = {

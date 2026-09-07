@@ -33,14 +33,16 @@ The balance moves toward real results as the season becomes meaningful:
 
 | Completed games | Market consensus | Starting lineup | Season performance |
 | --- | ---: | ---: | ---: |
-| Preseason | 62.5% | 37.5% | — |
-| 1–3 | 50% | 30% | 20% |
-| 4–7 | 45% | 25% | 30% |
-| 8+ | 35% | 25% | 40% |
+| Preseason | 45% | 55% | — |
+| 1–3 | 35% | 45% | 20% |
+| 4–7 | 30% | 40% | 30% |
+| 8+ | 25% | 35% | 40% |
 
 - **Market consensus** values each team's complete roster and its actual ownership of the next three rookie-pick classes, averaged across every available dynasty source.
 - **Starting-lineup strength** finds the best legal 1QB lineup using Dynasty Daddy's aggregate ADP in the preseason and aggregate rest-of-season rankings after results begin. Players marked PUP, IR, suspended, or COVID-inactive are excluded, matching Dynasty Daddy's starter treatment.
 - **Season performance** is 80% record and 20% points scored, so wins lead the in-season calculation without making points-for irrelevant.
+
+The win-now share—starting lineup plus season performance—grows from 55% in the preseason to 75% after eight games. Long-term dynasty value remains meaningful without allowing bench depth and future picks to dominate a weekly power ranking.
 
 Beginning after eight completed games, a record guardrail handles extreme disagreements: a team four or more wins behind another team cannot lead it by more than 10 index points. Thus a market-rich 7–7 roster can still rate above a 12–2 contender, but it cannot sit 20 or 30 points clear of it.
 
