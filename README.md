@@ -1,6 +1,6 @@
 # Ironbound Power Rankings
 
-An image-first weekly publisher for the two Ironbound dynasty leagues. Every Saturday at noon in New York, it rebuilds both leagues from live market and Sleeper data, creates a separate branded bar chart for each league, and opens a new post in the correct Discord Forum.
+An image-first weekly publisher for the two Ironbound dynasty leagues. Every Saturday at noon in New York, it rebuilds both leagues from live market and Sleeper data, creates a separate branded bar chart for each league, and opens a new post in the correct Discord Forum. Every Tuesday at 11:07 a.m. Eastern, it rebuilds a magazine-ready copy from the latest records and emails all four graphics to the publications inbox.
 
 The two publishers share one tested ranking engine, but run as isolated league operations. If one league or webhook fails, the other league is still attempted and any successful publication state is preserved.
 
@@ -9,8 +9,9 @@ The two publishers share one tested ranking engine, but run as isolated league o
 - **IRONBOUND** to the `ironbound weekly` Forum.
 - **UNBOUND** to the `unbound weekly` Forum.
 - Two Gallery-friendly 1800×1800 PNGs: the power-ranking board and a playoff forecast.
-- A numbered text ranking with each team's live Sleeper record, index score, week-over-week movement, playoff odds, and title odds.
+- Image-first Forum posts with concise formula and source context; team details stay in the graphics.
 - A new Forum thread each week, with optional Forum tags.
+- One Tuesday email containing both leagues' power-ranking and playoff-forecast graphics.
 
 The two images deliberately use different visual systems: forged black/brass/crimson for the flagship and broken-chain teal/violet/orange for the free league.
 
@@ -58,12 +59,15 @@ The matchup probabilities use the same aggregate ADP/ROS starter signal as the p
 
 ## GitHub setup
 
-Add these two repository **secrets** under **Settings → Secrets and variables → Actions**:
+Add these repository **secrets** under **Settings → Secrets and variables → Actions**:
 
 | Secret | Destination |
 | --- | --- |
 | `MAIN_IRONBOUND_WEEKLY_WEBHOOK` | Webhook created inside the `ironbound weekly` Forum |
 | `FREE_IRONBOUND_WEEKLY_WEBHOOK` | Webhook created inside the `unbound weekly` Forum |
+| `PUBLICATIONS_EMAIL_FROM` | Dedicated Gmail sender address |
+| `PUBLICATIONS_EMAIL_TO` | Publications inbox; multiple addresses may be comma-separated |
+| `PUBLICATIONS_EMAIL_APP_PASSWORD` | Google app password for the dedicated sender account |
 
 Do not reuse a webhook from a news, transaction, trade, or ordinary text channel. Incoming webhooks are tied to their destination channel.
 
@@ -82,7 +86,9 @@ Keep **Settings → Actions → General → Workflow permissions** on GitHub's s
 
 ## Schedule and safety
 
-The workflow is triggered at 12:07 p.m. or 1:07 p.m. Eastern, covering both possible UTC equivalents of Saturday noon while avoiding GitHub's busiest scheduling minute. GitHub passes the exact trigger expression to the publisher, and a New York daylight/standard-time guard permits only the trigger corresponding to 12:07 p.m. to publish. Because the guard checks the intended trigger instead of the runner's eventual start time, an ordinary GitHub scheduling delay cannot suppress the post.
+The Discord workflow carries both possible UTC equivalents of Saturday noon while avoiding GitHub's busiest scheduling minute. GitHub passes the exact trigger expression to the publisher, and a New York daylight/standard-time guard permits only the trigger corresponding to 12:07 p.m. Eastern to publish. Because the guard checks the intended trigger instead of the runner's eventual start time, an ordinary GitHub scheduling delay cannot suppress the post.
+
+The separate email workflow uses the same daylight/standard-time protection to send only at 11:07 a.m. Eastern each Tuesday. It rebuilds the graphics from the latest Sleeper records, emails them through the publications Gmail account, and uploads the package as a workflow artifact. It never contacts Discord or writes the `state/` files, preserving Saturday-to-Saturday movement comparisons.
 
 Manual runs default to **Dry run: true**. A dry run fetches real data, builds both complete preview packages, and uploads them as a GitHub Actions artifact without contacting Discord or changing state.
 
@@ -94,6 +100,8 @@ For a manual live run:
 4. Leave **Allow a second live post** unchecked unless replacing a deleted or bad same-week post.
 
 The saved `last_published_key` prevents an accidental second post for the same Sleeper week. The `force_post` option is the deliberate escape hatch.
+
+For a manual email test, open **Actions → Email Power Rankings → Run workflow**, choose `all`, and check **Send the real email**. Manual runs default to preview-only.
 
 ## Local preview
 
@@ -117,6 +125,7 @@ ironbound_rankings/
   forecast.py     Elo adjustment and 10,000 playoff simulations
   render.py       power-ranking and playoff Gallery charts
   discord.py      safe Forum webhook payloads
+  mailer.py       Tuesday Gmail package and attachments
   publisher.py    independent league orchestration and previews
 leagues.json      non-secret league IDs, brands, and themes
 state/            last successful rank order and publication key

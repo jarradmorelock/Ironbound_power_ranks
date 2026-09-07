@@ -14,6 +14,7 @@ from .discord import build_message, parse_tag_ids, post_forum_ranking
 from .engine import rank_league
 from .forecast import attach_playoff_forecast
 from .http import HttpClient
+from .mailer import send_power_rankings_email
 from .models import LeagueConfig, RankingResult
 from .render import render_chart, render_playoff_chart
 from .sleeper import fetch_league_snapshot
@@ -31,13 +32,23 @@ def run(
     force: bool,
     scheduled: bool,
     scheduled_cron: str | None = None,
+    email: bool = False,
 ) -> int:
     now = datetime.now(EASTERN)
-    if scheduled and not is_noon_eastern_schedule(now, scheduled_cron):
+    if publish and email:
+        raise ValueError("Discord publishing and email delivery must be separate runs")
+
+    schedule_is_valid = (
+        is_tuesday_email_schedule(now, scheduled_cron)
+        if email
+        else is_noon_eastern_schedule(now, scheduled_cron)
+    )
+    if scheduled and not schedule_is_valid:
         trigger = scheduled_cron or "unknown"
+        intended = "Tuesday 11:07 AM" if email else "Saturday noon"
         print(
-            f"Schedule guard: trigger {trigger!r} is not this week's noon "
-            f"Eastern schedule ({now:%A %-I:%M %p %Z}); nothing to publish."
+            f"Schedule guard: trigger {trigger!r} is not this week's {intended} "
+            f"Eastern schedule ({now:%A %-I:%M %p %Z}); nothing to deliver."
         )
         return 0
 
@@ -87,6 +98,12 @@ def run(
     if failures:
         print(f"Completed with failures: {', '.join(failures)}")
         return 1
+    if email:
+        try:
+            print(send_power_rankings_email(selected, generated_at=now))
+        except Exception as exc:
+            print(f"Email delivery FAILED: {exc}")
+            return 1
     return 0
 
 
@@ -105,6 +122,21 @@ def is_noon_eastern_schedule(now: datetime, scheduled_cron: str | None) -> bool:
         return False
     noon_utc_hour = (12 - int(offset.total_seconds() // 3600)) % 24
     return scheduled_cron.strip() == f"7 {noon_utc_hour} * * 6"
+
+
+def is_tuesday_email_schedule(now: datetime, scheduled_cron: str | None) -> bool:
+    """Accept only the DST-correct Tuesday 11:07 a.m. trigger."""
+    if now.weekday() != 1:
+        return False
+
+    if not scheduled_cron:
+        return now.hour == 11
+
+    offset = now.utcoffset()
+    if offset is None:
+        return False
+    eleven_utc_hour = (11 - int(offset.total_seconds() // 3600)) % 24
+    return scheduled_cron.strip() == f"7 {eleven_utc_hour} * * 2"
 
 
 def publish_league(

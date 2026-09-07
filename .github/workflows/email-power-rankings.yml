@@ -1,0 +1,88 @@
+name: Email Power Rankings
+
+on:
+  workflow_dispatch:
+    inputs:
+      league:
+        description: League package to build
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - main
+          - free
+      send_email:
+        description: Send the real email (otherwise preview only)
+        required: true
+        default: false
+        type: boolean
+  schedule:
+    # 11:07 a.m. in New York is 15:07 UTC during daylight time and 16:07 UTC
+    # during standard time. The application guard accepts only the correct run.
+    - cron: "7 15 * * 2"
+    - cron: "7 16 * * 2"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ironbound-tuesday-email
+  cancel-in-progress: false
+
+jobs:
+  email:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Build or email rankings
+        env:
+          PUBLICATIONS_EMAIL_FROM: ${{ secrets.PUBLICATIONS_EMAIL_FROM }}
+          PUBLICATIONS_EMAIL_TO: ${{ secrets.PUBLICATIONS_EMAIL_TO }}
+          PUBLICATIONS_EMAIL_APP_PASSWORD: ${{ secrets.PUBLICATIONS_EMAIL_APP_PASSWORD }}
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            python -m ironbound_rankings \
+              --league all \
+              --email \
+              --scheduled \
+              --scheduled-cron "${{ github.event.schedule }}"
+          else
+            args=(--league "${{ inputs.league }}")
+            if [ "${{ inputs.send_email }}" = "true" ]; then
+              args+=(--email)
+            fi
+            python -m ironbound_rankings "${args[@]}"
+          fi
+
+      - name: Upload magazine package
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: emailed-power-rankings-${{ github.run_number }}
+          if-no-files-found: warn
+          path: |
+            exports/main/latest.png
+            exports/main/latest-playoffs.png
+            exports/main/latest.txt
+            exports/main/latest.json
+            exports/free/latest.png
+            exports/free/latest-playoffs.png
+            exports/free/latest.txt
+            exports/free/latest.json
