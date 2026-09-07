@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import unittest
+from types import SimpleNamespace
 
-from ironbound_rankings.discord import escape_discord, parse_tag_ids
+from ironbound_rankings.discord import build_message, escape_discord, parse_tag_ids
 from ironbound_rankings.render import _draw_component_values, safe_chart_text
 from ironbound_rankings.sleeper import _future_pick_ownership
 from ironbound_rankings.sources import _starter_book_from_metadata, parse_pick_asset
@@ -96,6 +97,38 @@ class DiscordTests(unittest.TestCase):
     def test_chart_text_normalizes_decorative_unicode(self) -> None:
         self.assertEqual(safe_chart_text("卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™"), "Happy Hippies")
         self.assertEqual(safe_chart_text("🇵🇭 Barangay 828 🇵🇭"), "Barangay 828")
+
+    def test_playoff_odds_stay_in_the_forecast_image_not_the_team_text(self) -> None:
+        result = SimpleNamespace(
+            league=SimpleNamespace(week=2, season=2026, is_superflex=False),
+            teams=[
+                SimpleNamespace(
+                    rank=1,
+                    team_name="Alpha",
+                    record="1-0",
+                    score=72.5,
+                    movement=2,
+                    make_playoffs_pct=88.0,
+                    win_championship_pct=24.0,
+                )
+            ],
+            dynasty_sources=["Market"],
+            lineup_sources=["Dynasty Daddy ROS"],
+            market_weight=0.50,
+            lineup_weight=0.30,
+            season_weight=0.20,
+            has_season_results=True,
+            record_guardrail_active=False,
+            forecast_simulations=10_000,
+            forecast_model="Elo-adjusted Dynasty Daddy ROS",
+        )
+        config = SimpleNamespace(brand="IRONBOUND", publication="IRONBOUND WEEKLY")
+
+        _thread, content = build_message(result, config)
+
+        self.assertIn("1-0 · 72.5 ▲2", content)
+        self.assertNotIn("PO 88%", content)
+        self.assertNotIn("TITLE 24%", content)
 
 
 class _FakeLabel:

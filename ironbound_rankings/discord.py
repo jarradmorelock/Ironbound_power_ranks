@@ -24,15 +24,9 @@ def build_message(result: RankingResult, config: LeagueConfig) -> tuple[str, str
     ]
     for team in result.teams:
         movement = _movement(team.movement)
-        forecast = ""
-        if team.make_playoffs_pct is not None:
-            forecast = (
-                f" · PO {team.make_playoffs_pct:.0f}%"
-                f" · TITLE {(team.win_championship_pct or 0):.0f}%"
-            )
         lines.append(
             f"**{team.rank}. {escape_discord(team.team_name)}** — "
-            f"{team.record} · {team.score:.1f} {movement}{forecast}".rstrip()
+            f"{team.record} · {team.score:.1f} {movement}".rstrip()
         )
     source_names = result.dynasty_sources + result.lineup_sources
     source_prefix = "Sources: "

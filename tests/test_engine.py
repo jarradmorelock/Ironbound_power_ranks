@@ -50,8 +50,8 @@ class EngineTests(unittest.TestCase):
             "b": player("b", "QB"),
         }
         teams = [
-            LeagueTeam(1, "1", "Alpha", "A", ["a"], [], 0, 1, 0, 80),
-            LeagueTeam(2, "2", "Bravo", "B", ["b"], [], 1, 0, 0, 120),
+            LeagueTeam(1, "1", "Alpha", "A", ["a"], [], 0, 1, 0, 100),
+            LeagueTeam(2, "2", "Bravo", "B", ["b"], [], 1, 0, 0, 100),
         ]
         snapshot = LeagueSnapshot(
             "league", "League", 2026, 2, True, 0.5, ["SUPER_FLEX"], teams
@@ -62,7 +62,36 @@ class EngineTests(unittest.TestCase):
         ]
         result = rank_league(snapshot, players, books)
         self.assertEqual(result.teams[0].team_name, "Bravo")
+        self.assertGreater(result.teams[0].score, result.teams[1].score)
         self.assertTrue(result.has_season_results)
+
+    def test_movement_compares_with_the_previous_published_order(self) -> None:
+        players = {
+            "a": player("a", "QB"),
+            "b": player("b", "QB"),
+        }
+        teams = [
+            LeagueTeam(1, "1", "Alpha", "A", ["a"], [], 0, 0, 0, 0),
+            LeagueTeam(2, "2", "Bravo", "B", ["b"], [], 0, 0, 0, 0),
+        ]
+        snapshot = LeagueSnapshot(
+            "league", "League", 2026, 1, False, 0.5, ["SUPER_FLEX"], teams
+        )
+        books = [
+            ValueBook("Dynasty", "dynasty", {"a": 200, "b": 100}),
+            ValueBook("ADP", "lineup", {"a": 200, "b": 100}),
+        ]
+
+        result = rank_league(
+            snapshot,
+            players,
+            books,
+            previous_ranks={"1": 2, "2": 1},
+        )
+
+        self.assertEqual(result.teams[0].team_name, "Alpha")
+        self.assertEqual(result.teams[0].movement, 1)
+        self.assertEqual(result.teams[1].movement, -1)
 
     def test_preseason_ignores_zero_records(self) -> None:
         players = {
