@@ -90,13 +90,13 @@ jobs:
       - name: Save successful Tuesday ranking state
         if: success() && github.event_name == 'schedule'
         run: |
-          if ! git status --porcelain -- state/email | grep -q .; then
+          if ! git status --porcelain -- state | grep -q .; then
             echo "No Tuesday ranking state changed."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git pull --rebase --autostash origin main
-          git add state/email
+          git add state
           git commit -m "Save Tuesday magazine ranking state"
           git push origin HEAD:main

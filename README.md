@@ -88,7 +88,9 @@ Keep **Settings → Actions → General → Workflow permissions** on GitHub's s
 
 The Discord workflow carries both possible UTC equivalents of Saturday noon while avoiding GitHub's busiest scheduling minute. GitHub passes the exact trigger expression to the publisher, and a New York daylight/standard-time guard permits only the trigger corresponding to 12:07 p.m. Eastern to publish. Because the guard checks the intended trigger instead of the runner's eventual start time, an ordinary GitHub scheduling delay cannot suppress the post.
 
-The separate email workflow uses the same daylight/standard-time protection to send only at 11:07 a.m. Eastern each Tuesday. It rebuilds the graphics from the latest Sleeper records, emails them through the publications Gmail account, and uploads the package as a workflow artifact. It never contacts Discord. Tuesday rankings persist under `state/email/`, giving the magazine a Tuesday-to-Tuesday movement history without altering the Saturday-to-Saturday Discord history. The first official Tuesday issue shows `NEW`; later issues show movement from the prior Tuesday.
+The separate email workflow uses the same daylight/standard-time protection to send only at 11:07 a.m. Eastern each Tuesday. It rebuilds the graphics from the latest Sleeper records, emails them through the publications Gmail account, and uploads the package as a workflow artifact. It never contacts Discord.
+
+Rank movement follows one continuous publication timeline. Tuesday compares with the preceding Saturday; the next Saturday compares with Tuesday. Thus a team ranked second on Tuesday and fourth on Saturday displays a two-place drop. Discord and email keep separate duplicate-delivery keys, so sharing the rank history cannot accidentally suppress either publication.
 
 Manual runs default to **Dry run: true**. A dry run fetches real data, builds both complete preview packages, and uploads them as a GitHub Actions artifact without contacting Discord or changing state.
 
@@ -128,7 +130,7 @@ ironbound_rankings/
   mailer.py       Tuesday Gmail package and attachments
   publisher.py    independent league orchestration and previews
 leagues.json      non-secret league IDs, brands, and themes
-state/            independent Saturday and Tuesday rank histories
+state/            shared cross-publication rank history and delivery keys
 tests/            deterministic unit coverage
 ```
 

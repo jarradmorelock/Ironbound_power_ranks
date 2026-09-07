@@ -90,7 +90,6 @@ def run(
                 now=now,
                 publish=publish,
                 force=force,
-                email_history=email,
             )
             completed.append((config, result))
             print(f"[{config.key}] {outcome}")
@@ -110,11 +109,12 @@ def run(
         if scheduled:
             for config, result in completed:
                 save_state(
-                    _state_path(config, email_history=True),
+                    _state_path(config),
                     result,
                     _post_key(result, now),
+                    publication="email",
                 )
-            print("Saved Tuesday-to-Tuesday movement history.")
+            print("Saved the latest ranking to the shared publication history.")
     return 0
 
 
@@ -159,9 +159,8 @@ def publish_league(
     now: datetime,
     publish: bool,
     force: bool,
-    email_history: bool = False,
 ) -> tuple[str, RankingResult]:
-    state_path = _state_path(config, email_history=email_history)
+    state_path = _state_path(config)
     state = load_state(state_path)
     previous_ranks = state.get("rank_by_roster_id") or {}
     generated_at = now.isoformat(timespec="seconds")
@@ -190,7 +189,10 @@ def publish_league(
             ),
             result,
         )
-    if state.get("last_published_key") == post_key and not force:
+    last_discord_key = state.get("last_discord_published_key") or state.get(
+        "last_published_key"
+    )
+    if last_discord_key == post_key and not force:
         return f"Already published {post_key}; skipped duplicate.", result
 
     webhook_url = (os.getenv(config.webhook_env) or "").strip()
@@ -206,7 +208,7 @@ def publish_league(
         playoff_image_path=playoff_image_path,
         tag_ids=tag_ids,
     )
-    save_state(state_path, result, post_key)
+    save_state(state_path, result, post_key, publication="discord")
     thread_id = response.get("channel_id") or response.get("id") or "created"
     return f"Published {post_key} to a new Forum thread ({thread_id}).", result
 
@@ -244,6 +246,5 @@ def _post_key(result: RankingResult, now: datetime) -> str:
     return f"{result.league.season}-preseason-{now:%Y-%m-%d}"
 
 
-def _state_path(config: LeagueConfig, *, email_history: bool) -> Path:
-    state_dir = ROOT / "state" / "email" if email_history else ROOT / "state"
-    return state_dir / f"{config.key}.json"
+def _state_path(config: LeagueConfig) -> Path:
+    return ROOT / "state" / f"{config.key}.json"

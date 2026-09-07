@@ -18,17 +18,40 @@ def load_state(path: Path) -> dict:
         return {}
 
 
-def save_state(path: Path, result: RankingResult, post_key: str) -> None:
+def save_state(
+    path: Path,
+    result: RankingResult,
+    post_key: str,
+    *,
+    publication: str = "discord",
+) -> None:
+    if publication not in {"discord", "email"}:
+        raise ValueError(f"Unknown publication history: {publication}")
+
     path.parent.mkdir(parents=True, exist_ok=True)
-    data = {
-        "version": 1,
-        "league_id": result.league.league_id,
-        "last_published_key": post_key,
-        "last_published_at": result.generated_at,
-        "rank_by_roster_id": {
-            str(team.roster_id): team.rank for team in result.teams
-        },
-    }
+    data = load_state(path)
+
+    # Migrate the original single-purpose duplicate key without losing the
+    # most recent successful Discord publication.
+    legacy_key = data.pop("last_published_key", None)
+    legacy_at = data.pop("last_published_at", None)
+    if legacy_key and not data.get("last_discord_published_key"):
+        data["last_discord_published_key"] = legacy_key
+    if legacy_at and not data.get("last_discord_published_at"):
+        data["last_discord_published_at"] = legacy_at
+
+    data.update(
+        {
+            "version": 2,
+            "league_id": result.league.league_id,
+            "last_ranking_published_at": result.generated_at,
+            "rank_by_roster_id": {
+                str(team.roster_id): team.rank for team in result.teams
+            },
+            f"last_{publication}_published_key": post_key,
+            f"last_{publication}_published_at": result.generated_at,
+        }
+    )
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     temporary.replace(path)
