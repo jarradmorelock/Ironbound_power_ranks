@@ -98,7 +98,7 @@ class DiscordTests(unittest.TestCase):
         self.assertEqual(safe_chart_text("卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™"), "Happy Hippies")
         self.assertEqual(safe_chart_text("🇵🇭 Barangay 828 🇵🇭"), "Barangay 828")
 
-    def test_playoff_odds_stay_in_the_forecast_image_not_the_team_text(self) -> None:
+    def test_team_rankings_stay_in_the_images_not_the_post_text(self) -> None:
         result = SimpleNamespace(
             league=SimpleNamespace(week=2, season=2026, is_superflex=False),
             teams=[
@@ -126,7 +126,10 @@ class DiscordTests(unittest.TestCase):
 
         _thread, content = build_message(result, config)
 
-        self.assertIn("1-0 · 72.5 ▲2", content)
+        self.assertIn("# IRONBOUND POWER RANKINGS", content)
+        self.assertIn("Week 2 · IRONBOUND WEEKLY · 1QB", content)
+        self.assertNotIn("Alpha", content)
+        self.assertNotIn("1-0 · 72.5 ▲2", content)
         self.assertNotIn("PO 88%", content)
         self.assertNotIn("TITLE 24%", content)
 

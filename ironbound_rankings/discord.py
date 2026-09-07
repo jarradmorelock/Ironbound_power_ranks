@@ -21,25 +21,13 @@ def build_message(result: RankingResult, config: LeagueConfig) -> tuple[str, str
         f"# {config.brand} POWER RANKINGS",
         f"**{period} · {config.publication} · {_format_label(result)}**",
         "",
+        _formula_line(result),
+        (
+            "-# Sources: "
+            f"{', '.join(result.dynasty_sources + result.lineup_sources)} "
+            "· League data: Sleeper"
+        ),
     ]
-    for team in result.teams:
-        movement = _movement(team.movement)
-        lines.append(
-            f"**{team.rank}. {escape_discord(team.team_name)}** — "
-            f"{team.record} · {team.score:.1f} {movement}".rstrip()
-        )
-    source_names = result.dynasty_sources + result.lineup_sources
-    source_prefix = "Sources: "
-    lines.extend(
-        [
-            "",
-            _formula_line(result),
-            (
-                f"-# {source_prefix}"
-                f"{', '.join(source_names)} · League data: Sleeper"
-            ),
-        ]
-    )
     if result.forecast_simulations:
         lines.append(
             f"-# Forecast: {result.forecast_model} · "
@@ -121,16 +109,6 @@ def escape_discord(value: str) -> str:
     for character in ("\\", "*", "_", "~", "`", "|"):
         value = value.replace(character, f"\\{character}")
     return value.replace("@", "＠")
-
-
-def _movement(movement: int | None) -> str:
-    if movement is None:
-        return "NEW"
-    if movement > 0:
-        return f"▲{movement}"
-    if movement < 0:
-        return f"▼{abs(movement)}"
-    return "—"
 
 
 def _with_wait(url: str) -> str:
