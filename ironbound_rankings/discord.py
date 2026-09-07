@@ -24,16 +24,18 @@ def build_message(result: RankingResult, config: LeagueConfig) -> tuple[str, str
     ]
     for team in result.teams:
         movement = _movement(team.movement)
+        forecast = ""
+        if team.make_playoffs_pct is not None:
+            forecast = (
+                f" · PO {team.make_playoffs_pct:.0f}%"
+                f" · TITLE {(team.win_championship_pct or 0):.0f}%"
+            )
         lines.append(
             f"**{team.rank}. {escape_discord(team.team_name)}** — "
-            f"{team.record} · {team.score:.1f} {movement}".rstrip()
+            f"{team.record} · {team.score:.1f} {movement}{forecast}".rstrip()
         )
     source_names = result.dynasty_sources + result.lineup_sources
-    source_prefix = (
-        "Markets: "
-        if any("Direct" in source for source in source_names)
-        else "Markets via Dynasty Daddy: "
-    )
+    source_prefix = "Sources: "
     lines.extend(
         [
             "",
@@ -44,6 +46,11 @@ def build_message(result: RankingResult, config: LeagueConfig) -> tuple[str, str
             ),
         ]
     )
+    if result.forecast_simulations:
+        lines.append(
+            f"-# Forecast: {result.forecast_model} · "
+            f"{result.forecast_simulations:,} simulations · Sleeper schedule/settings"
+        )
     content = "\n".join(lines)
     if len(content) > 2000:
         raise ValueError("Discord message exceeded 2,000 characters")
@@ -57,30 +64,47 @@ def post_forum_ranking(
     result: RankingResult,
     config: LeagueConfig,
     image_path: Path,
+    playoff_image_path: Path | None,
     tag_ids: list[str],
 ) -> dict:
     if not webhook_url.startswith(("https://discord.com/api/webhooks/", "https://canary.discord.com/api/webhooks/")):
         raise ValueError(f"{config.webhook_env} is not a Discord webhook URL")
     thread_name, content = build_message(result, config)
     filename = f"{config.key}-power-rankings.png"
+    attachments = [
+        {
+            "id": 0,
+            "filename": filename,
+            "description": f"{config.brand} {thread_name} bar chart",
+        }
+    ]
+    files = {"files[0]": (filename, image_path.read_bytes(), "image/png")}
+    if playoff_image_path and playoff_image_path.exists():
+        playoff_filename = f"{config.key}-playoff-forecast.png"
+        attachments.append(
+            {
+                "id": 1,
+                "filename": playoff_filename,
+                "description": f"{config.brand} playoff forecast chart",
+            }
+        )
+        files["files[1]"] = (
+            playoff_filename,
+            playoff_image_path.read_bytes(),
+            "image/png",
+        )
     payload = {
         "thread_name": thread_name,
         "content": content,
         "allowed_mentions": {"parse": []},
-        "attachments": [
-            {
-                "id": 0,
-                "filename": filename,
-                "description": f"{config.brand} {thread_name} bar chart",
-            }
-        ],
+        "attachments": attachments,
     }
     if tag_ids:
         payload["applied_tags"] = tag_ids[:5]
     return client.post_multipart(
         _with_wait(webhook_url),
         data={"payload_json": json.dumps(payload)},
-        files={"files[0]": (filename, image_path.read_bytes(), "image/png")},
+        files=files,
     )
 
 
@@ -130,10 +154,10 @@ def _formula_line(result: RankingResult) -> str:
     market = f"{result.market_weight * 100:g}%"
     lineup = f"{result.lineup_weight * 100:g}%"
     if not result.has_season_results:
-        return f"-# Preseason index: market consensus {market} · starting lineup {lineup}"
+        return f"-# Preseason index: market consensus {market} · ADP starters {lineup}"
     season = f"{result.season_weight * 100:g}%"
     guardrail = " · 4+ win-gap guardrail active" if result.record_guardrail_active else ""
     return (
-        f"-# Index: market {market} · starting lineup {lineup} · season {season} "
+        f"-# Index: market {market} · ROS starters {lineup} · season {season} "
         f"(80% record / 20% points){guardrail}"
     )

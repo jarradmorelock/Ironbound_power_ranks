@@ -5,7 +5,7 @@ import unittest
 from ironbound_rankings.discord import escape_discord, parse_tag_ids
 from ironbound_rankings.render import _draw_component_values, safe_chart_text
 from ironbound_rankings.sleeper import _future_pick_ownership
-from ironbound_rankings.sources import parse_pick_asset
+from ironbound_rankings.sources import _starter_book_from_metadata, parse_pick_asset
 
 
 class SourceParsingTests(unittest.TestCase):
@@ -14,6 +14,48 @@ class SourceParsingTests(unittest.TestCase):
 
     def test_does_not_treat_exact_rookie_slot_as_future_pick(self) -> None:
         self.assertIsNone(parse_pick_asset("2026 Pick 1.01"))
+
+    def test_starter_book_uses_adp_or_ros_and_excludes_unavailable_players(self) -> None:
+        rows = [
+            {
+                "sleeper_id": "healthy",
+                "position": "QB",
+                "avg_adp": 1,
+                "avg_ros": 50,
+                "injury_status": "",
+            },
+            {
+                "sleeper_id": "riser",
+                "position": "RB",
+                "avg_adp": 25,
+                "avg_ros": 2,
+                "injury_status": None,
+            },
+            {
+                "sleeper_id": "unranked",
+                "position": "WR",
+                "avg_adp": 0,
+                "avg_ros": None,
+                "injury_status": "",
+            },
+            {
+                "sleeper_id": "injured",
+                "position": "TE",
+                "avg_adp": 3,
+                "avg_ros": 3,
+                "injury_status": "IR",
+            },
+        ]
+
+        adp = _starter_book_from_metadata(rows, starter_metric="adp")
+        ros = _starter_book_from_metadata(rows, starter_metric="ros")
+
+        self.assertEqual(adp.name, "Dynasty Daddy ADP")
+        self.assertEqual(adp.player_values["healthy"], 499)
+        self.assertEqual(ros.player_values["healthy"], 450)
+        self.assertEqual(ros.player_values["riser"], 498)
+        self.assertEqual(adp.player_values["unranked"], 400)
+        self.assertNotIn("injured", adp.player_values)
 
 
 class SleeperPickTests(unittest.TestCase):

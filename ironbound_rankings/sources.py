@@ -18,9 +18,10 @@ MARKETS = (
     (1, "FantasyCalc", "dynasty"),
     (2, "DynastyProcess", "dynasty"),
     (3, "DynastySuperflex", "dynasty"),
-    (4, "KeepTradeCut Redraft", "lineup"),
-    (5, "FantasyCalc Redraft", "lineup"),
 )
+STARTER_VALUE_CEILING = 500.0
+DEFAULT_MISSING_RANK = 100.0
+UNAVAILABLE_STATUSES = {"PUP", "IR", "SUS", "COV"}
 
 
 @dataclass
@@ -36,10 +37,15 @@ def fetch_market_data(
     is_superflex: bool,
     num_teams: int,
     ppr: float,
+    starter_metric: str,
 ) -> MarketData:
     warnings: list[str] = []
     try:
-        market_data = fetch_dynasty_daddy(client, is_superflex=is_superflex)
+        market_data = fetch_dynasty_daddy(
+            client,
+            is_superflex=is_superflex,
+            starter_metric=starter_metric,
+        )
         warnings.extend(market_data.warnings)
     except DataSourceError as exc:
         warnings.append(f"Dynasty Daddy metadata unavailable: {exc}")
@@ -72,7 +78,14 @@ def fetch_market_data(
     return MarketData(players=players, books=books, warnings=warnings)
 
 
-def fetch_dynasty_daddy(client: HttpClient, *, is_superflex: bool) -> MarketData:
+def fetch_dynasty_daddy(
+    client: HttpClient,
+    *,
+    is_superflex: bool,
+    starter_metric: str,
+) -> MarketData:
+    if starter_metric not in {"adp", "ros"}:
+        raise ValueError(f"Unsupported starter metric: {starter_metric}")
     metadata = client.get_json(f"{DYNASTY_DADDY_BASE}/player/all/today")
     if not isinstance(metadata, list) or len(metadata) < 100:
         raise DataSourceError("Dynasty Daddy returned incomplete player metadata")
@@ -117,7 +130,39 @@ def fetch_dynasty_daddy(client: HttpClient, *, is_superflex: bool) -> MarketData
         except DataSourceError as exc:
             warnings.append(f"{label} unavailable: {exc}")
 
+    starter_book = _starter_book_from_metadata(metadata, starter_metric=starter_metric)
+    if len(starter_book.player_values) >= 100:
+        books.append(starter_book)
+    else:
+        warnings.append(
+            f"Dynasty Daddy {starter_metric.upper()} starter rankings had too few players"
+        )
+
     return MarketData(players=sleeper_players, books=books, warnings=warnings)
+
+
+def _starter_book_from_metadata(
+    rows: list[dict[str, Any]], *, starter_metric: str
+) -> ValueBook:
+    """Build the same lower-rank-is-better starter signal used by Dynasty Daddy."""
+    field = "avg_ros" if starter_metric == "ros" else "avg_adp"
+    label = "Dynasty Daddy ROS" if starter_metric == "ros" else "Dynasty Daddy ADP"
+    book = ValueBook(name=label, category="lineup")
+    for row in rows:
+        sleeper_id = str(row.get("sleeper_id") or "").strip()
+        position = str(row.get("position") or "").upper().strip()
+        status = str(row.get("injury_status") or "").upper().strip()
+        if (
+            not sleeper_id
+            or position not in {"QB", "RB", "WR", "TE"}
+            or status in UNAVAILABLE_STATUSES
+        ):
+            continue
+        ranking = _number(row.get(field)) or DEFAULT_MISSING_RANK
+        # Every legal lineup has the same number of slots, so maximizing this
+        # affine score is equivalent to minimizing the sum of ADP/ROS ranks.
+        book.player_values[sleeper_id] = max(1.0, STARTER_VALUE_CEILING - ranking)
+    return book
 
 
 def _book_from_dynasty_daddy_rows(

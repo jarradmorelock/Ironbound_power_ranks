@@ -89,9 +89,11 @@ jobs:
           if-no-files-found: warn
           path: |
             exports/main/latest.png
+            exports/main/latest-playoffs.png
             exports/main/latest.txt
             exports/main/latest.json
             exports/free/latest.png
+            exports/free/latest-playoffs.png
             exports/free/latest.txt
             exports/free/latest.json
 

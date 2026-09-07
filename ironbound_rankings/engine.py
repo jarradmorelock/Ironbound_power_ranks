@@ -111,6 +111,14 @@ def rank_league(
         roster_id: mean(source_percentiles[name][roster_id] for name in usable_lineup)
         for roster_id in roster_ids
     }
+    starter_ratings = {
+        roster_id: (
+            source_totals[usable_lineup[0]][roster_id]
+            if len(usable_lineup) == 1
+            else lineup_pct[roster_id]
+        )
+        for roster_id in roster_ids
+    }
 
     completed_games = max((team.games for team in snapshot.teams), default=0)
     has_results = completed_games > 0
@@ -186,6 +194,7 @@ def rank_league(
                 market_points=round(item.market_points, 2),
                 lineup_points=round(item.lineup_points, 2),
                 season_points=round(item.season_points, 2),
+                starter_rating=round(starter_ratings[rid], 2),
                 record_guardrail_applied=item.record_guardrail_applied,
                 previous_rank=previous_ranks.get(str(rid)),
                 source_ranks={name: ranks[rid] for name, ranks in source_ranks.items()},

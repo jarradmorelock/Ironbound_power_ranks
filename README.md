@@ -8,8 +8,8 @@ The two publishers share one tested ranking engine, but run as isolated league o
 
 - **IRONBOUND** to the `ironbound weekly` Forum.
 - **UNBOUND** to the `unbound weekly` Forum.
-- A Gallery-friendly 1800×1800 PNG ranking board.
-- A numbered text ranking with each team's live Sleeper record, index score, and week-over-week movement.
+- Two Gallery-friendly 1800×1800 PNGs: the power-ranking board and a playoff forecast.
+- A numbered text ranking with each team's live Sleeper record, index score, week-over-week movement, playoff odds, and title odds.
 - A new Forum thread each week, with optional Forum tags.
 
 The two images deliberately use different visual systems: forged black/brass/crimson for the flagship and broken-chain teal/violet/orange for the free league.
@@ -21,8 +21,8 @@ Both Ironbound leagues are **1QB**. Sleeper displays the single quarterback posi
 | Layer | Sources |
 | --- | --- |
 | Dynasty market consensus | KeepTradeCut, FantasyCalc, DynastyProcess, and DynastySuperflex values supplied through Dynasty Daddy's live market service |
-| Starting-lineup strength | KeepTradeCut Redraft and FantasyCalc Redraft values supplied through Dynasty Daddy |
-| League truth | Sleeper league format, rosters, traded future picks, records, and points scored |
+| Starting-lineup strength | Dynasty Daddy's aggregate ADP before results exist, then its rest-of-season rankings once games have been played |
+| League truth | Sleeper league format, rosters, schedule, divisions, playoff settings, traded future picks, records, and points scored |
 | Outage fallback | FantasyCalc's direct current dynasty and redraft feeds |
 
 The publisher does not scrape KeepTradeCut. It consumes Dynasty Daddy's consolidated public market response and publishes only derived team-level scores, with source attribution in every image and post.
@@ -39,7 +39,7 @@ The balance moves toward real results as the season becomes meaningful:
 | 8+ | 35% | 25% | 40% |
 
 - **Market consensus** values each team's complete roster and its actual ownership of the next three rookie-pick classes, averaged across every available dynasty source.
-- **Starting-lineup strength** finds the best legal lineup for the league's real Sleeper positions, averaged across the two current-season markets.
+- **Starting-lineup strength** finds the best legal 1QB lineup using Dynasty Daddy's aggregate ADP in the preseason and aggregate rest-of-season rankings after results begin. Players marked PUP, IR, suspended, or COVID-inactive are excluded, matching Dynasty Daddy's starter treatment.
 - **Season performance** is 80% record and 20% points scored, so wins lead the in-season calculation without making points-for irrelevant.
 
 Beginning after eight completed games, a record guardrail handles extreme disagreements: a team four or more wins behind another team cannot lead it by more than 10 index points. Thus a market-rich 7–7 roster can still rate above a 12–2 contender, but it cannot sit 20 or 30 points clear of it.
@@ -47,6 +47,12 @@ Beginning after eight completed games, a record guardrail handles extreme disagr
 Every source is converted to a league-relative percentile before averaging, so a provider with a larger numeric scale cannot overpower the others.
 
 Future picks follow Dynasty Daddy's conservative convention: an unresolved future slot is valued as a mid pick. Traded-pick ownership comes directly from Sleeper.
+
+## Playoff forecast
+
+The second Gallery image is rebuilt automatically every week. It runs 10,000 deterministic simulations using each league's real Sleeper schedule, four divisions, seven playoff berths, and first-round bye structure. It reports projected record, make-playoffs odds, division odds, bye odds, and championship odds for every team.
+
+The matchup probabilities use the same aggregate ADP/ROS starter signal as the power rankings. After completed games exist, prior Sleeper results make a modest Elo adjustment before the remaining schedule is simulated. The calculation runs inside this publisher because Dynasty Daddy's playoff calculator is computed in the browser rather than exposed as a weekly downloadable value.
 
 ## GitHub setup
 
@@ -97,16 +103,17 @@ python -m unittest discover -s tests -v
 python -m ironbound_rankings --league all
 ```
 
-Preview files appear under `exports/main/` and `exports/free/`. They are ignored by Git; the workflow keeps each run's previews as downloadable artifacts.
+Preview files appear under `exports/main/` and `exports/free/`, including `latest.png` and `latest-playoffs.png`. They are ignored by Git; the workflow keeps each run's previews as downloadable artifacts.
 
 ## Repository map
 
 ```text
 ironbound_rankings/
   sources.py      Dynasty Daddy markets and FantasyCalc fallback
-  sleeper.py      rosters, format, records, and pick ownership
+  sleeper.py      rosters, schedule, records, settings, and pick ownership
   engine.py       source normalization, legal lineups, final index
-  render.py       the two Gallery chart designs
+  forecast.py     Elo adjustment and 10,000 playoff simulations
+  render.py       power-ranking and playoff Gallery charts
   discord.py      safe Forum webhook payloads
   publisher.py    independent league orchestration and previews
 leagues.json      non-secret league IDs, brands, and themes

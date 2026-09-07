@@ -5,7 +5,13 @@ from __future__ import annotations
 from typing import Any
 
 from .http import DataSourceError, HttpClient
-from .models import DraftPick, LeagueConfig, LeagueSnapshot, LeagueTeam
+from .models import (
+    DraftPick,
+    LeagueConfig,
+    LeagueMatchup,
+    LeagueSnapshot,
+    LeagueTeam,
+)
 
 
 SLEEPER_BASE = "https://api.sleeper.app/v1"
@@ -28,6 +34,12 @@ def fetch_league_snapshot(client: HttpClient, config: LeagueConfig) -> LeagueSna
     week = int(state.get("week") or league.get("settings", {}).get("leg") or 0)
     settings = league.get("settings") or {}
     draft_rounds = int(settings.get("draft_rounds") or 4)
+    start_week = int(settings.get("start_week") or 1)
+    playoff_week_start = int(settings.get("playoff_week_start") or 15)
+    playoff_teams = int(settings.get("playoff_teams") or max(2, len(rosters) // 2))
+    divisions = int(settings.get("divisions") or 1)
+    playoff_round_type = int(settings.get("playoff_round_type") or 0)
+    league_average_match = int(settings.get("league_average_match") or 0) == 1
     roster_positions = [str(pos) for pos in league.get("roster_positions") or []]
     detected_superflex = (
         "SUPER_FLEX" in roster_positions or roster_positions.count("QB") > 1
@@ -84,8 +96,24 @@ def fetch_league_snapshot(client: HttpClient, config: LeagueConfig) -> LeagueSna
                 losses=int(roster_settings.get("losses") or 0),
                 ties=int(roster_settings.get("ties") or 0),
                 points_for=points,
+                division=int(roster_settings.get("division") or 0),
             )
         )
+
+    matchup_end_week = max(playoff_week_start - 1, week - 1)
+    matchups = _fetch_matchups(
+        client,
+        league_id=config.league_id,
+        start_week=start_week,
+        end_week=matchup_end_week,
+    )
+    try:
+        bracket = client.get_json(
+            f"{SLEEPER_BASE}/league/{config.league_id}/winners_bracket"
+        )
+        playoff_bracket = bracket if isinstance(bracket, list) else []
+    except DataSourceError:
+        playoff_bracket = []
 
     return LeagueSnapshot(
         league_id=config.league_id,
@@ -96,7 +124,58 @@ def fetch_league_snapshot(client: HttpClient, config: LeagueConfig) -> LeagueSna
         ppr=ppr,
         roster_positions=roster_positions,
         teams=teams,
+        start_week=start_week,
+        playoff_week_start=playoff_week_start,
+        playoff_teams=playoff_teams,
+        divisions=divisions,
+        playoff_round_type=playoff_round_type,
+        league_average_match=league_average_match,
+        matchups=matchups,
+        playoff_bracket=playoff_bracket,
     )
+
+
+def _fetch_matchups(
+    client: HttpClient,
+    *,
+    league_id: str,
+    start_week: int,
+    end_week: int,
+) -> list[LeagueMatchup]:
+    matchups: list[LeagueMatchup] = []
+    for week in range(start_week, end_week + 1):
+        rows = client.get_json(f"{SLEEPER_BASE}/league/{league_id}/matchups/{week}")
+        if not isinstance(rows, list):
+            continue
+        grouped: dict[int, list[dict[str, Any]]] = {}
+        for row in rows:
+            if not isinstance(row, dict) or row.get("matchup_id") is None:
+                continue
+            grouped.setdefault(int(row["matchup_id"]), []).append(row)
+        for matchup_id, pair in grouped.items():
+            if len(pair) != 2:
+                continue
+            pair.sort(key=lambda item: int(item.get("roster_id") or 0))
+            one, two = pair
+            matchups.append(
+                LeagueMatchup(
+                    week=week,
+                    matchup_id=matchup_id,
+                    roster_one=int(one["roster_id"]),
+                    roster_two=int(two["roster_id"]),
+                    points_one=_matchup_points(one),
+                    points_two=_matchup_points(two),
+                )
+            )
+    return matchups
+
+
+def _matchup_points(row: dict[str, Any]) -> float:
+    custom = row.get("custom_points")
+    try:
+        return float(custom if custom is not None else row.get("points") or 0)
+    except (TypeError, ValueError):
+        return 0.0
 
 
 def _future_pick_ownership(

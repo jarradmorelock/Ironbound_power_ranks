@@ -53,6 +53,16 @@ class DraftPick:
     original_roster_id: int
 
 
+@dataclass(frozen=True)
+class LeagueMatchup:
+    week: int
+    matchup_id: int
+    roster_one: int
+    roster_two: int
+    points_one: float = 0.0
+    points_two: float = 0.0
+
+
 @dataclass
 class LeagueTeam:
     roster_id: int
@@ -65,6 +75,7 @@ class LeagueTeam:
     losses: int
     ties: int
     points_for: float
+    division: int = 0
 
     @property
     def games(self) -> int:
@@ -93,6 +104,14 @@ class LeagueSnapshot:
     ppr: float
     roster_positions: list[str]
     teams: list[LeagueTeam]
+    start_week: int = 1
+    playoff_week_start: int = 15
+    playoff_teams: int = 6
+    divisions: int = 1
+    playoff_round_type: int = 0
+    league_average_match: bool = False
+    matchups: list[LeagueMatchup] = field(default_factory=list)
+    playoff_bracket: list[dict] = field(default_factory=list)
 
 
 @dataclass
@@ -110,6 +129,13 @@ class RankedTeam:
     market_points: float
     lineup_points: float
     season_points: float
+    starter_rating: float = 0.0
+    projected_record: str | None = None
+    make_playoffs_pct: float | None = None
+    win_division_pct: float | None = None
+    first_round_bye_pct: float | None = None
+    make_final_pct: float | None = None
+    win_championship_pct: float | None = None
     record_guardrail_applied: bool = False
     previous_rank: int | None = None
     source_ranks: dict[str, int] = field(default_factory=dict)
@@ -133,4 +159,7 @@ class RankingResult:
     lineup_weight: float
     season_weight: float
     record_guardrail_active: bool
+    forecast_simulations: int = 0
+    forecast_model: str = ""
     output_image: Path | None = None
+    output_playoff_image: Path | None = None

@@ -5,4 +5,5 @@ __pycache__/
 .venv/
 exports/*/latest.json
 exports/*/latest.png
+exports/*/latest-playoffs.png
 exports/*/latest.txt

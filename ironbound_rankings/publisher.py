@@ -12,9 +12,10 @@ from zoneinfo import ZoneInfo
 from .config import ROOT, load_leagues
 from .discord import build_message, parse_tag_ids, post_forum_ranking
 from .engine import rank_league
+from .forecast import attach_playoff_forecast
 from .http import HttpClient
 from .models import LeagueConfig, RankingResult
-from .render import render_chart
+from .render import render_chart, render_playoff_chart
 from .sleeper import fetch_league_snapshot
 from .sources import MarketData, fetch_market_data
 from .state import load_state, save_state
@@ -43,20 +44,28 @@ def run(
     configs = load_leagues()
     selected = list(configs.values()) if league_selection == "all" else [configs[league_selection]]
     client = HttpClient()
-    market_cache: dict[tuple[bool, int, float], MarketData] = {}
+    market_cache: dict[tuple[bool, int, float, str], MarketData] = {}
     failures: list[str] = []
 
     for config in selected:
         try:
             print(f"\n[{config.key}] Loading Sleeper league {config.league_id}...")
             snapshot = fetch_league_snapshot(client, config)
-            cache_key = (snapshot.is_superflex, len(snapshot.teams), snapshot.ppr)
+            completed_games = max((team.games for team in snapshot.teams), default=0)
+            starter_metric = "ros" if completed_games else "adp"
+            cache_key = (
+                snapshot.is_superflex,
+                len(snapshot.teams),
+                snapshot.ppr,
+                starter_metric,
+            )
             if cache_key not in market_cache:
                 market_cache[cache_key] = fetch_market_data(
                     client,
                     is_superflex=snapshot.is_superflex,
                     num_teams=len(snapshot.teams),
                     ppr=snapshot.ppr,
+                    starter_metric=starter_metric,
                 )
             market_data = market_cache[cache_key]
             for warning in market_data.warnings:
@@ -119,14 +128,21 @@ def publish_league(
         previous_ranks=previous_ranks,
         generated_at=generated_at,
     )
+    attach_playoff_forecast(result)
     post_key = _post_key(result, now)
     output_dir = ROOT / "exports" / config.key
     image_path = output_dir / "latest.png"
+    playoff_image_path = output_dir / "latest-playoffs.png"
     render_chart(result, config, image_path)
+    render_playoff_chart(result, config, playoff_image_path)
     _write_preview(result, config, output_dir)
 
     if not publish:
-        return f"Dry run complete: {image_path.relative_to(ROOT)}"
+        return (
+            "Dry run complete: "
+            f"{image_path.relative_to(ROOT)} and "
+            f"{playoff_image_path.relative_to(ROOT)}"
+        )
     if state.get("last_published_key") == post_key and not force:
         return f"Already published {post_key}; skipped duplicate."
 
@@ -140,6 +156,7 @@ def publish_league(
         result=result,
         config=config,
         image_path=image_path,
+        playoff_image_path=playoff_image_path,
         tag_ids=tag_ids,
     )
     save_state(state_path, result, post_key)
@@ -165,6 +182,8 @@ def _write_preview(result: RankingResult, config: LeagueConfig, output_dir: Path
         "dynasty_sources": result.dynasty_sources,
         "lineup_sources": result.lineup_sources,
         "has_season_results": result.has_season_results,
+        "forecast_simulations": result.forecast_simulations,
+        "forecast_model": result.forecast_model,
         "teams": [asdict(team) for team in result.teams],
     }
     (output_dir / "latest.json").write_text(
