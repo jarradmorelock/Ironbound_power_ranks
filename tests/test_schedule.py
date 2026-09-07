@@ -7,6 +7,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from ironbound_rankings.publisher import (
+    _state_path,
     is_noon_eastern_schedule,
     is_tuesday_email_schedule,
 )
@@ -49,6 +50,15 @@ class ScheduleGuardTests(unittest.TestCase):
     def test_tuesday_email_rejects_wrong_day(self) -> None:
         monday = datetime(2026, 9, 7, 11, 7, tzinfo=EASTERN)
         self.assertFalse(is_tuesday_email_schedule(monday, "7 15 * * 2"))
+
+    def test_discord_and_tuesday_email_use_independent_history(self) -> None:
+        config = type("Config", (), {"key": "main"})()
+        discord_path = _state_path(config, email_history=False)
+        email_path = _state_path(config, email_history=True)
+
+        self.assertTrue(str(discord_path).endswith("state/main.json"))
+        self.assertTrue(str(email_path).endswith("state/email/main.json"))
+        self.assertNotEqual(discord_path, email_path)
 
 
 if __name__ == "__main__":

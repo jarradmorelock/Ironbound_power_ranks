@@ -24,7 +24,7 @@ on:
     - cron: "7 16 * * 2"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: ironbound-tuesday-email
@@ -86,3 +86,17 @@ jobs:
             exports/free/latest-playoffs.png
             exports/free/latest.txt
             exports/free/latest.json
+
+      - name: Save successful Tuesday ranking state
+        if: success() && github.event_name == 'schedule'
+        run: |
+          if ! git status --porcelain -- state/email | grep -q .; then
+            echo "No Tuesday ranking state changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash origin main
+          git add state/email
+          git commit -m "Save Tuesday magazine ranking state"
+          git push origin HEAD:main

@@ -57,6 +57,7 @@ def run(
     client = HttpClient()
     market_cache: dict[tuple[bool, int, float, str], MarketData] = {}
     failures: list[str] = []
+    completed: list[tuple[LeagueConfig, RankingResult]] = []
 
     for config in selected:
         try:
@@ -81,7 +82,7 @@ def run(
             market_data = market_cache[cache_key]
             for warning in market_data.warnings:
                 print(f"[{config.key}] Warning: {warning}")
-            outcome = publish_league(
+            outcome, result = publish_league(
                 client=client,
                 config=config,
                 market_data=market_data,
@@ -89,7 +90,9 @@ def run(
                 now=now,
                 publish=publish,
                 force=force,
+                email_history=email,
             )
+            completed.append((config, result))
             print(f"[{config.key}] {outcome}")
         except Exception as exc:  # isolate one league from the other
             failures.append(config.key)
@@ -104,6 +107,14 @@ def run(
         except Exception as exc:
             print(f"Email delivery FAILED: {exc}")
             return 1
+        if scheduled:
+            for config, result in completed:
+                save_state(
+                    _state_path(config, email_history=True),
+                    result,
+                    _post_key(result, now),
+                )
+            print("Saved Tuesday-to-Tuesday movement history.")
     return 0
 
 
@@ -148,8 +159,9 @@ def publish_league(
     now: datetime,
     publish: bool,
     force: bool,
-) -> str:
-    state_path = ROOT / "state" / f"{config.key}.json"
+    email_history: bool = False,
+) -> tuple[str, RankingResult]:
+    state_path = _state_path(config, email_history=email_history)
     state = load_state(state_path)
     previous_ranks = state.get("rank_by_roster_id") or {}
     generated_at = now.isoformat(timespec="seconds")
@@ -171,12 +183,15 @@ def publish_league(
 
     if not publish:
         return (
-            "Dry run complete: "
-            f"{image_path.relative_to(ROOT)} and "
-            f"{playoff_image_path.relative_to(ROOT)}"
+            (
+                "Dry run complete: "
+                f"{image_path.relative_to(ROOT)} and "
+                f"{playoff_image_path.relative_to(ROOT)}"
+            ),
+            result,
         )
     if state.get("last_published_key") == post_key and not force:
-        return f"Already published {post_key}; skipped duplicate."
+        return f"Already published {post_key}; skipped duplicate.", result
 
     webhook_url = (os.getenv(config.webhook_env) or "").strip()
     if not webhook_url:
@@ -193,7 +208,7 @@ def publish_league(
     )
     save_state(state_path, result, post_key)
     thread_id = response.get("channel_id") or response.get("id") or "created"
-    return f"Published {post_key} to a new Forum thread ({thread_id})."
+    return f"Published {post_key} to a new Forum thread ({thread_id}).", result
 
 
 def _write_preview(result: RankingResult, config: LeagueConfig, output_dir: Path) -> None:
@@ -227,3 +242,8 @@ def _post_key(result: RankingResult, now: datetime) -> str:
     if result.league.week > 0:
         return f"{result.league.season}-week-{result.league.week}"
     return f"{result.league.season}-preseason-{now:%Y-%m-%d}"
+
+
+def _state_path(config: LeagueConfig, *, email_history: bool) -> Path:
+    state_dir = ROOT / "state" / "email" if email_history else ROOT / "state"
+    return state_dir / f"{config.key}.json"
