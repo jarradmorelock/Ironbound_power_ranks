@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import unittest
 from datetime import datetime
+from types import SimpleNamespace
 from zoneinfo import ZoneInfo
 
 from ironbound_rankings.publisher import (
+    _post_key,
     _state_path,
     is_noon_eastern_schedule,
     is_tuesday_email_schedule,
@@ -56,6 +58,34 @@ class ScheduleGuardTests(unittest.TestCase):
         state_path = _state_path(config)
 
         self.assertTrue(str(state_path).endswith("state/main.json"))
+
+    def test_same_sleeper_week_gets_a_new_key_on_the_next_saturday(self) -> None:
+        result = SimpleNamespace(league=SimpleNamespace(season=2026, week=1))
+        first_saturday = datetime(2026, 9, 5, 12, 7, tzinfo=EASTERN)
+        next_saturday = datetime(2026, 9, 12, 12, 7, tzinfo=EASTERN)
+
+        self.assertEqual(
+            _post_key(result, first_saturday),
+            "2026-week-1-sat-2026-09-05",
+        )
+        self.assertEqual(
+            _post_key(result, next_saturday),
+            "2026-week-1-sat-2026-09-12",
+        )
+
+    def test_manual_runs_share_the_most_recent_saturday_key(self) -> None:
+        result = SimpleNamespace(league=SimpleNamespace(season=2026, week=1))
+        sunday = datetime(2026, 9, 13, 9, 0, tzinfo=EASTERN)
+        friday = datetime(2026, 9, 18, 17, 0, tzinfo=EASTERN)
+
+        self.assertEqual(
+            _post_key(result, sunday),
+            "2026-week-1-sat-2026-09-12",
+        )
+        self.assertEqual(
+            _post_key(result, friday),
+            "2026-week-1-sat-2026-09-12",
+        )
 
 
 if __name__ == "__main__":
