@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import os
 from dataclasses import asdict
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -241,9 +241,14 @@ def _write_preview(result: RankingResult, config: LeagueConfig, output_dir: Path
 
 
 def _post_key(result: RankingResult, now: datetime) -> str:
+    days_since_saturday = (now.weekday() - 5) % 7
+    publication_saturday = (now - timedelta(days=days_since_saturday)).date()
     if result.league.week > 0:
-        return f"{result.league.season}-week-{result.league.week}"
-    return f"{result.league.season}-preseason-{now:%Y-%m-%d}"
+        return (
+            f"{result.league.season}-week-{result.league.week}"
+            f"-sat-{publication_saturday:%Y-%m-%d}"
+        )
+    return f"{result.league.season}-preseason-sat-{publication_saturday:%Y-%m-%d}"
 
 
 def _state_path(config: LeagueConfig) -> Path:
