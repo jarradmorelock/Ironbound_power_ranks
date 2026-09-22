@@ -108,7 +108,7 @@ def write_editorial_handoff(
         digest = hashlib.sha256(destination.read_bytes()).hexdigest()
         assets[key] = {
             "filename": filename,
-            "repo_path": destination.as_posix(),
+            "repo_path": f"handoff/assets/{filename}",
             "media_type": "image/png",
             "sha256": digest,
             "bytes": destination.stat().st_size,
