@@ -53,7 +53,7 @@ def build_editorial_handoff(
         )
 
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "publication_key": publication_key,
         "source_metadata": {
             "producer": "Ironbound_power_ranks",
