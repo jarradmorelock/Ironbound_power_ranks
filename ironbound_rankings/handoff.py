@@ -53,14 +53,15 @@ def build_editorial_handoff(
         )
 
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "publication_key": publication_key,
         "source_metadata": {
             "producer": "Ironbound_power_ranks",
             "league_key": config.key,
             "league_id": result.league.league_id,
             "season": result.league.season,
-            "week": result.league.week,
+            "ranking_week": result.league.week,
+            "results_through_week": max(0, int(result.league.week) - 1),
             "generated_at": result.generated_at,
             "forecast_simulations": result.forecast_simulations,
             "forecast_model": result.forecast_model,

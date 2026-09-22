@@ -117,6 +117,8 @@ class EditorialHandoffTests(unittest.TestCase):
         )
         self.assertEqual(payload["playoff_odds"][0]["playoff"], 91.0)
         self.assertEqual(payload["playoff_odds"][0]["championship"], 15.0)
+        self.assertEqual(payload["source_metadata"]["ranking_week"], 2)
+        self.assertEqual(payload["source_metadata"]["results_through_week"], 1)
         self.assertNotIn("usage", payload)
         self.assertNotIn("war", payload)
         self.assertNotIn("cwar", payload)
@@ -137,7 +139,8 @@ class EditorialHandoffTests(unittest.TestCase):
                 playoff_forecast_image=playoffs,
             )
             payload = json.loads(path.read_text(encoding="utf-8"))
-            self.assertEqual(payload["source_metadata"]["week"], 2)
+            self.assertEqual(payload["source_metadata"]["ranking_week"], 2)
+            self.assertEqual(payload["source_metadata"]["results_through_week"], 1)
             self.assertEqual(payload["official_power_rankings"][0]["roster_id"], 7)
             assets = payload["publication_assets"]
             self.assertEqual(
