@@ -3,7 +3,7 @@ name: One-time Week 2 ranking asset seed
 on:
   push:
     branches:
-      - ops/seed-week2-ranking-assets
+      - main
     paths:
       - .github/workflows/seed-week2-ranking-assets.yml
 
