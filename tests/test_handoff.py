@@ -117,8 +117,10 @@ class EditorialHandoffTests(unittest.TestCase):
         )
         self.assertEqual(payload["playoff_odds"][0]["playoff"], 91.0)
         self.assertEqual(payload["playoff_odds"][0]["championship"], 15.0)
-        self.assertEqual(payload["usage"], [])
-        self.assertTrue(any("WAR" in note for note in payload["notes"]))
+        self.assertNotIn("usage", payload)
+        self.assertNotIn("war", payload)
+        self.assertNotIn("cwar", payload)
+        self.assertTrue(any("usage" in note.lower() for note in payload["notes"]))
 
     def test_handoff_writer_emits_json(self):
         with tempfile.TemporaryDirectory() as tmp:
