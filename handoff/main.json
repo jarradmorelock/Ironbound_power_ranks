@@ -114,7 +114,7 @@
       "previous_rank": 13,
       "rank": 14,
       "roster_id": 2,
-      "score": 30.0,
+      "score": 30,
       "team": "Pikeville Strip Miners"
     },
     {
@@ -122,7 +122,7 @@
       "previous_rank": 16,
       "rank": 15,
       "roster_id": 16,
-      "score": 26.0,
+      "score": 26,
       "team": "The Mad Hatters FC"
     },
     {
@@ -148,8 +148,8 @@
     {
       "bye": 20.4,
       "championship": 16.4,
-      "division": 79.0,
-      "final": 32.0,
+      "division": 79,
+      "final": 32,
       "playoff": 92.7,
       "projected_record": "10-4",
       "roster_id": 5,
@@ -169,7 +169,7 @@
       "bye": 5.1,
       "championship": 10.3,
       "division": 43.2,
-      "final": 21.0,
+      "final": 21,
       "playoff": 73.6,
       "projected_record": "9-5",
       "roster_id": 12,
@@ -200,7 +200,7 @@
       "championship": 4.8,
       "division": 7.9,
       "final": 11.1,
-      "playoff": 53.0,
+      "playoff": 53,
       "projected_record": "8-6",
       "roster_id": 11,
       "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™"
@@ -226,10 +226,10 @@
       "team": "The Night Sky Hellhawks"
     },
     {
-      "bye": 0.0,
-      "championship": 0.0,
+      "bye": 0,
+      "championship": 0,
       "division": 0.1,
-      "final": 0.0,
+      "final": 0,
       "playoff": 0.7,
       "projected_record": "4-10",
       "roster_id": 14,
@@ -246,8 +246,8 @@
       "team": "San Carlos FC"
     },
     {
-      "bye": 0.0,
-      "championship": 0.0,
+      "bye": 0,
+      "championship": 0,
       "division": 0.2,
       "final": 0.1,
       "playoff": 1.3,
@@ -256,7 +256,7 @@
       "team": "Scenic City Beavers"
     },
     {
-      "bye": 0.0,
+      "bye": 0,
       "championship": 0.1,
       "division": 0.9,
       "final": 0.3,
@@ -276,20 +276,20 @@
       "team": "Pikeville Strip Miners"
     },
     {
-      "bye": 0.0,
-      "championship": 0.0,
-      "division": 0.0,
-      "final": 0.0,
+      "bye": 0,
+      "championship": 0,
+      "division": 0,
+      "final": 0,
       "playoff": 0.3,
       "projected_record": "3-11",
       "roster_id": 16,
       "team": "The Mad Hatters FC"
     },
     {
-      "bye": 0.0,
-      "championship": 0.0,
+      "bye": 0,
+      "championship": 0,
       "division": 0.1,
-      "final": 0.0,
+      "final": 0,
       "playoff": 0.3,
       "projected_record": "3-11",
       "roster_id": 13,
@@ -315,8 +315,31 @@
     ],
     "producer": "Ironbound_power_ranks",
     "season": 2026,
-    "week": 3
+    "ranking_week": 3,
+    "results_through_week": 2
   },
   "usage": [],
-  "war": []
+  "war": [],
+  "publication_assets": {
+    "power_rankings": {
+      "filename": "ironbound_weekly-power-rankings.png",
+      "repo_path": "handoff/assets/ironbound_weekly-power-rankings.png",
+      "media_type": "image/png",
+      "sha256": "e4f4ae496b43eec9daa0e2a578fb49ad12c5854675e3e7c0adcec2f450252229",
+      "bytes": 316623,
+      "generated_at": "2026-09-22T14:44:40-04:00",
+      "owner": "Ironbound_power_ranks",
+      "placement_policy": "use supplied graphic unchanged"
+    },
+    "playoff_forecast": {
+      "filename": "ironbound_weekly-playoff-forecast.png",
+      "repo_path": "handoff/assets/ironbound_weekly-playoff-forecast.png",
+      "media_type": "image/png",
+      "sha256": "abbc073a25b6e9e9316260b2541ffd48798e829974292c9f9b980e7894f07416",
+      "bytes": 308128,
+      "generated_at": "2026-09-22T14:44:40-04:00",
+      "owner": "Ironbound_power_ranks",
+      "placement_policy": "use supplied graphic unchanged"
+    }
+  }
 }
