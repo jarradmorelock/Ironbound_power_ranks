@@ -89,16 +89,27 @@ jobs:
             handoff/main.json
             handoff/free.json
 
-      - name: Save successful Tuesday ranking state
-        if: success() && github.event_name == 'schedule'
+      - name: Save Editorial Desk handoff
+        if: success()
+        shell: bash
         run: |
-          if ! git status --porcelain -- state handoff | grep -q .; then
-            echo "No Tuesday ranking state or editorial handoff changed."
+          if ! git status --porcelain -- handoff state | grep -q .; then
+            echo "No ranking handoff or scheduled ranking state changed."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git pull --rebase --autostash origin main
-          git add state handoff
-          git commit -m "Save Tuesday magazine ranking state and editorial handoff"
+          git add handoff
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            git add state
+            message="Save Tuesday magazine ranking state and editorial handoff"
+          else
+            message="Refresh Editorial Desk ranking handoff"
+          fi
+          if git diff --cached --quiet; then
+            echo "No Editorial Desk handoff changes to commit."
+            exit 0
+          fi
+          git commit -m "$message"
           git push origin HEAD:main
