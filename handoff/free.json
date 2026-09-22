@@ -296,8 +296,30 @@
       "team": "Roadkill"
     }
   ],
+  "publication_assets": {
+    "playoff_forecast": {
+      "bytes": 306742,
+      "filename": "unbound_weekly-playoff-forecast.png",
+      "generated_at": "2026-09-22T14:44:40-04:00",
+      "media_type": "image/png",
+      "owner": "Ironbound_power_ranks",
+      "placement_policy": "use supplied graphic unchanged",
+      "repo_path": "handoff/assets/unbound_weekly-playoff-forecast.png",
+      "sha256": "1e76e630417f898b365eea27f32189e73f1847297580dd2ba9e81433e2994a62"
+    },
+    "power_rankings": {
+      "bytes": 310710,
+      "filename": "unbound_weekly-power-rankings.png",
+      "generated_at": "2026-09-22T14:44:40-04:00",
+      "media_type": "image/png",
+      "owner": "Ironbound_power_ranks",
+      "placement_policy": "use supplied graphic unchanged",
+      "repo_path": "handoff/assets/unbound_weekly-power-rankings.png",
+      "sha256": "e321c55af7b3908b0d98fdbef82dc166a820c1b168b2a2ff2e7a8a9537b48e8e"
+    }
+  },
   "publication_key": "unbound_weekly",
-  "schema_version": 1,
+  "schema_version": 2,
   "source_metadata": {
     "dynasty_sources": [
       "KeepTradeCut",
@@ -314,9 +336,9 @@
       "Dynasty Daddy ROS"
     ],
     "producer": "Ironbound_power_ranks",
-    "season": 2026,
     "ranking_week": 3,
-    "results_through_week": 2
+    "results_through_week": 2,
+    "season": 2026
   },
   "usage": [],
   "war": []
