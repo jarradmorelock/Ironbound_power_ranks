@@ -184,6 +184,8 @@ def publish_league(
         config,
         result,
         ROOT / "handoff" / f"{config.key}.json",
+        power_rankings_image=image_path,
+        playoff_forecast_image=playoff_image_path,
     )
 
     if not publish:

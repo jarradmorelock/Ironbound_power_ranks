@@ -88,6 +88,7 @@ jobs:
             exports/free/latest.json
             handoff/main.json
             handoff/free.json
+            handoff/assets/*.png
 
       - name: Save Editorial Desk handoff
         if: success()
