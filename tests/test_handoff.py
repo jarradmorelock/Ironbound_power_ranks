@@ -124,12 +124,39 @@ class EditorialHandoffTests(unittest.TestCase):
 
     def test_handoff_writer_emits_json(self):
         with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            rankings = root / "rankings.png"
+            playoffs = root / "playoffs.png"
+            rankings.write_bytes(b"ranking-image")
+            playoffs.write_bytes(b"playoff-image")
             path = write_editorial_handoff(
-                self._config(), self._result(), Path(tmp) / "handoff" / "main.json"
+                self._config(),
+                self._result(),
+                root / "handoff" / "main.json",
+                power_rankings_image=rankings,
+                playoff_forecast_image=playoffs,
             )
             payload = json.loads(path.read_text(encoding="utf-8"))
             self.assertEqual(payload["source_metadata"]["week"], 2)
             self.assertEqual(payload["official_power_rankings"][0]["roster_id"], 7)
+            assets = payload["publication_assets"]
+            self.assertEqual(
+                assets["power_rankings"]["filename"],
+                "ironbound_weekly-power-rankings.png",
+            )
+            self.assertEqual(
+                assets["playoff_forecast"]["filename"],
+                "ironbound_weekly-playoff-forecast.png",
+            )
+            self.assertEqual(assets["power_rankings"]["owner"], "Ironbound_power_ranks")
+            self.assertEqual(
+                (root / assets["power_rankings"]["repo_path"]).read_bytes(),
+                b"ranking-image",
+            )
+            self.assertEqual(
+                (root / assets["playoff_forecast"]["repo_path"]).read_bytes(),
+                b"playoff-image",
+            )
 
 
 if __name__ == "__main__":
