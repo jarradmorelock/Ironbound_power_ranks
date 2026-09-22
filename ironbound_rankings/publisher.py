@@ -20,6 +20,7 @@ from .render import render_chart, render_playoff_chart
 from .sleeper import fetch_league_snapshot
 from .sources import MarketData, fetch_market_data
 from .state import load_state, save_state
+from .handoff import write_editorial_handoff
 
 
 EASTERN = ZoneInfo("America/New_York")
@@ -179,6 +180,11 @@ def publish_league(
     render_chart(result, config, image_path)
     render_playoff_chart(result, config, playoff_image_path)
     _write_preview(result, config, output_dir)
+    write_editorial_handoff(
+        config,
+        result,
+        ROOT / "handoff" / f"{config.key}.json",
+    )
 
     if not publish:
         return (
