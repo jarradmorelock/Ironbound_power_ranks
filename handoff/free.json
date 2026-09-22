@@ -122,7 +122,7 @@
       "previous_rank": 14,
       "rank": 15,
       "roster_id": 5,
-      "score": 27.0,
+      "score": 27,
       "team": "Campbell's Kneecap Soup"
     },
     {
@@ -160,7 +160,7 @@
       "championship": 8.7,
       "division": 21.7,
       "final": 20.2,
-      "playoff": 77.0,
+      "playoff": 77,
       "projected_record": "9-5",
       "roster_id": 9,
       "team": "Prescott Pussybacks"
@@ -208,7 +208,7 @@
     {
       "bye": 0.7,
       "championship": 2.7,
-      "division": 51.0,
+      "division": 51,
       "final": 7.4,
       "playoff": 55.5,
       "projected_record": "7-7",
@@ -236,7 +236,7 @@
       "team": "The Mus𝐂𝐀𝐓eers"
     },
     {
-      "bye": 0.0,
+      "bye": 0,
       "championship": 0.2,
       "division": 10.5,
       "final": 0.8,
@@ -276,20 +276,20 @@
       "team": "FullMetalJacketRequired"
     },
     {
-      "bye": 0.0,
-      "championship": 0.0,
+      "bye": 0,
+      "championship": 0,
       "division": 1.2,
       "final": 0.1,
-      "playoff": 3.0,
+      "playoff": 3,
       "projected_record": "4-10",
       "roster_id": 5,
       "team": "Campbell's Kneecap Soup"
     },
     {
-      "bye": 0.0,
-      "championship": 0.0,
+      "bye": 0,
+      "championship": 0,
       "division": 0.3,
-      "final": 0.0,
+      "final": 0,
       "playoff": 0.3,
       "projected_record": "3-11",
       "roster_id": 10,
@@ -315,8 +315,31 @@
     ],
     "producer": "Ironbound_power_ranks",
     "season": 2026,
-    "week": 3
+    "ranking_week": 3,
+    "results_through_week": 2
   },
   "usage": [],
-  "war": []
+  "war": [],
+  "publication_assets": {
+    "power_rankings": {
+      "filename": "unbound_weekly-power-rankings.png",
+      "repo_path": "handoff/assets/unbound_weekly-power-rankings.png",
+      "media_type": "image/png",
+      "sha256": "e321c55af7b3908b0d98fdbef82dc166a820c1b168b2a2ff2e7a8a9537b48e8e",
+      "bytes": 310710,
+      "generated_at": "2026-09-22T14:44:40-04:00",
+      "owner": "Ironbound_power_ranks",
+      "placement_policy": "use supplied graphic unchanged"
+    },
+    "playoff_forecast": {
+      "filename": "unbound_weekly-playoff-forecast.png",
+      "repo_path": "handoff/assets/unbound_weekly-playoff-forecast.png",
+      "media_type": "image/png",
+      "sha256": "1e76e630417f898b365eea27f32189e73f1847297580dd2ba9e81433e2994a62",
+      "bytes": 306742,
+      "generated_at": "2026-09-22T14:44:40-04:00",
+      "owner": "Ironbound_power_ranks",
+      "placement_policy": "use supplied graphic unchanged"
+    }
+  }
 }
