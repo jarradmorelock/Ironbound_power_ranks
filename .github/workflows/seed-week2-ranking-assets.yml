@@ -1,0 +1,109 @@
+name: One-time Week 2 ranking asset seed
+
+on:
+  push:
+    branches:
+      - ops/seed-week2-ranking-assets
+    paths:
+      - .github/workflows/seed-week2-ranking-assets.yml
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Download exact Tuesday Week 2 ranking artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          curl --fail --location             --header "Accept: application/vnd.github+json"             --header "Authorization: Bearer ${GH_TOKEN}"             --header "X-GitHub-Api-Version: 2022-11-28"             "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/10712679927/zip"             --output /tmp/week2-rankings.zip
+          rm -rf /tmp/week2-rankings
+          mkdir -p /tmp/week2-rankings
+          unzip -q /tmp/week2-rankings.zip -d /tmp/week2-rankings
+
+      - name: Verify and install exact publication graphics
+        run: |
+          set -euo pipefail
+          echo "e4f4ae496b43eec9daa0e2a578fb49ad12c5854675e3e7c0adcec2f450252229  /tmp/week2-rankings/exports/main/latest.png" | sha256sum -c -
+          echo "abbc073a25b6e9e9316260b2541ffd48798e829974292c9f9b980e7894f07416  /tmp/week2-rankings/exports/main/latest-playoffs.png" | sha256sum -c -
+          echo "e321c55af7b3908b0d98fdbef82dc166a820c1b168b2a2ff2e7a8a9537b48e8e  /tmp/week2-rankings/exports/free/latest.png" | sha256sum -c -
+          echo "1e76e630417f898b365eea27f32189e73f1847297580dd2ba9e81433e2994a62  /tmp/week2-rankings/exports/free/latest-playoffs.png" | sha256sum -c -
+
+          mkdir -p handoff/assets
+          cp /tmp/week2-rankings/exports/main/latest.png handoff/assets/ironbound_weekly-power-rankings.png
+          cp /tmp/week2-rankings/exports/main/latest-playoffs.png handoff/assets/ironbound_weekly-playoff-forecast.png
+          cp /tmp/week2-rankings/exports/free/latest.png handoff/assets/unbound_weekly-power-rankings.png
+          cp /tmp/week2-rankings/exports/free/latest-playoffs.png handoff/assets/unbound_weekly-playoff-forecast.png
+
+      - name: Add exact asset manifests to Week 2 handoffs
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          specs = {
+              "handoff/main.json": {
+                  "power_rankings": "ironbound_weekly-power-rankings.png",
+                  "playoff_forecast": "ironbound_weekly-playoff-forecast.png",
+              },
+              "handoff/free.json": {
+                  "power_rankings": "unbound_weekly-power-rankings.png",
+                  "playoff_forecast": "unbound_weekly-playoff-forecast.png",
+              },
+          }
+
+          for json_name, assets in specs.items():
+              path = Path(json_name)
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              payload["schema_version"] = 2
+              metadata = payload.setdefault("source_metadata", {})
+              # This handoff was produced Tuesday after Week 2: the chart is the
+              # Week 3 board, while the magazine covers results through Week 2.
+              metadata["ranking_week"] = 3
+              metadata["results_through_week"] = 2
+              metadata.pop("week", None)
+              generated_at = metadata.get("generated_at")
+              manifest = {}
+              for key, filename in assets.items():
+                  asset_path = Path("handoff/assets") / filename
+                  blob = asset_path.read_bytes()
+                  manifest[key] = {
+                      "filename": filename,
+                      "repo_path": f"handoff/assets/{filename}",
+                      "media_type": "image/png",
+                      "sha256": hashlib.sha256(blob).hexdigest(),
+                      "bytes": len(blob),
+                      "generated_at": generated_at,
+                      "owner": "Ironbound_power_ranks",
+                      "placement_policy": "use supplied graphic unchanged",
+                  }
+              payload["publication_assets"] = manifest
+              path.write_text(
+                  json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+                  encoding="utf-8",
+              )
+          PY
+
+      - name: Commit exact Week 2 Tuesday assets to main
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add handoff
+          if git diff --cached --quiet; then
+            echo "Week 2 ranking assets are already seeded."
+            exit 0
+          fi
+          git commit -m "Seed exact Week 2 Tuesday ranking publication assets"
+          git push origin HEAD:main
