@@ -319,27 +319,5 @@
     "results_through_week": 2
   },
   "usage": [],
-  "war": [],
-  "publication_assets": {
-    "power_rankings": {
-      "filename": "ironbound_weekly-power-rankings.png",
-      "repo_path": "handoff/assets/ironbound_weekly-power-rankings.png",
-      "media_type": "image/png",
-      "sha256": "e4f4ae496b43eec9daa0e2a578fb49ad12c5854675e3e7c0adcec2f450252229",
-      "bytes": 316623,
-      "generated_at": "2026-09-22T14:44:40-04:00",
-      "owner": "Ironbound_power_ranks",
-      "placement_policy": "use supplied graphic unchanged"
-    },
-    "playoff_forecast": {
-      "filename": "ironbound_weekly-playoff-forecast.png",
-      "repo_path": "handoff/assets/ironbound_weekly-playoff-forecast.png",
-      "media_type": "image/png",
-      "sha256": "abbc073a25b6e9e9316260b2541ffd48798e829974292c9f9b980e7894f07416",
-      "bytes": 308128,
-      "generated_at": "2026-09-22T14:44:40-04:00",
-      "owner": "Ironbound_power_ranks",
-      "placement_policy": "use supplied graphic unchanged"
-    }
-  }
+  "war": []
 }
