@@ -12,6 +12,8 @@ from .models import LeagueMatchup, LeagueSnapshot, RankingResult
 DEFAULT_SIMULATIONS = 10_000
 MIN_GAME_PROBABILITY = 0.05
 MAX_GAME_PROBABILITY = 0.95
+SOFT_BASELINE_SHARE = 0.18
+SOFT_CALIBRATION_END_PROGRESS = 0.5
 
 
 def attach_playoff_forecast(
@@ -31,7 +33,10 @@ def attach_playoff_forecast(
     seed = f"{snapshot.league_id}:{snapshot.season}:{snapshot.week}:{simulations}"
     rng = random.Random(seed)
 
-    if snapshot.week >= snapshot.playoff_week_start and snapshot.playoff_bracket:
+    active_playoffs = snapshot.week >= snapshot.playoff_week_start and bool(
+        snapshot.playoff_bracket
+    )
+    if active_playoffs:
         counts = _simulate_active_playoffs(
             snapshot,
             probabilities,
@@ -46,20 +51,84 @@ def attach_playoff_forecast(
             rng=rng,
         )
 
+    baseline_share = 0.0 if active_playoffs else _soft_baseline_share(snapshot)
+    baselines = _forecast_baselines(snapshot)
+
     for team in result.teams:
         forecast = counts[team.roster_id]
         team.projected_record = projected_records[team.roster_id]
-        team.make_playoffs_pct = _percentage(forecast["playoffs"], simulations)
-        team.win_division_pct = _percentage(forecast["division"], simulations)
-        team.first_round_bye_pct = _percentage(forecast["bye"], simulations)
-        team.make_final_pct = _percentage(forecast["final"], simulations)
-        team.win_championship_pct = _percentage(forecast["champion"], simulations)
+        division_baseline = baselines["division"].get(team.roster_id, 0.0)
+        team.make_playoffs_pct = _calibrated_percentage(
+            forecast["playoffs"], simulations, baselines["playoffs"], baseline_share
+        )
+        team.win_division_pct = _calibrated_percentage(
+            forecast["division"], simulations, division_baseline, baseline_share
+        )
+        team.first_round_bye_pct = _calibrated_percentage(
+            forecast["bye"], simulations, baselines["bye"], baseline_share
+        )
+        team.make_final_pct = _calibrated_percentage(
+            forecast["final"], simulations, baselines["final"], baseline_share
+        )
+        team.win_championship_pct = _calibrated_percentage(
+            forecast["champion"], simulations, baselines["champion"], baseline_share
+        )
 
     result.forecast_simulations = simulations
     starter_source = result.lineup_sources[0] if result.lineup_sources else "starter"
     result.forecast_model = (
         f"Elo-adjusted {starter_source}" if completed_games else starter_source
     )
+
+
+def _soft_baseline_share(snapshot: LeagueSnapshot) -> float:
+    """Return the early-season baseline share, fading to zero by midseason."""
+    regular_season_weeks = max(1, snapshot.playoff_week_start - snapshot.start_week)
+    completed_weeks = max(
+        0, min(regular_season_weeks, snapshot.week - snapshot.start_week)
+    )
+    progress = completed_weeks / regular_season_weeks
+    if progress >= SOFT_CALIBRATION_END_PROGRESS:
+        return 0.0
+    remaining_fraction = 1.0 - progress / SOFT_CALIBRATION_END_PROGRESS
+    return SOFT_BASELINE_SHARE * remaining_fraction
+
+
+def _forecast_baselines(snapshot: LeagueSnapshot) -> dict[str, object]:
+    """Return structural event rates used only for early-season calibration."""
+    team_count = max(1, len(snapshot.teams))
+    playoff_count = min(team_count, max(2, snapshot.playoff_teams))
+    bracket_size = 1 << (playoff_count - 1).bit_length()
+    bye_count = max(0, bracket_size - playoff_count)
+
+    division_baselines: dict[int, float] = {}
+    for group in _division_groups(snapshot):
+        if not group:
+            continue
+        baseline = 100.0 / len(group)
+        for roster_id in group:
+            division_baselines[roster_id] = baseline
+
+    return {
+        "playoffs": playoff_count / team_count * 100.0,
+        "division": division_baselines,
+        "bye": bye_count / team_count * 100.0,
+        "final": min(2, team_count) / team_count * 100.0,
+        "champion": 100.0 / team_count,
+    }
+
+
+def _calibrated_percentage(
+    count: int,
+    simulations: int,
+    baseline_pct: float,
+    baseline_share: float,
+) -> float:
+    raw_pct = count / simulations * 100.0
+    if baseline_share <= 0:
+        return round(raw_pct, 1)
+    adjusted = baseline_pct + (1.0 - baseline_share) * (raw_pct - baseline_pct)
+    return round(max(0.0, min(100.0, adjusted)), 1)
 
 
 def rating_probabilities(ratings: dict[int, float]) -> dict[int, float]:
