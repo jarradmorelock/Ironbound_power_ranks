@@ -3,7 +3,12 @@ from __future__ import annotations
 import random
 import unittest
 
-from ironbound_rankings.forecast import _select_playoff_field, attach_playoff_forecast
+from ironbound_rankings.forecast import (
+    _select_playoff_field,
+    _simulate_regular_seasons,
+    attach_playoff_forecast,
+    rating_probabilities,
+)
 from ironbound_rankings.models import (
     LeagueMatchup,
     LeagueSnapshot,
@@ -77,6 +82,18 @@ def _result() -> RankingResult:
     )
 
 
+def _raw_regular_counts(result: RankingResult, simulations: int) -> dict[int, dict[str, int]]:
+    ratings = {team.roster_id: team.starter_rating for team in result.teams}
+    probabilities = rating_probabilities(ratings)
+    seed = f"{result.league.league_id}:{result.league.season}:{result.league.week}:{simulations}"
+    return _simulate_regular_seasons(
+        result.league,
+        probabilities,
+        simulations=simulations,
+        rng=random.Random(seed),
+    )
+
+
 class ForecastTests(unittest.TestCase):
     def test_ironbound_field_has_four_division_winners_and_one_bye(self) -> None:
         team_ids = list(range(1, 17))
@@ -147,6 +164,50 @@ class ForecastTests(unittest.TestCase):
             for team in second.teams
         ]
         self.assertEqual(first_values, second_values)
+
+    def test_week_one_forecast_uses_eighty_two_percent_raw_confidence(self) -> None:
+        result = _result()
+        result.league.playoff_week_start = 15
+        simulations = 2_000
+        counts = _raw_regular_counts(result, simulations)
+        raw = counts[1]["playoffs"] / simulations * 100.0
+        baseline = result.league.playoff_teams / len(result.teams) * 100.0
+
+        attach_playoff_forecast(result, simulations=simulations)
+
+        expected = round(baseline + 0.82 * (raw - baseline), 1)
+        self.assertEqual(result.teams[0].make_playoffs_pct, expected)
+
+    def test_soft_calibration_decreases_incrementally_each_week(self) -> None:
+        result = _result()
+        result.league.playoff_week_start = 15
+        result.league.week = 4
+        simulations = 2_000
+        counts = _raw_regular_counts(result, simulations)
+        raw = counts[1]["playoffs"] / simulations * 100.0
+        baseline = result.league.playoff_teams / len(result.teams) * 100.0
+        progress = (result.league.week - result.league.start_week) / 14.0
+        baseline_share = 0.18 * (1.0 - progress / 0.5)
+
+        attach_playoff_forecast(result, simulations=simulations)
+
+        expected = round(baseline + (1.0 - baseline_share) * (raw - baseline), 1)
+        self.assertEqual(result.teams[0].make_playoffs_pct, expected)
+        self.assertLess(baseline_share, 0.18)
+        self.assertGreater(baseline_share, 0.0)
+
+    def test_soft_calibration_is_gone_by_midseason(self) -> None:
+        result = _result()
+        result.league.playoff_week_start = 15
+        result.league.week = 8
+        simulations = 2_000
+        counts = _raw_regular_counts(result, simulations)
+
+        attach_playoff_forecast(result, simulations=simulations)
+
+        for team in result.teams:
+            raw = round(counts[team.roster_id]["playoffs"] / simulations * 100.0, 1)
+            self.assertEqual(team.make_playoffs_pct, raw)
 
 
 if __name__ == "__main__":
