@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 from ironbound_rankings.discord import build_message, escape_discord, parse_tag_ids
 from ironbound_rankings.render import _draw_component_values, safe_chart_text
-from ironbound_rankings.sleeper import _future_pick_ownership
+from ironbound_rankings.sleeper import _future_pick_ownership, fetch_weekly_projections
 from ironbound_rankings.sources import _starter_book_from_metadata, parse_pick_asset
 
 
@@ -84,6 +84,25 @@ class SleeperPickTests(unittest.TestCase):
             draft_rounds=1,
         )
         self.assertEqual([pick.year for pick in ownership[1]], [2027, 2028, 2029])
+
+
+class WeeklyProjectionSourceTests(unittest.TestCase):
+    def test_fetch_weekly_projections_accepts_player_keyed_payload(self) -> None:
+        class Client:
+            def get_json(self, url, **kwargs):
+                self.url = url
+                return {
+                    "p1": {"pts": 18.4},
+                    "p2": {"stats": {"pass_yd": 250}},
+                    "bad": "ignore",
+                }
+
+        client = Client()
+        rows = fetch_weekly_projections(client, 2026, 3)
+
+        self.assertTrue(client.url.endswith("/projections/nfl/regular/2026/3"))
+        self.assertEqual(set(rows), {"p1", "p2"})
+        self.assertEqual(rows["p1"]["pts"], 18.4)
 
 
 class DiscordTests(unittest.TestCase):
