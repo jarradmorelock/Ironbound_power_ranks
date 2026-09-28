@@ -86,7 +86,7 @@ class EditorialHandoffTests(unittest.TestCase):
             win_championship_pct=15.0,
             previous_rank=3,
         )
-        return RankingResult(
+        result = RankingResult(
             league=snapshot,
             teams=[team],
             dynasty_sources=["KeepTradeCut"],
@@ -100,23 +100,64 @@ class EditorialHandoffTests(unittest.TestCase):
             forecast_simulations=10000,
             forecast_model="Elo-adjusted Dynasty Daddy ROS",
         )
-
-    def test_handoff_contains_rankings_and_playoff_forecast(self):
-        payload = build_editorial_handoff(self._config(), self._result())
-        self.assertEqual(payload["publication_key"], "ironbound_weekly")
-        self.assertEqual(
-            payload["official_power_rankings"][0],
+        result.remaining_schedule_strength = [
             {
                 "roster_id": 7,
                 "team": "San Carlos FC",
-                "rank": 1,
-                "previous_rank": 3,
-                "movement": 2,
-                "score": 91.2,
+                "remaining_opponents": [2, 3],
+                "average_opponent_index": 58.4,
+                "difficulty_rank": 1,
+                "grade": "F",
+            }
+        ]
+        result.weekly_matchup_forecast = [
+            {
+                "week": 2,
+                "matchup_id": 1,
+                "roster_one": 7,
+                "team_one": "San Carlos FC",
+                "roster_two": 8,
+                "team_two": "Blue Moose",
+                "projected_score_one": 128.4,
+                "projected_score_two": 124.1,
+                "projected_total": 252.5,
+                "favorite_roster_id": 7,
+                "favorite_by": 4.3,
+                "win_probability_one": 58.0,
+                "simulations": 10000,
+                "model": "projected-optimal legal lineup Monte Carlo",
+                "optimal_lineup_one": ["p1"],
+                "optimal_lineup_two": ["p2"],
+            }
+        ]
+        return result
+
+    def test_handoff_contains_rankings_and_playoff_forecast(self):
+        payload = build_editorial_handoff(self._config(), self._result())
+        self.assertEqual(payload["schema_version"], 3)
+        self.assertEqual(payload["publication_key"], "ironbound_weekly")
+        ranking = payload["official_power_rankings"][0]
+        self.assertEqual(ranking["roster_id"], 7)
+        self.assertEqual(ranking["rank"], 1)
+        self.assertEqual(ranking["previous_rank"], 3)
+        self.assertEqual(ranking["movement"], 2)
+        self.assertEqual(ranking["score"], 91.2)
+        self.assertEqual(
+            ranking["components"],
+            {
+                "market_percentile": 90,
+                "ros_starters_percentile": 92,
+                "season_results_percentile": 95,
+                "market_points": 31,
+                "ros_starters_points": 41,
+                "season_results_points": 19,
+                "weights": {"market": 0.35, "ros_starters": 0.45, "season_results": 0.20},
             },
         )
         self.assertEqual(payload["playoff_odds"][0]["playoff"], 91.0)
         self.assertEqual(payload["playoff_odds"][0]["championship"], 15.0)
+        self.assertEqual(payload["remaining_schedule_strength"][0]["grade"], "F")
+        self.assertEqual(payload["weekly_matchup_forecast"][0]["projected_total"], 252.5)
         self.assertEqual(payload["source_metadata"]["ranking_week"], 2)
         self.assertEqual(payload["source_metadata"]["results_through_week"], 1)
         self.assertNotIn("usage", payload)
@@ -139,9 +180,11 @@ class EditorialHandoffTests(unittest.TestCase):
                 playoff_forecast_image=playoffs,
             )
             payload = json.loads(path.read_text(encoding="utf-8"))
+            self.assertEqual(payload["schema_version"], 3)
             self.assertEqual(payload["source_metadata"]["ranking_week"], 2)
             self.assertEqual(payload["source_metadata"]["results_through_week"], 1)
             self.assertEqual(payload["official_power_rankings"][0]["roster_id"], 7)
+            self.assertEqual(payload["weekly_matchup_forecast"][0]["favorite_by"], 4.3)
             assets = payload["publication_assets"]
             self.assertEqual(
                 assets["power_rankings"]["filename"],
