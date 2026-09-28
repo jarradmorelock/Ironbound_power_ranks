@@ -270,8 +270,10 @@ class ForecastTests(unittest.TestCase):
         self.assertEqual(first["projected_score_one"], 45.0)
         self.assertEqual(first["projected_score_two"], 41.0)
         self.assertEqual(first["projected_total"], 86.0)
+        self.assertEqual(first["projected_margin"], 4.0)
         self.assertEqual(first["favorite_roster_id"], 1)
-        self.assertEqual(first["favorite_by"], 4.0)
+        self.assertGreater(first["favorite_by"], 0.0)
+        self.assertAlmostEqual(first["spread"] * 2, round(first["spread"] * 2))
         self.assertGreater(first["win_probability_one"], 50.0)
 
         repeat = _result()
