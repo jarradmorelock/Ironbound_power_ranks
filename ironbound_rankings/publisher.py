@@ -21,6 +21,7 @@ from .http import DataSourceError, HttpClient
 from .mailer import send_power_rankings_email
 from .models import LeagueConfig, RankingResult
 from .render import render_chart, render_playoff_chart
+from .sleeper import fetch_unavailable_players
 from .sleeper import fetch_league_snapshot, fetch_weekly_projections
 from .sources import MarketData, fetch_market_data
 from .state import load_state, save_state
@@ -177,6 +178,7 @@ def publish_league(
     attach_playoff_forecast(result)
     attach_remaining_schedule_strength(result)
     try:
+        unavailable = fetch_unavailable_players(client)
         projections = fetch_weekly_projections(client, snapshot.season, snapshot.week)
     except DataSourceError as exc:
         projections = {}
@@ -190,6 +192,7 @@ def publish_league(
             market_data.players,
             projections,
             scoring_settings=snapshot.scoring_settings,
+            unavailable_player_ids=unavailable,
         )
 
     post_key = _post_key(result, now)

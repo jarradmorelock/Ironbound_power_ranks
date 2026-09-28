@@ -96,6 +96,8 @@ def fetch_league_snapshot(client: HttpClient, config: LeagueConfig) -> LeagueSna
                 team_name=team_name,
                 owner_name=owner_name,
                 player_ids=[str(item) for item in roster.get("players") or []],
+                reserve_player_ids=[str(item) for item in roster.get("reserve") or []],
+                taxi_player_ids=[str(item) for item in roster.get("taxi") or []],
                 picks=pick_map.get(roster_id, []),
                 wins=int(roster_settings.get("wins") or 0),
                 losses=int(roster_settings.get("losses") or 0),
@@ -258,3 +260,18 @@ def _number(value: Any) -> float:
         return float(value or 0.0)
     except (TypeError, ValueError):
         return 0.0
+
+
+def fetch_unavailable_players(client: HttpClient) -> set[str]:
+    """Read current availability; questionable/doubtful remain uncertain, not out."""
+    rows = client.get_json(f"{SLEEPER_BASE}/players/nfl")
+    if not isinstance(rows, dict) or not rows:
+        raise DataSourceError("Sleeper player availability is unavailable")
+    excluded = {"out", "ir", "pup", "sus", "suspended", "inactive"}
+    return {
+        str(pid) for pid, row in rows.items()
+        if isinstance(row, dict) and any(
+            str(row.get(field) or "").strip().lower() in excluded
+            for field in ("injury_status", "status")
+        )
+    }
