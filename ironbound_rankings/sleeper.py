@@ -1,4 +1,4 @@
-"""Load league, roster, record, and pick ownership data from Sleeper."""
+"""Load league, roster, record, projection, and pick ownership data from Sleeper."""
 
 from __future__ import annotations
 
@@ -50,7 +50,12 @@ def fetch_league_snapshot(client: HttpClient, config: LeagueConfig) -> LeagueSna
         is_superflex = True
     else:
         is_superflex = detected_superflex
-    ppr = float((league.get("scoring_settings") or {}).get("rec") or 0)
+    scoring_settings = {
+        str(key): _number(value)
+        for key, value in (league.get("scoring_settings") or {}).items()
+        if _number(value) != 0
+    }
+    ppr = float(scoring_settings.get("rec") or 0)
 
     user_map = {
         str(user.get("user_id")): user
@@ -130,9 +135,36 @@ def fetch_league_snapshot(client: HttpClient, config: LeagueConfig) -> LeagueSna
         divisions=divisions,
         playoff_round_type=playoff_round_type,
         league_average_match=league_average_match,
+        scoring_settings=scoring_settings,
         matchups=matchups,
         playoff_bracket=playoff_bracket,
     )
+
+
+def fetch_weekly_projections(
+    client: HttpClient, season: int | str, week: int
+) -> dict[str, dict[str, Any]]:
+    """Return Sleeper's player projection rows keyed by Sleeper player ID."""
+    payload = client.get_json(
+        f"{SLEEPER_BASE}/projections/nfl/regular/{season}/{week}"
+    )
+    if isinstance(payload, dict):
+        return {
+            str(player_id): row
+            for player_id, row in payload.items()
+            if isinstance(row, dict)
+        }
+    if isinstance(payload, list):
+        result: dict[str, dict[str, Any]] = {}
+        for row in payload:
+            if not isinstance(row, dict):
+                continue
+            player_id = row.get("player_id") or row.get("player_id_string")
+            if player_id is not None:
+                result[str(player_id)] = row
+        if result:
+            return result
+    raise DataSourceError("Sleeper returned invalid weekly projection data")
 
 
 def _fetch_matchups(
@@ -219,3 +251,10 @@ def _future_pick_ownership(
     for picks in result.values():
         picks.sort(key=lambda item: (item.year, item.round, item.original_roster_id))
     return result
+
+
+def _number(value: Any) -> float:
+    try:
+        return float(value or 0.0)
+    except (TypeError, ValueError):
+        return 0.0

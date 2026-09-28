@@ -13,11 +13,15 @@ from .config import ROOT, load_leagues
 from .discord import build_message, parse_tag_ids, post_forum_ranking
 from .engine import rank_league
 from .forecast import attach_playoff_forecast
-from .http import HttpClient
+from .weekly_forecast import (
+    attach_remaining_schedule_strength,
+    attach_weekly_matchup_forecast,
+)
+from .http import DataSourceError, HttpClient
 from .mailer import send_power_rankings_email
 from .models import LeagueConfig, RankingResult
 from .render import render_chart, render_playoff_chart
-from .sleeper import fetch_league_snapshot
+from .sleeper import fetch_league_snapshot, fetch_weekly_projections
 from .sources import MarketData, fetch_market_data
 from .state import load_state, save_state
 from .handoff import write_editorial_handoff
@@ -124,8 +128,6 @@ def is_noon_eastern_schedule(now: datetime, scheduled_cron: str | None) -> bool:
     if now.weekday() != 5:
         return False
 
-    # Local/manual compatibility: without GitHub's trigger expression, retain
-    # the strict Saturday-noon check.
     if not scheduled_cron:
         return now.hour == 12
 
@@ -173,6 +175,23 @@ def publish_league(
         generated_at=generated_at,
     )
     attach_playoff_forecast(result)
+    attach_remaining_schedule_strength(result)
+    try:
+        projections = fetch_weekly_projections(client, snapshot.season, snapshot.week)
+    except DataSourceError as exc:
+        projections = {}
+        print(
+            f"[{config.key}] Warning: weekly Sleeper projections unavailable; "
+            f"matchup line/total handoff omitted: {exc}"
+        )
+    if projections:
+        attach_weekly_matchup_forecast(
+            result,
+            market_data.players,
+            projections,
+            scoring_settings=snapshot.scoring_settings,
+        )
+
     post_key = _post_key(result, now)
     output_dir = ROOT / "exports" / config.key
     image_path = output_dir / "latest.png"
@@ -241,6 +260,10 @@ def _write_preview(result: RankingResult, config: LeagueConfig, output_dir: Path
         "has_season_results": result.has_season_results,
         "forecast_simulations": result.forecast_simulations,
         "forecast_model": result.forecast_model,
+        "remaining_schedule_strength": result.remaining_schedule_strength,
+        "weekly_matchup_simulations": result.weekly_matchup_simulations,
+        "weekly_matchup_model": result.weekly_matchup_model,
+        "weekly_matchup_forecast": result.weekly_matchup_forecast,
         "teams": [asdict(team) for team in result.teams],
     }
     (output_dir / "latest.json").write_text(

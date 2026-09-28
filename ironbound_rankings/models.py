@@ -110,6 +110,7 @@ class LeagueSnapshot:
     divisions: int = 1
     playoff_round_type: int = 0
     league_average_match: bool = False
+    scoring_settings: dict[str, float] = field(default_factory=dict)
     matchups: list[LeagueMatchup] = field(default_factory=list)
     playoff_bracket: list[dict] = field(default_factory=list)
 
@@ -161,5 +162,9 @@ class RankingResult:
     record_guardrail_active: bool
     forecast_simulations: int = 0
     forecast_model: str = ""
+    remaining_schedule_strength: list[dict] = field(default_factory=list)
+    weekly_matchup_forecast: list[dict] = field(default_factory=list)
+    weekly_matchup_simulations: int = 0
+    weekly_matchup_model: str = ""
     output_image: Path | None = None
     output_playoff_image: Path | None = None

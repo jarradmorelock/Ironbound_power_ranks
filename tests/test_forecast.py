@@ -7,12 +7,16 @@ from ironbound_rankings.forecast import (
     _select_playoff_field,
     _simulate_regular_seasons,
     attach_playoff_forecast,
+    attach_remaining_schedule_strength,
+    attach_weekly_matchup_forecast,
+    projection_fantasy_points,
     rating_probabilities,
 )
 from ironbound_rankings.models import (
     LeagueMatchup,
     LeagueSnapshot,
     LeagueTeam,
+    PlayerIdentity,
     RankedTeam,
     RankingResult,
 )
@@ -208,6 +212,86 @@ class ForecastTests(unittest.TestCase):
         for team in result.teams:
             raw = round(counts[team.roster_id]["playoffs"] / simulations * 100.0, 1)
             self.assertEqual(team.make_playoffs_pct, raw)
+
+    def test_remaining_schedule_strength_uses_current_power_board_index(self) -> None:
+        result = _result()
+        attach_remaining_schedule_strength(result)
+
+        by_id = {row["roster_id"]: row for row in result.remaining_schedule_strength}
+        self.assertEqual(by_id[1]["remaining_opponents"], [4, 3, 2])
+        self.assertEqual(by_id[1]["average_opponent_index"], 97.0)
+        self.assertEqual(by_id[4]["average_opponent_index"], 98.0)
+        self.assertEqual(by_id[4]["difficulty_rank"], 1)
+
+    def test_projection_scoring_respects_custom_sleeper_settings(self) -> None:
+        projection = {"pass_yd": 250, "pass_td": 2, "pass_int": 1, "rush_yd": 20}
+        settings = {"pass_yd": 0.04, "pass_td": 6, "pass_int": -2, "rush_yd": 0.1}
+        self.assertEqual(projection_fantasy_points(projection, settings), 22.0)
+
+    def test_weekly_matchup_forecast_uses_projected_optimal_lineup_once(self) -> None:
+        players = {
+            "a_qb": PlayerIdentity("a_qb", "aqb", "Alpha QB", "QB"),
+            "a_rb": PlayerIdentity("a_rb", "arb", "Alpha RB", "RB"),
+            "a_wr": PlayerIdentity("a_wr", "awr", "Alpha WR", "WR"),
+            "a_low": PlayerIdentity("a_low", "alow", "Alpha Low", "RB"),
+            "b_qb": PlayerIdentity("b_qb", "bqb", "Bravo QB", "QB"),
+            "b_rb": PlayerIdentity("b_rb", "brb", "Bravo RB", "RB"),
+            "b_wr": PlayerIdentity("b_wr", "bwr", "Bravo WR", "WR"),
+        }
+        result = _result()
+        result.league.week = 3
+        result.league.roster_positions = ["QB", "RB", "FLEX"]
+        result.league.teams[0].player_ids = ["a_qb", "a_rb", "a_wr", "a_low"]
+        result.league.teams[1].player_ids = ["b_qb", "b_rb", "b_wr"]
+        result.league.teams = result.league.teams[:2]
+        result.teams = result.teams[:2]
+        result.league.matchups = [LeagueMatchup(3, 1, 1, 2)]
+        projections = {
+            "a_qb": {"pts": 20},
+            "a_rb": {"pts": 15},
+            "a_wr": {"pts": 10},
+            "a_low": {"pts": 4},
+            "b_qb": {"pts": 18},
+            "b_rb": {"pts": 12},
+            "b_wr": {"pts": 11},
+        }
+
+        attach_weekly_matchup_forecast(
+            result,
+            players,
+            projections,
+            scoring_settings={},
+            simulations=2_000,
+        )
+        first = result.weekly_matchup_forecast[0]
+
+        self.assertEqual(first["optimal_lineup_one"], ["a_qb", "a_rb", "a_wr"])
+        self.assertEqual(first["optimal_lineup_two"], ["b_qb", "b_rb", "b_wr"])
+        self.assertEqual(first["projected_score_one"], 45.0)
+        self.assertEqual(first["projected_score_two"], 41.0)
+        self.assertEqual(first["projected_total"], 86.0)
+        self.assertEqual(first["projected_margin"], 4.0)
+        self.assertEqual(first["favorite_roster_id"], 1)
+        self.assertGreater(first["favorite_by"], 0.0)
+        self.assertAlmostEqual(first["spread"] * 2, round(first["spread"] * 2))
+        self.assertGreater(first["win_probability_one"], 50.0)
+
+        repeat = _result()
+        repeat.league.week = 3
+        repeat.league.roster_positions = ["QB", "RB", "FLEX"]
+        repeat.league.teams[0].player_ids = ["a_qb", "a_rb", "a_wr", "a_low"]
+        repeat.league.teams[1].player_ids = ["b_qb", "b_rb", "b_wr"]
+        repeat.league.teams = repeat.league.teams[:2]
+        repeat.teams = repeat.teams[:2]
+        repeat.league.matchups = [LeagueMatchup(3, 1, 1, 2)]
+        attach_weekly_matchup_forecast(
+            repeat,
+            players,
+            projections,
+            scoring_settings={},
+            simulations=2_000,
+        )
+        self.assertEqual(result.weekly_matchup_forecast, repeat.weekly_matchup_forecast)
 
 
 if __name__ == "__main__":

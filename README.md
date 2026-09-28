@@ -121,10 +121,16 @@ For example, the Tuesday after Week 2 produces a Week 3 ranking graphic with
 
 It also contains:
 
-- current rank, previous rank, movement, and composite score for every team;
+- current rank, previous rank, movement, composite score, and the underlying market / rest-of-season starter / season-results components for every team;
 - projected record and playoff/division/bye/final/championship probabilities;
+- remaining-schedule strength derived from the current Power Board index, including the opponent-by-opponent index trail, average opponent index, difficulty rank, and display grade;
+- a weekly matchup forecast built from projected-optimal legal lineups, with projected scores, simulation-derived spread and over/under, win probability, selected player IDs, and model metadata;
 - the exact rendered Power Rankings PNG; and
 - the exact rendered Playoff Forecast PNG.
+
+The weekly matchup model never uses the lineup a manager happens to have submitted when the ranking run occurs. It chooses each team's best legal lineup from the pregame Sleeper projections exactly once, then holds those players fixed through 10,000 deterministic simulations. It does not re-optimize inside each simulated outcome, so managers are not granted perfect hindsight. Ironbound and Unbound remain 1QB for this optimization, including the Sleeper `SUPER_FLEX` anti-hoarding slot.
+
+The Power Rankings engine also owns remaining-schedule difficulty because that feature is explicitly defined by the current Power Board index. Editorial Desk receives the result and may explain it, but must not independently recalculate it.
 
 The PNGs are copied into `handoff/assets/` and described in the JSON manifest
 with filename, SHA-256 checksum, media type, generated time, and the policy
@@ -151,6 +157,7 @@ ironbound_rankings/
   sleeper.py      rosters, schedule, records, settings, and pick ownership
   engine.py       source normalization, legal lineups, final index
   forecast.py     Elo adjustment and 10,000 playoff simulations
+  weekly_forecast.py  remaining-schedule strength and projected-optimal weekly lines/totals
   render.py       power-ranking and playoff Gallery charts
   discord.py      safe Forum webhook payloads
   mailer.py       Tuesday Gmail package and attachments

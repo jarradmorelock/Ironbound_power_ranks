@@ -7,6 +7,11 @@ import random
 from statistics import mean, pstdev
 
 from .models import LeagueMatchup, LeagueSnapshot, RankingResult
+from .weekly_forecast import (
+    attach_remaining_schedule_strength,
+    attach_weekly_matchup_forecast,
+    projection_fantasy_points,
+)
 
 
 DEFAULT_SIMULATIONS = 10_000
