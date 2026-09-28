@@ -8,7 +8,6 @@ different questions and have different inputs.
 from __future__ import annotations
 
 from functools import lru_cache
-from math import erf, sqrt
 import random
 from statistics import mean
 from typing import Any
@@ -201,27 +200,34 @@ def attach_weekly_matchup_forecast(
         score_one = round(sum(projected_values[player_id] for player_id in lineup_one), 1)
         score_two = round(sum(projected_values[player_id] for player_id in lineup_two), 1)
         total = round(score_one + score_two, 1)
-        difference = round(score_one - score_two, 1)
-        favorite_id = matchup.roster_one if difference >= 0 else matchup.roster_two
-        favorite_name = team_one.team_name if difference >= 0 else team_two.team_name
+        projected_difference = round(score_one - score_two, 1)
 
         seed = (
             f"weekly:{snapshot.league_id}:{snapshot.season}:{snapshot.week}:"
             f"{matchup.matchup_id}:{simulations}"
         )
         rng = random.Random(seed)
-        wins_one = 0
+        wins_one = 0.0
         simulated_totals: list[float] = []
+        simulated_margins: list[float] = []
         for _ in range(simulations):
             sim_one = _simulate_lineup(lineup_one, players, projected_values, rng)
             sim_two = _simulate_lineup(lineup_two, players, projected_values, rng)
             simulated_totals.append(sim_one + sim_two)
+            simulated_margins.append(sim_one - sim_two)
             if sim_one > sim_two:
-                wins_one += 1
+                wins_one += 1.0
             elif sim_one == sim_two:
                 wins_one += 0.5
 
         simulated_total = mean(simulated_totals) if simulated_totals else total
+        simulated_margin = (
+            mean(simulated_margins)
+            if simulated_margins
+            else projected_difference
+        )
+        favorite_id = matchup.roster_one if simulated_margin >= 0 else matchup.roster_two
+        favorite_name = team_one.team_name if simulated_margin >= 0 else team_two.team_name
         rows.append(
             {
                 "week": snapshot.week,
@@ -236,8 +242,10 @@ def attach_weekly_matchup_forecast(
                 "over_under": _nearest_half(simulated_total),
                 "favorite_roster_id": favorite_id,
                 "favorite_team": favorite_name,
-                "favorite_by": round(abs(difference), 1),
-                "spread": _nearest_half(abs(difference)),
+                "projected_margin": projected_difference,
+                "simulated_margin": round(simulated_margin, 1),
+                "favorite_by": round(abs(simulated_margin), 1),
+                "spread": _nearest_half(abs(simulated_margin)),
                 "win_probability_one": round(wins_one / simulations * 100.0, 1),
                 "simulations": simulations,
                 "model": "Sleeper projected-optimal legal lineup Monte Carlo",
