@@ -7,7 +7,6 @@ different questions and have different inputs.
 
 from __future__ import annotations
 
-from functools import lru_cache
 import random
 from statistics import mean
 from typing import Any
@@ -159,6 +158,7 @@ def attach_weekly_matchup_forecast(
     *,
     scoring_settings: dict[str, float] | None = None,
     simulations: int = DEFAULT_WEEKLY_SIMULATIONS,
+    unavailable_player_ids: set[str] | None = None,
 ) -> None:
     """Attach a simulated line/total for the current week's optimal lineups.
 
@@ -166,6 +166,7 @@ def attach_weekly_matchup_forecast(
     projections.  Those selected players stay fixed through every simulation,
     preventing the model from granting managers perfect hindsight.
     """
+    result.weekly_matchup_forecast = []
     if simulations <= 0:
         return
     snapshot = result.league
@@ -182,6 +183,12 @@ def attach_weekly_matchup_forecast(
         if isinstance(row, dict)
     }
 
+    unavailable = set(unavailable_player_ids or ())
+
+    def eligible_ids(team):
+        excluded = unavailable | set(team.reserve_player_ids) | set(team.taxi_player_ids)
+        return [pid for pid in team.player_ids if pid not in excluded]
+
     rows: list[dict[str, Any]] = []
     for matchup in sorted(current, key=lambda row: (row.matchup_id, row.roster_one)):
         team_one = team_by_id.get(matchup.roster_one)
@@ -189,10 +196,10 @@ def attach_weekly_matchup_forecast(
         if team_one is None or team_two is None:
             continue
         lineup_one = optimal_projected_lineup(
-            team_one.player_ids, slots, players, projected_values
+            eligible_ids(team_one), slots, players, projected_values
         )
         lineup_two = optimal_projected_lineup(
-            team_two.player_ids, slots, players, projected_values
+            eligible_ids(team_two), slots, players, projected_values
         )
         if not lineup_one or not lineup_two:
             continue
@@ -230,6 +237,10 @@ def attach_weekly_matchup_forecast(
         favorite_name = team_one.team_name if simulated_margin >= 0 else team_two.team_name
         rows.append(
             {
+                "projection_fetched_at": result.generated_at,
+                "projection_source": "Sleeper weekly projections scored with league settings",
+                "availability_checked": unavailable_player_ids is not None,
+                "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
                 "week": snapshot.week,
                 "matchup_id": matchup.matchup_id,
                 "roster_one": matchup.roster_one,
@@ -268,41 +279,31 @@ def optimal_projected_lineup(
     """Return player IDs in legal slot order for the best pregame projection."""
     candidates = [
         (str(player_id), players[str(player_id)].position, projected_values.get(str(player_id), 0.0))
-        for player_id in player_ids
+        for player_id in sorted(set(map(str, player_ids)))
         if str(player_id) in players
         and players[str(player_id)].position in {"QB", "RB", "WR", "TE"}
         and projected_values.get(str(player_id), 0.0) > 0
     ]
     candidates.sort(key=lambda row: (-row[2], row[0]))
-    ordered_slots = sorted(enumerate(slots), key=lambda row: (len(ELIGIBLE[row[1]]), row[0]))
-
-    @lru_cache(maxsize=None)
-    def solve(slot_index: int, used_mask: int) -> tuple[float, tuple[tuple[int, str], ...]]:
-        if slot_index >= len(ordered_slots):
-            return 0.0, ()
-        original_slot_index, slot = ordered_slots[slot_index]
-        best_score = float("-inf")
-        best_assignments: tuple[tuple[int, str], ...] = ()
-        for index, (player_id, position, value) in enumerate(candidates):
-            if used_mask & (1 << index) or position not in ELIGIBLE[slot]:
-                continue
-            rest_score, rest_assignments = solve(slot_index + 1, used_mask | (1 << index))
-            if rest_score == float("-inf"):
-                continue
-            score = value + rest_score
-            assignments = ((original_slot_index, player_id),) + rest_assignments
-            if score > best_score or (
-                score == best_score and assignments < best_assignments
-            ):
-                best_score = score
-                best_assignments = assignments
-        return best_score, best_assignments
-
-    score, assignments = solve(0, 0)
-    solve.cache_clear()
-    if score == float("-inf") or len(assignments) != len(slots):
-        return ()
-    return tuple(player_id for _, player_id in sorted(assignments))
+    # Dynamic programming over occupied slots, not subsets of a dynasty roster.
+    # Each player is processed once and can fill at most one slot.
+    states = {0: (0.0, ())}
+    for player_id, position, value in candidates:
+        updated = dict(states)
+        for mask, (score, assignments) in states.items():
+            for index, slot in enumerate(slots):
+                if mask & (1 << index) or position not in ELIGIBLE[slot]:
+                    continue
+                new_mask = mask | (1 << index)
+                proposal = (score + value, tuple(sorted(assignments + ((index, player_id),))))
+                incumbent = updated.get(new_mask)
+                if incumbent is None or proposal[0] > incumbent[0] or (
+                    proposal[0] == incumbent[0] and proposal[1] < incumbent[1]
+                ):
+                    updated[new_mask] = proposal
+        states = updated
+    best = states.get((1 << len(slots)) - 1)
+    return tuple(pid for _, pid in best[1]) if best else ()
 
 
 def _starter_slots(snapshot: LeagueSnapshot) -> list[str]:

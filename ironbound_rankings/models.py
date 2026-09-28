@@ -76,6 +76,8 @@ class LeagueTeam:
     ties: int
     points_for: float
     division: int = 0
+    reserve_player_ids: list[str] = field(default_factory=list)
+    taxi_player_ids: list[str] = field(default_factory=list)
 
     @property
     def games(self) -> int:

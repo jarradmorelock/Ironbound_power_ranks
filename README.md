@@ -168,3 +168,13 @@ tests/            deterministic unit coverage
 ```
 
 Sleeper and market access are read-only. Discord is contacted only when `--publish` is explicitly supplied or by the guarded weekly schedule.
+
+Weekly forecast legality excludes Sleeper reserve/taxi players and currently
+out, inactive, IR, PUP, or suspended players, without removing those assets from
+dynasty rankings. Questionable/doubtful players remain projection candidates.
+If current availability cannot be fetched, the weekly forecast is omitted
+rather than represented as verified. The lineup optimizer processes each player
+once and searches occupied starter slots, so deep dynasty benches stay tractable.
+The handoff records the projection fetch time and explicitly labels positional
+volatility as an experimental independent-player heuristic, not a calibrated
+historical or correlated game model.
