@@ -98,7 +98,8 @@ class EditorialHandoffTests(unittest.TestCase):
             season_weight=0.20,
             record_guardrail_active=False,
             forecast_simulations=10000,
-            forecast_model="Elo-adjusted Dynasty Daddy ROS",
+            forecast_model="Elo-adjusted Sleeper ROS scoring projections",
+            ros_projection_weeks=[2, 3, 4],
         )
         result.remaining_schedule_strength = [
             {
@@ -147,11 +148,13 @@ class EditorialHandoffTests(unittest.TestCase):
             {
                 "market_percentile": 90,
                 "ros_starters_percentile": 92,
+                "ros_scoring_percentile": 92,
                 "season_results_percentile": 95,
                 "market_points": 31,
                 "ros_starters_points": 41,
+                "ros_scoring_points": 41,
                 "season_results_points": 19,
-                "weights": {"market": 0.35, "ros_starters": 0.45, "season_results": 0.20},
+                "weights": {"market": 0.35, "ros_starters": 0.45, "ros_scoring": 0.45, "season_results": 0.20},
             },
         )
         self.assertEqual(payload["playoff_odds"][0]["playoff"], 91.0)
@@ -160,6 +163,7 @@ class EditorialHandoffTests(unittest.TestCase):
         self.assertEqual(payload["weekly_matchup_forecast"][0]["projected_total"], 252.5)
         self.assertEqual(payload["source_metadata"]["ranking_week"], 2)
         self.assertEqual(payload["source_metadata"]["results_through_week"], 1)
+        self.assertEqual(payload["source_metadata"]["ros_projection_weeks"], [2, 3, 4])
         self.assertNotIn("usage", payload)
         self.assertNotIn("war", payload)
         self.assertNotIn("cwar", payload)
