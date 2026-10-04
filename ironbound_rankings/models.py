@@ -168,5 +168,6 @@ class RankingResult:
     weekly_matchup_forecast: list[dict] = field(default_factory=list)
     weekly_matchup_simulations: int = 0
     weekly_matchup_model: str = ""
+    ros_projection_weeks: list[int] = field(default_factory=list)
     output_image: Path | None = None
     output_playoff_image: Path | None = None
