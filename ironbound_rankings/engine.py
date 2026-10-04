@@ -52,6 +52,9 @@ def rank_league(
     books: list[ValueBook],
     previous_ranks: dict[str, int] | None = None,
     generated_at: str = "",
+    *,
+    ros_team_values: dict[int, float] | None = None,
+    ros_projection_weeks: list[int] | None = None,
 ) -> RankingResult:
     previous_ranks = previous_ranks or {}
     dynasty_books = [book for book in books if book.category == "dynasty"]
@@ -81,25 +84,43 @@ def rank_league(
         for slot in snapshot.roster_positions
         if slot in ELIGIBLE
     ]
-    for book in lineup_books:
-        if not _has_roster_coverage(snapshot, book, minimum=0.45):
-            continue
-        totals = {
-            team.roster_id: optimal_lineup_value(
-                team.player_ids,
-                starter_slots,
-                players,
-                book.player_values,
-            )
-            for team in snapshot.teams
-        }
-        if max(totals.values(), default=0) <= 0:
-            continue
-        source_totals[book.name] = totals
-        source_percentiles[book.name] = percentile_scores(totals)
+    ros_source_name = "Sleeper ROS scoring projections"
+    ros_values = {
+        int(roster_id): float(value)
+        for roster_id, value in (ros_team_values or {}).items()
+    }
+    use_projection_ros = (
+        bool(ros_values)
+        and set(ros_values) == set(roster_ids)
+        and all(value > 0 for value in ros_values.values())
+    )
+    if use_projection_ros:
+        source_totals[ros_source_name] = ros_values
+        source_percentiles[ros_source_name] = percentile_scores(ros_values)
+    else:
+        for book in lineup_books:
+            if not _has_roster_coverage(snapshot, book, minimum=0.45):
+                continue
+            totals = {
+                team.roster_id: optimal_lineup_value(
+                    team.player_ids,
+                    starter_slots,
+                    players,
+                    book.player_values,
+                )
+                for team in snapshot.teams
+            }
+            if max(totals.values(), default=0) <= 0:
+                continue
+            source_totals[book.name] = totals
+            source_percentiles[book.name] = percentile_scores(totals)
 
     usable_dynasty = [book.name for book in dynasty_books if book.name in source_percentiles]
-    usable_lineup = [book.name for book in lineup_books if book.name in source_percentiles]
+    usable_lineup = (
+        [ros_source_name]
+        if use_projection_ros
+        else [book.name for book in lineup_books if book.name in source_percentiles]
+    )
     if not usable_dynasty or not usable_lineup:
         raise ValueError("The available sources did not map enough roster values")
 
@@ -120,8 +141,8 @@ def rank_league(
         for roster_id in roster_ids
     }
 
-    completed_games = max((team.games for team in snapshot.teams), default=0)
-    has_results = completed_games > 0
+    completed_weeks = completed_regular_season_weeks(snapshot)
+    has_results = completed_weeks > 0
     season_pct: dict[int, float] = {}
     if has_results:
         record_pct = percentile_scores(
@@ -137,7 +158,7 @@ def rank_league(
             )
             for roster_id in roster_ids
         }
-    weights = ranking_weights(completed_games)
+    weights = ranking_weights(completed_weeks)
 
     scored: list[_TeamScore] = []
     for team in snapshot.teams:
@@ -159,7 +180,7 @@ def rank_league(
             )
         )
 
-    record_guardrail_active = completed_games >= GUARDRAIL_MIN_GAMES
+    record_guardrail_active = completed_weeks >= GUARDRAIL_MIN_GAMES
     if record_guardrail_active:
         _apply_record_guardrail(scored)
     scored.sort(
@@ -212,18 +233,37 @@ def rank_league(
         lineup_weight=weights[1],
         season_weight=weights[2],
         record_guardrail_active=record_guardrail_active,
+        ros_projection_weeks=list(ros_projection_weeks or []) if use_projection_ros else [],
     )
 
 
-def ranking_weights(completed_games: int) -> tuple[float, float, float]:
-    """Favor win-now starters while results gain influence through the season."""
-    if completed_games <= 0:
+def ranking_weights(completed_weeks: int) -> tuple[float, float, float]:
+    """Increase real-season influence every completed NFL week through Week 8."""
+    if completed_weeks <= 0:
         return (0.45, 0.55, 0.0)
-    if completed_games <= 3:
-        return (0.35, 0.45, 0.20)
-    if completed_games <= 7:
-        return (0.30, 0.40, 0.30)
-    return (0.25, 0.35, 0.40)
+    if completed_weeks >= 8:
+        return (0.25, 0.35, 0.40)
+    progress = max(0.0, (completed_weeks - 1) / 7.0)
+    return (
+        0.35 - 0.10 * progress,
+        0.45 - 0.10 * progress,
+        0.20 + 0.20 * progress,
+    )
+
+
+def completed_regular_season_weeks(snapshot: LeagueSnapshot) -> int:
+    """Count completed NFL weeks rather than inferred Sleeper decisions."""
+    completed = {
+        matchup.week
+        for matchup in snapshot.matchups
+        if matchup.week < snapshot.week
+        and (abs(matchup.points_one) > 1e-9 or abs(matchup.points_two) > 1e-9)
+    }
+    if completed:
+        return len(completed)
+    if any(team.games > 0 for team in snapshot.teams):
+        return max(1, min(14, snapshot.week - snapshot.start_week))
+    return 0
 
 
 def _apply_record_guardrail(scored: list[_TeamScore]) -> None:
