@@ -30,7 +30,12 @@ def render_chart(result: RankingResult, config: LeagueConfig, output: Path) -> N
     market = [team.market_points for team in teams]
     lineup = [team.lineup_points for team in teams]
     season = [team.season_points for team in teams]
-    starter_label = "ROS starters" if result.has_season_results else "ADP starters"
+    projection_ros = any("ROS scoring projections" in source for source in result.lineup_sources)
+    starter_label = (
+        "ROS scoring" if projection_ros
+        else "ROS starters" if result.has_season_results
+        else "ADP starters"
+    )
 
     ax.barh(y_positions, market, color=theme.market, height=0.60, label="Market")
     ax.barh(
@@ -460,11 +465,13 @@ def _formula_label(result: RankingResult) -> str:
     market = _percent(result.market_weight)
     lineup = _percent(result.lineup_weight)
     season = _percent(result.season_weight)
+    projection_ros = any("ROS scoring projections" in source for source in result.lineup_sources)
+    lineup_label = "ROS scoring" if projection_ros else ("ROS starters" if result.has_season_results else "ADP starters")
     if not result.has_season_results:
-        return f"{market} market consensus  |  {lineup} ADP starters  |  preseason"
+        return f"{market} market consensus  |  {lineup} {lineup_label}  |  preseason"
     guardrail = "  |  4+ win-gap guardrail" if result.record_guardrail_active else ""
     return (
-        f"{market} market  |  {lineup} ROS starters  |  {season} season "
+        f"{market} market  |  {lineup} {lineup_label}  |  {season} season "
         f"(80% record / 20% points){guardrail}"
     )
 
