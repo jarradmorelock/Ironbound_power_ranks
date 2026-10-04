@@ -30,22 +30,29 @@ The publisher does not scrape KeepTradeCut. It consumes Dynasty Daddy's consolid
 
 ## Ranking formula
 
-The balance moves toward real results as the season becomes meaningful:
+The balance moves toward real results every completed NFL week:
 
-| Completed games | Market consensus | Starting lineup | Season performance |
-| --- | ---: | ---: | ---: |
-| Preseason | 45% | 55% | — |
-| 1–3 | 35% | 45% | 20% |
-| 4–7 | 30% | 40% | 30% |
-| 8+ | 25% | 35% | 40% |
+| Completed NFL weeks | Market consensus | ROS scoring | Season performance |
+| ---: | ---: | ---: | ---: |
+| Preseason | 45.0% | 55.0% | — |
+| 1 | 35.0% | 45.0% | 20.0% |
+| 2 | 33.6% | 43.6% | 22.9% |
+| 3 | 32.1% | 42.1% | 25.7% |
+| 4 | 30.7% | 40.7% | 28.6% |
+| 5 | 29.3% | 39.3% | 31.4% |
+| 6 | 27.9% | 37.9% | 34.3% |
+| 7 | 26.4% | 36.4% | 37.1% |
+| 8+ | 25.0% | 35.0% | 40.0% |
 
-- **Market consensus** values each team's complete roster and its actual ownership of the next three rookie-pick classes, averaged across every available dynasty source.
-- **Starting-lineup strength** finds the best legal 1QB lineup using Dynasty Daddy's aggregate ADP in the preseason and aggregate rest-of-season rankings after results begin. Players marked PUP, IR, suspended, or COVID-inactive are excluded, matching Dynasty Daddy's starter treatment.
-- **Season performance** is 80% record and 20% points scored, so wins lead the in-season calculation without making points-for irrelevant.
+- **Market consensus** is unchanged for the dynasty leagues: it values each team's complete roster and actual ownership of the next three rookie-pick classes, averaged across every available dynasty source.
+- **ROS scoring** is projection-based. For each available remaining fantasy week through Week 17, Sleeper player projections are rescored with that league's actual offensive scoring settings, the best legal lineup is selected independently for that week, and those weekly team totals are averaged. This lets byes, depth, projected role changes, and league-specific scoring matter without awarding points merely for sitting on the bench. Taxi players are excluded until activated; reserve players can contribute in a future week when the provider projects them to play.
+- **Season performance** remains 80% record and 20% points scored.
 
-The win-now share—starting lineup plus season performance—grows from 55% in the preseason to 75% after eight games. Long-term dynasty value remains meaningful without allowing bench depth and future picks to dominate a weekly power ranking.
+If remaining-week projection coverage is unavailable, the engine falls back to its prior Dynasty Daddy/FantasyCalc starter-ranking method rather than converting missing projections to zero.
 
-Beginning after eight completed games, a record guardrail handles extreme disagreements: a team four or more wins behind another team cannot lead it by more than 10 index points. Thus a market-rich 7–7 roster can still rate above a 12–2 contender, but it cannot sit 20 or 30 points clear of it.
+The win-now share—ROS scoring plus season performance—grows from 55% in the preseason to 75% after eight completed NFL weeks. Long-term dynasty value remains meaningful without allowing bench depth and future picks to dominate a weekly power ranking.
+
+Beginning after eight completed NFL weeks, a record guardrail handles extreme disagreements: a team four or more wins behind another team cannot lead it by more than 10 index points. Thus a market-rich 7–7 roster can still rate above a 12–2 contender, but it cannot sit 20 or 30 points clear of it.
 
 Every source is converted to a league-relative percentile before averaging, so a provider with a larger numeric scale cannot overpower the others.
 
@@ -55,7 +62,7 @@ Future picks follow Dynasty Daddy's conservative convention: an unresolved futur
 
 The second Gallery image is rebuilt automatically every week. It runs 10,000 deterministic simulations using each league's real Sleeper schedule, four divisions, seven playoff berths, and first-round bye structure. It reports projected record, make-playoffs odds, division odds, bye odds, and championship odds for every team.
 
-The matchup probabilities use the same aggregate ADP/ROS starter signal as the power rankings. After completed games exist, prior Sleeper results make a modest Elo adjustment before the remaining schedule is simulated. The calculation runs inside this publisher because Dynasty Daddy's playoff calculator is computed in the browser rather than exposed as a weekly downloadable value.
+The matchup probabilities use the same ROS scoring strength signal as the power rankings when remaining-week projection coverage is available. After completed games exist, prior Sleeper results make a modest Elo adjustment before the remaining schedule is simulated. The calculation runs inside this publisher because Dynasty Daddy's playoff calculator is computed in the browser rather than exposed as a weekly downloadable value.
 
 ## GitHub setup
 
@@ -121,7 +128,7 @@ For example, the Tuesday after Week 2 produces a Week 3 ranking graphic with
 
 It also contains:
 
-- current rank, previous rank, movement, composite score, and the underlying market / rest-of-season starter / season-results components for every team;
+- current rank, previous rank, movement, composite score, and the underlying market / rest-of-season scoring / season-results components for every team;
 - projected record and playoff/division/bye/final/championship probabilities;
 - remaining-schedule strength derived from the current Power Board index, including the opponent-by-opponent index trail, average opponent index, difficulty rank, and display grade;
 - a weekly matchup forecast built from projected-optimal legal lineups, with projected scores, simulation-derived spread and over/under, win probability, selected player IDs, and model metadata;

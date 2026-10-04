@@ -21,6 +21,7 @@ from .http import DataSourceError, HttpClient
 from .mailer import send_power_rankings_email
 from .models import LeagueConfig, RankingResult
 from .render import render_chart, render_playoff_chart
+from .ros import fetch_ros_team_values
 from .sleeper import fetch_unavailable_players
 from .sleeper import fetch_league_snapshot, fetch_weekly_projections
 from .sources import MarketData, fetch_market_data
@@ -168,12 +169,26 @@ def publish_league(
     state = load_state(state_path)
     previous_ranks = state.get("rank_by_roster_id") or {}
     generated_at = now.isoformat(timespec="seconds")
+    ros_values, ros_weeks, ros_warnings = fetch_ros_team_values(
+        client,
+        snapshot,
+        market_data.players,
+    )
+    for warning in ros_warnings:
+        print(f"[{config.key}] Warning: {warning}")
+    if not ros_values:
+        print(
+            f"[{config.key}] Warning: projection-based ROS coverage unavailable; "
+            "using the legacy starter-ranking fallback."
+        )
     result = rank_league(
         snapshot,
         market_data.players,
         market_data.books,
         previous_ranks=previous_ranks,
         generated_at=generated_at,
+        ros_team_values=ros_values,
+        ros_projection_weeks=ros_weeks,
     )
     attach_playoff_forecast(result)
     attach_remaining_schedule_strength(result)
@@ -260,6 +275,7 @@ def _write_preview(result: RankingResult, config: LeagueConfig, output_dir: Path
         "generated_at": result.generated_at,
         "dynasty_sources": result.dynasty_sources,
         "lineup_sources": result.lineup_sources,
+        "ros_projection_weeks": result.ros_projection_weeks,
         "has_season_results": result.has_season_results,
         "forecast_simulations": result.forecast_simulations,
         "forecast_model": result.forecast_model,

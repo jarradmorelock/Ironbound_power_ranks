@@ -147,9 +147,19 @@ def fetch_weekly_projections(
     client: HttpClient, season: int | str, week: int
 ) -> dict[str, dict[str, Any]]:
     """Return Sleeper's player projection rows keyed by Sleeper player ID."""
-    payload = client.get_json(
-        f"{SLEEPER_BASE}/projections/nfl/regular/{season}/{week}"
-    )
+    cache = getattr(client, "_ironbound_weekly_projection_cache", None)
+    if cache is None:
+        cache = {}
+        try:
+            setattr(client, "_ironbound_weekly_projection_cache", cache)
+        except (AttributeError, TypeError):
+            pass
+    cache_key = (str(season), int(week))
+    if cache_key not in cache:
+        cache[cache_key] = client.get_json(
+            f"{SLEEPER_BASE}/projections/nfl/regular/{season}/{week}"
+        )
+    payload = cache[cache_key]
     if isinstance(payload, dict):
         return {
             str(player_id): row
