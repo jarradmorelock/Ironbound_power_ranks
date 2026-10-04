@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 
 from ironbound_rankings.engine import (
+    completed_regular_season_weeks,
     optimal_lineup_value,
     percentile_scores,
     rank_league,
@@ -114,11 +115,55 @@ class EngineTests(unittest.TestCase):
         self.assertFalse(result.has_season_results)
         self.assertIsNone(result.teams[0].season_percentile)
 
-    def test_results_gain_weight_as_the_season_progresses(self) -> None:
+    def test_results_gain_weight_every_completed_week(self) -> None:
         self.assertEqual(ranking_weights(0), (0.45, 0.55, 0.0))
-        self.assertEqual(ranking_weights(2), (0.35, 0.45, 0.20))
-        self.assertEqual(ranking_weights(5), (0.30, 0.40, 0.30))
-        self.assertEqual(ranking_weights(10), (0.25, 0.35, 0.40))
+        self.assertEqual(ranking_weights(1), (0.35, 0.45, 0.20))
+        week_three = ranking_weights(3)
+        self.assertAlmostEqual(week_three[0], 0.3214285714)
+        self.assertAlmostEqual(week_three[1], 0.4214285714)
+        self.assertAlmostEqual(week_three[2], 0.2571428571)
+        self.assertEqual(ranking_weights(8), (0.25, 0.35, 0.40))
+
+    def test_completed_weeks_uses_nfl_week_progress_not_decision_count(self) -> None:
+        teams = [
+            LeagueTeam(1, "1", "Alpha", "A", ["a"], [], 4, 2, 0, 300),
+            LeagueTeam(2, "2", "Bravo", "B", ["b"], [], 2, 4, 0, 250),
+        ]
+        snapshot = LeagueSnapshot(
+            "league", "League", 2026, 4, False, 0.5, ["QB"], teams
+        )
+        self.assertEqual(completed_regular_season_weeks(snapshot), 3)
+
+    def test_projection_ros_overrides_static_starter_rankings(self) -> None:
+        players = {
+            "a": player("a", "QB"),
+            "b": player("b", "QB"),
+        }
+        teams = [
+            LeagueTeam(1, "1", "Alpha", "A", ["a"], [], 1, 0, 0, 100),
+            LeagueTeam(2, "2", "Bravo", "B", ["b"], [], 0, 1, 0, 80),
+        ]
+        snapshot = LeagueSnapshot(
+            "league", "League", 2026, 2, False, 0.5, ["QB"], teams
+        )
+        books = [
+            ValueBook("Dynasty", "dynasty", {"a": 100, "b": 100}),
+            ValueBook("Legacy ROS", "lineup", {"a": 1, "b": 100}),
+        ]
+
+        result = rank_league(
+            snapshot,
+            players,
+            books,
+            ros_team_values={1: 140.0, 2: 110.0},
+            ros_projection_weeks=[2, 3, 4],
+        )
+        by_id = {team.roster_id: team for team in result.teams}
+
+        self.assertEqual(result.lineup_sources, ["Sleeper ROS scoring projections"])
+        self.assertEqual(result.ros_projection_weeks, [2, 3, 4])
+        self.assertEqual(by_id[1].starter_rating, 140.0)
+        self.assertGreater(by_id[1].lineup_percentile, by_id[2].lineup_percentile)
 
     def test_large_late_season_record_gap_limits_market_value_lead(self) -> None:
         players = {
