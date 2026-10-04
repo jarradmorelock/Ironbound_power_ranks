@@ -8,6 +8,7 @@ different questions and have different inputs.
 from __future__ import annotations
 
 import random
+import re
 from statistics import mean
 from typing import Any
 
@@ -31,6 +32,8 @@ POSITION_CV = {
     "WR": 0.40,
     "TE": 0.42,
 }
+YARDAGE_BONUS = re.compile(r"^bonus_(pass|rush|rec)_yd_(\d+)$")
+COMBINED_YARDAGE_BONUS = re.compile(r"^bonus_rush_rec_yd_(\d+)$")
 
 
 def attach_remaining_schedule_strength(result: RankingResult) -> None:
@@ -111,14 +114,18 @@ def attach_remaining_schedule_strength(result: RankingResult) -> None:
 
 
 def projection_fantasy_points(
-    projection: dict[str, Any], scoring_settings: dict[str, float]
+    projection: dict[str, Any],
+    scoring_settings: dict[str, float],
+    *,
+    position: str = "",
 ) -> float:
-    """Score a Sleeper projection using league scoring when components exist.
+    """Score a Sleeper projection using the league's offensive scoring.
 
-    Sleeper projection payloads are not guaranteed to use one stable wrapper in
-    every environment.  We accept either a direct stat dictionary or a nested
-    ``stats`` dictionary.  A provider-supplied ``pts`` value is used only as the
-    fallback when component scoring cannot be reconstructed.
+    Direct stat multipliers cover ordinary Sleeper settings such as completions,
+    attempts, first downs, fumbles, yards, touchdowns, and conversions.
+    Position reception premiums and common yardage-threshold bonuses are
+    reconstructed explicitly because projection rows generally contain the
+    underlying stats rather than those derived bonus fields.
     """
     if not isinstance(projection, dict):
         return 0.0
@@ -128,8 +135,9 @@ def projection_fantasy_points(
 
     reconstructed = 0.0
     matched = False
-    for key, weight in (scoring_settings or {}).items():
-        if key not in stats:
+    settings = scoring_settings or {}
+    for key, weight in settings.items():
+        if str(key).startswith("bonus_") or key not in stats:
             continue
         try:
             stat_value = float(stats.get(key) or 0.0)
@@ -138,6 +146,31 @@ def projection_fantasy_points(
             continue
         reconstructed += stat_value * scoring_value
         matched = True
+
+    rec = _number(stats.get("rec"))
+    position_bonus_key = f"bonus_rec_{str(position or '').lower()}"
+    if rec and position_bonus_key in settings:
+        reconstructed += rec * _number(settings.get(position_bonus_key))
+        matched = True
+
+    for key, raw_bonus in settings.items():
+        bonus = _number(raw_bonus)
+        if not bonus:
+            continue
+        match = YARDAGE_BONUS.fullmatch(str(key))
+        if match:
+            stat_key = f"{match.group(1)}_yd"
+            if _number(stats.get(stat_key)) >= int(match.group(2)):
+                reconstructed += bonus
+                matched = True
+            continue
+        match = COMBINED_YARDAGE_BONUS.fullmatch(str(key))
+        if match:
+            combined = _number(stats.get("rush_yd")) + _number(stats.get("rec_yd"))
+            if combined >= int(match.group(1)):
+                reconstructed += bonus
+                matched = True
+
     if matched:
         return round(reconstructed, 3)
 
@@ -178,7 +211,11 @@ def attach_weekly_matchup_forecast(
     team_by_id = {team.roster_id: team for team in snapshot.teams}
     slots = _starter_slots(snapshot)
     projected_values = {
-        str(player_id): projection_fantasy_points(row, scoring_settings or {})
+        str(player_id): projection_fantasy_points(
+            row,
+            scoring_settings or {},
+            position=players[str(player_id)].position if str(player_id) in players else "",
+        )
         for player_id, row in (projections or {}).items()
         if isinstance(row, dict)
     }
@@ -354,3 +391,10 @@ def _schedule_grade(rank: int, total: int) -> str:
 
 def _nearest_half(value: float) -> float:
     return round(float(value) * 2.0) / 2.0
+
+
+def _number(value: Any) -> float:
+    try:
+        return float(value or 0.0)
+    except (TypeError, ValueError):
+        return 0.0
