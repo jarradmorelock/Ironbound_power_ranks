@@ -21,6 +21,9 @@ def load_leagues(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, LeagueConfig]:
             raise ValueError(
                 f"Invalid quarterback_mode for {key}: {quarterback_mode}"
             )
+        market_mode = str(raw.get("market_mode") or "dynasty").lower()
+        if market_mode not in {"dynasty", "redraft", "keeper_redraft", "unknown"}:
+            raise ValueError(f"Invalid market_mode for {key}: {market_mode}")
         theme = Theme(**raw["theme"])
         leagues[key] = LeagueConfig(
             key=key,
@@ -31,6 +34,7 @@ def load_leagues(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, LeagueConfig]:
             webhook_env=str(raw["webhook_env"]),
             tags_env=str(raw["tags_env"]),
             theme=theme,
+            market_mode=market_mode,
         )
     if not leagues:
         raise ValueError("leagues.json does not define any leagues")
