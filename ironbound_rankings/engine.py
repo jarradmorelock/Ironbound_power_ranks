@@ -317,15 +317,16 @@ def _enforce_undefeated_priority(scored: list[_TeamScore]) -> None:
                   and item.team.losses == 0 and item.team.ties == 0]
     if not undefeated:
         return
-    for item in scored:
-        if item.team.losses < 3:
-            continue
-        floor = max((other.score for other in undefeated), default=float("-inf"))
-        if item.score >= floor:
-            for other in undefeated:
-                if other.score <= item.score:
-                    other.score = item.score + UNDEFEATED_RANKING_MARGIN
-                    other.record_guardrail_applied = True
+    three_loss_scores = [item.score for item in scored if item.team.losses >= 3]
+    if not three_loss_scores:
+        return
+    floor = max(three_loss_scores) + UNDEFEATED_RANKING_MARGIN
+    for item in undefeated:
+        if item.score < floor:
+            adjustment = floor - item.score
+            item.season_points += adjustment
+            item.score = floor
+            item.record_guardrail_applied = True
 
 
 def percentile_scores(values: dict[int, float]) -> dict[int, float]:
