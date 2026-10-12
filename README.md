@@ -35,14 +35,14 @@ The balance moves toward real results every completed NFL week:
 | Completed NFL weeks | Market consensus | ROS scoring | Season performance |
 | ---: | ---: | ---: | ---: |
 | Preseason | 45.0% | 55.0% | — |
-| 1 | 35.0% | 45.0% | 20.0% |
-| 2 | 33.6% | 43.6% | 22.9% |
-| 3 | 32.1% | 42.1% | 25.7% |
-| 4 | 30.7% | 40.7% | 28.6% |
-| 5 | 29.3% | 39.3% | 31.4% |
-| 6 | 27.9% | 37.9% | 34.3% |
-| 7 | 26.4% | 36.4% | 37.1% |
-| 8+ | 25.0% | 35.0% | 40.0% |
+| 1 | 30.0% | 45.0% | 25.0% |
+| 2 | 28.6% | 42.1% | 29.3% |
+| 3 | 27.1% | 39.3% | 33.6% |
+| 4 | 25.7% | 36.4% | 37.9% |
+| 5 | 24.3% | 33.6% | 42.1% |
+| 6 | 22.9% | 30.7% | 46.4% |
+| 7 | 21.4% | 27.9% | 50.7% |
+| 8+ | 20.0% | 25.0% | 55.0% |
 
 - **Market consensus** is unchanged for the dynasty leagues: it values each team's complete roster and actual ownership of the next three rookie-pick classes, averaged across every available dynasty source.
 - **ROS scoring** is projection-based. For each available remaining fantasy week through Week 17, Sleeper player projections are rescored with that league's actual offensive scoring settings, the best legal lineup is selected independently for that week, and those weekly team totals are averaged. This lets byes, depth, projected role changes, and league-specific scoring matter without awarding points merely for sitting on the bench. Taxi players are excluded until activated; reserve players can contribute in a future week when the provider projects them to play.
@@ -50,9 +50,9 @@ The balance moves toward real results every completed NFL week:
 
 If remaining-week projection coverage is unavailable, the engine falls back to its prior Dynasty Daddy/FantasyCalc starter-ranking method rather than converting missing projections to zero.
 
-The win-now share—ROS scoring plus season performance—grows from 55% in the preseason to 75% after eight completed NFL weeks. Long-term dynasty value remains meaningful without allowing bench depth and future picks to dominate a weekly power ranking.
+The win-now share—ROS scoring plus season performance—grows from 55% in the preseason to 80% after eight completed NFL weeks. Long-term dynasty value remains meaningful without allowing bench depth and future picks to dominate a weekly power ranking.
 
-Beginning after eight completed NFL weeks, a record guardrail handles extreme disagreements: a team four or more wins behind another team cannot lead it by more than 10 index points. Thus a market-rich 7–7 roster can still rate above a 12–2 contender, but it cannot sit 20 or 30 points clear of it.
+An additional strict record rule applies as soon as a team has at least four completed decisions: an undefeated team cannot rank below a team with three or more losses. Any boost required to honor this rule is included in the displayed season-results bar and is marked as a guardrail, rather than silently changing order. Beginning after eight completed NFL weeks, a second record guardrail handles extreme disagreements: a team four or more wins behind another team cannot lead it by more than 10 index points. Thus a market-rich 7–7 roster can still rate above a 12–2 contender, but it cannot sit 20 or 30 points clear of it.
 
 Every source is converted to a league-relative percentile before averaging, so a provider with a larger numeric scale cannot overpower the others.
 
