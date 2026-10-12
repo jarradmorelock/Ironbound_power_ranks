@@ -16,7 +16,8 @@
         "lineup": "#9F2335",
         "season": "#8B929C",
         "accent": "#DDB44E"
-      }
+      },
+      "market_mode": "dynasty"
     },
     "free": {
       "league_id": "1339055357728686080",
@@ -34,7 +35,8 @@
         "lineup": "#7357E8",
         "season": "#F06A4B",
         "accent": "#38E0CD"
-      }
+      },
+      "market_mode": "dynasty"
     }
   }
 }
