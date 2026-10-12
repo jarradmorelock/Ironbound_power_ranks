@@ -102,6 +102,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git pull --rebase --autostash origin main
           git add handoff
+          git add state/history
           if [[ "${{ github.event_name }}" == "schedule" ]]; then
             git add state
             message="Save Tuesday magazine ranking state and editorial handoff"
