@@ -21,6 +21,8 @@ POINTS_SHARE_OF_SEASON = 0.20
 GUARDRAIL_MIN_GAMES = 8
 GUARDRAIL_WIN_GAP = 4.0
 GUARDRAIL_MAX_SCORE_LEAD = 10.0
+UNDEFEATED_RECORD_MIN_GAMES = 4
+UNDEFEATED_RANKING_MARGIN = 0.01
 
 
 @dataclass
@@ -183,6 +185,7 @@ def rank_league(
     record_guardrail_active = completed_weeks >= GUARDRAIL_MIN_GAMES
     if record_guardrail_active:
         _apply_record_guardrail(scored)
+    _enforce_undefeated_priority(scored)
     scored.sort(
         key=lambda item: (
             item.score,
@@ -302,6 +305,27 @@ def _apply_record_guardrail(scored: list[_TeamScore]) -> None:
         item.lineup_points *= scale
         item.score = item.market_points + item.lineup_points + item.season_points
         item.record_guardrail_applied = True
+
+
+def _enforce_undefeated_priority(scored: list[_TeamScore]) -> None:
+    """A verified undefeated team (4+ decisions) cannot trail a team with 3+ losses.
+
+    Keep the original market, ROS and results component scores intact; any
+    ranking override is an explicit adjustment in the composite score.
+    """
+    undefeated = [item for item in scored if item.team.games >= UNDEFEATED_RECORD_MIN_GAMES
+                  and item.team.losses == 0 and item.team.ties == 0]
+    if not undefeated:
+        return
+    for item in scored:
+        if item.team.losses < 3:
+            continue
+        floor = max((other.score for other in undefeated), default=float("-inf"))
+        if item.score >= floor:
+            for other in undefeated:
+                if other.score <= item.score:
+                    other.score = item.score + UNDEFEATED_RANKING_MARGIN
+                    other.record_guardrail_applied = True
 
 
 def percentile_scores(values: dict[int, float]) -> dict[int, float]:
