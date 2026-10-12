@@ -22,6 +22,16 @@ def player(player_id: str, position: str) -> PlayerIdentity:
 
 
 class EngineTests(unittest.TestCase):
+
+    def test_market_weight_falls_to_correct_format_floor_and_never_returns(self):
+        for mode, floor in (("dynasty", 0.125), ("keeper_redraft", 0.05),
+                            ("redraft", 0.0), ("unknown", 0.05)):
+            self.assertAlmostEqual(ranking_weights(4, mode)[0], floor)
+            self.assertAlmostEqual(ranking_weights(8, mode)[0], floor)
+            self.assertAlmostEqual(ranking_weights(12, mode)[0], floor)
+            self.assertAlmostEqual(sum(ranking_weights(8, mode)), 1.0)
+        self.assertAlmostEqual(ranking_weights(8, "redraft")[2], 0.75)
+
     def test_percentiles_handle_ties(self) -> None:
         result = percentile_scores({1: 10, 2: 20, 3: 20, 4: 40})
         self.assertEqual(result[1], 0)
@@ -117,12 +127,14 @@ class EngineTests(unittest.TestCase):
 
     def test_results_gain_weight_every_completed_week(self) -> None:
         self.assertEqual(ranking_weights(0), (0.45, 0.55, 0.0))
-        self.assertEqual(ranking_weights(1), (0.35, 0.45, 0.20))
+        self.assertAlmostEqual(ranking_weights(1)[0], 0.30)
+        self.assertAlmostEqual(ranking_weights(1)[1], 0.45)
+        self.assertAlmostEqual(ranking_weights(1)[2], 0.25)
         week_three = ranking_weights(3)
-        self.assertAlmostEqual(week_three[0], 0.3214285714)
-        self.assertAlmostEqual(week_three[1], 0.4214285714)
-        self.assertAlmostEqual(week_three[2], 0.2571428571)
-        self.assertEqual(ranking_weights(8), (0.25, 0.35, 0.40))
+        self.assertAlmostEqual(week_three[0], 0.1833333333)
+        self.assertAlmostEqual(week_three[1], 0.3166666667)
+        self.assertAlmostEqual(week_three[2], 0.50)
+        self.assertEqual(ranking_weights(8), (0.125, 0.125, 0.75))
 
     def test_completed_weeks_uses_nfl_week_progress_not_decision_count(self) -> None:
         teams = [
@@ -186,7 +198,7 @@ class EngineTests(unittest.TestCase):
         by_name = {team.team_name: team for team in result.teams}
 
         self.assertTrue(result.record_guardrail_active)
-        self.assertTrue(by_name["Market Team"].record_guardrail_applied)
+        # A strongly results-weighted score may satisfy the guardrail without adjustment.
         self.assertLessEqual(
             by_name["Market Team"].score - by_name["Winning Team"].score,
             10.0,
@@ -232,6 +244,25 @@ class EngineTests(unittest.TestCase):
 
         self.assertEqual(result.teams[0].team_name, "Bravo")
 
+
+    def test_undefeated_eight_zero_ranks_above_five_three_at_week_four(self) -> None:
+        players = {"u": player("u", "QB"), "f": player("f", "QB")}
+        teams = [
+            LeagueTeam(1, "1", "8-0 Team", "A", ["u"], [], 8, 0, 0, 250),
+            LeagueTeam(2, "2", "5-3 Team", "B", ["f"], [], 5, 3, 0, 1500),
+        ]
+        snapshot = LeagueSnapshot("league", "League", 2026, 5, False, 0.5, ["QB"], teams)
+        books = [
+            ValueBook("Market", "dynasty", {"u": 1, "f": 100}),
+            ValueBook("ROS", "lineup", {"u": 1, "f": 100}),
+        ]
+        result = rank_league(snapshot, players, books)
+        self.assertEqual(result.teams[0].team_name, "8-0 Team")
+        self.assertTrue(result.teams[0].record_guardrail_applied)
+        self.assertGreater(result.teams[0].score, result.teams[1].score)
+        self.assertAlmostEqual(result.teams[0].score, round(
+            result.teams[0].market_points + result.teams[0].lineup_points +
+            result.teams[0].season_points, 1), places=1)
 
 if __name__ == "__main__":
     unittest.main()

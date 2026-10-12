@@ -189,6 +189,7 @@ def publish_league(
         generated_at=generated_at,
         ros_team_values=ros_values,
         ros_projection_weeks=ros_weeks,
+        market_mode=config.market_mode,
     )
     attach_playoff_forecast(result)
     attach_remaining_schedule_strength(result)

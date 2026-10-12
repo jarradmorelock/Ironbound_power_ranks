@@ -472,7 +472,7 @@ def _formula_label(result: RankingResult) -> str:
     guardrail = "  |  4+ win-gap guardrail" if result.record_guardrail_active else ""
     return (
         f"{market} market  |  {lineup} {lineup_label}  |  {season} season "
-        f"(80% record / 20% points){guardrail}"
+        f"(75% record / 25% points){guardrail}"
     )
 
 

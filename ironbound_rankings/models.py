@@ -28,6 +28,7 @@ class LeagueConfig:
     webhook_env: str
     tags_env: str
     theme: Theme
+    market_mode: str = "dynasty"
 
 
 @dataclass(frozen=True)
