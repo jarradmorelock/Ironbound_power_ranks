@@ -117,12 +117,12 @@ class EngineTests(unittest.TestCase):
 
     def test_results_gain_weight_every_completed_week(self) -> None:
         self.assertEqual(ranking_weights(0), (0.45, 0.55, 0.0))
-        self.assertEqual(ranking_weights(1), (0.35, 0.45, 0.20))
+        self.assertEqual(ranking_weights(1), (0.30, 0.45, 0.25))
         week_three = ranking_weights(3)
-        self.assertAlmostEqual(week_three[0], 0.3214285714)
-        self.assertAlmostEqual(week_three[1], 0.4214285714)
-        self.assertAlmostEqual(week_three[2], 0.2571428571)
-        self.assertEqual(ranking_weights(8), (0.25, 0.35, 0.40))
+        self.assertAlmostEqual(week_three[0], 0.2714285714)
+        self.assertAlmostEqual(week_three[1], 0.3928571429)
+        self.assertAlmostEqual(week_three[2], 0.3357142857)
+        self.assertEqual(ranking_weights(8), (0.20, 0.25, 0.55))
 
     def test_completed_weeks_uses_nfl_week_progress_not_decision_count(self) -> None:
         teams = [
