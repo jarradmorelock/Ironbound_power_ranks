@@ -233,5 +233,24 @@ class EngineTests(unittest.TestCase):
         self.assertEqual(result.teams[0].team_name, "Bravo")
 
 
+    def test_undefeated_eight_zero_ranks_above_five_three_at_week_four(self) -> None:
+        players = {"u": player("u", "QB"), "f": player("f", "QB")}
+        teams = [
+            LeagueTeam(1, "1", "8-0 Team", "A", ["u"], [], 8, 0, 0, 250),
+            LeagueTeam(2, "2", "5-3 Team", "B", ["f"], [], 5, 3, 0, 1500),
+        ]
+        snapshot = LeagueSnapshot("league", "League", 2026, 5, False, 0.5, ["QB"], teams)
+        books = [
+            ValueBook("Market", "dynasty", {"u": 1, "f": 100}),
+            ValueBook("ROS", "lineup", {"u": 1, "f": 100}),
+        ]
+        result = rank_league(snapshot, players, books)
+        self.assertEqual(result.teams[0].team_name, "8-0 Team")
+        self.assertTrue(result.teams[0].record_guardrail_applied)
+        self.assertGreater(result.teams[0].score, result.teams[1].score)
+        self.assertAlmostEqual(result.teams[0].score, round(
+            result.teams[0].market_points + result.teams[0].lineup_points +
+            result.teams[0].season_points, 1), places=1)
+
 if __name__ == "__main__":
     unittest.main()
