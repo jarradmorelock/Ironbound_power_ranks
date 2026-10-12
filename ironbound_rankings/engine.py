@@ -16,8 +16,8 @@ from .models import (
 )
 
 
-RECORD_SHARE_OF_SEASON = 0.80
-POINTS_SHARE_OF_SEASON = 0.20
+RECORD_SHARE_OF_SEASON = 0.75
+POINTS_SHARE_OF_SEASON = 0.25
 GUARDRAIL_MIN_GAMES = 8
 GUARDRAIL_WIN_GAP = 4.0
 GUARDRAIL_MAX_SCORE_LEAD = 10.0
@@ -57,6 +57,7 @@ def rank_league(
     *,
     ros_team_values: dict[int, float] | None = None,
     ros_projection_weeks: list[int] | None = None,
+    market_mode: str = "dynasty",
 ) -> RankingResult:
     previous_ranks = previous_ranks or {}
     dynasty_books = [book for book in books if book.category == "dynasty"]
@@ -160,7 +161,7 @@ def rank_league(
             )
             for roster_id in roster_ids
         }
-    weights = ranking_weights(completed_weeks)
+    weights = ranking_weights(completed_weeks, market_mode)
 
     scored: list[_TeamScore] = []
     for team in snapshot.teams:
@@ -240,18 +241,20 @@ def rank_league(
     )
 
 
-def ranking_weights(completed_weeks: int) -> tuple[float, float, float]:
-    """Increase real-season influence every completed NFL week through Week 8."""
+def ranking_weights(completed_weeks: int, market_mode: str = "dynasty") -> tuple[float, float, float]:
+    """Fade market rapidly; preserve a league-format-specific long-term floor."""
+    floors = {"dynasty": 0.125, "keeper_redraft": 0.05, "redraft": 0.0}
+    floor = floors.get(market_mode, 0.05)
     if completed_weeks <= 0:
         return (0.45, 0.55, 0.0)
-    if completed_weeks >= 8:
-        return (0.20, 0.25, 0.55)
-    progress = max(0.0, (completed_weeks - 1) / 7.0)
-    return (
-        0.30 - 0.10 * progress,
-        0.45 - 0.20 * progress,
-        0.25 + 0.30 * progress,
-    )
+    if completed_weeks < 4:
+        progress = (completed_weeks - 1) / 3.0
+        market = 0.30 + (floor - 0.30) * progress
+        season = 0.25 + 0.375 * progress
+    else:
+        market = floor
+        season = 0.625 + 0.125 * min(4, completed_weeks - 4) / 4.0
+    return (market, 1.0 - market - season, season)
 
 
 def completed_regular_season_weeks(snapshot: LeagueSnapshot) -> int:
