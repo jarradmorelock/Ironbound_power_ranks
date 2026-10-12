@@ -46,7 +46,7 @@ The balance moves toward real results every completed NFL week:
 
 - **Market consensus** is unchanged for the dynasty leagues: it values each team's complete roster and actual ownership of the next three rookie-pick classes, averaged across every available dynasty source.
 - **ROS scoring** is projection-based. For each available remaining fantasy week through Week 17, Sleeper player projections are rescored with that league's actual offensive scoring settings, the best legal lineup is selected independently for that week, and those weekly team totals are averaged. This lets byes, depth, projected role changes, and league-specific scoring matter without awarding points merely for sitting on the bench. Taxi players are excluded until activated; reserve players can contribute in a future week when the provider projects them to play.
-- **Season performance** remains 80% record and 20% points scored.
+- **Season performance** remains 75% record and 25% points scored.
 
 If remaining-week projection coverage is unavailable, the engine falls back to its prior Dynasty Daddy/FantasyCalc starter-ranking method rather than converting missing projections to zero.
 
@@ -185,3 +185,8 @@ once and searches occupied starter slots, so deep dynasty benches stay tractable
 The handoff records the projection fetch time and explicitly labels positional
 volatility as an experimental independent-player heuristic, not a calibrated
 historical or correlated game model.
+
+
+### Format-aware market weights
+
+Dynasty market value fades from 45% preseason to 12.5% after four completed NFL weeks, then stays at 12.5%. The full weight allocation reaches 12.5% market, 12.5% ROS scoring, and 75% actual results by Week 8. Season results use a 75% W-L / 25% points-for blend. Completed NFL weeks, not doubled median decisions, determine the progression.
