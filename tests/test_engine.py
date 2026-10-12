@@ -22,6 +22,16 @@ def player(player_id: str, position: str) -> PlayerIdentity:
 
 
 class EngineTests(unittest.TestCase):
+
+    def test_market_weight_falls_to_correct_format_floor_and_never_returns(self):
+        for mode, floor in (("dynasty", 0.125), ("keeper_redraft", 0.05),
+                            ("redraft", 0.0), ("unknown", 0.05)):
+            self.assertAlmostEqual(ranking_weights(4, mode)[0], floor)
+            self.assertAlmostEqual(ranking_weights(8, mode)[0], floor)
+            self.assertAlmostEqual(ranking_weights(12, mode)[0], floor)
+            self.assertAlmostEqual(sum(ranking_weights(8, mode)), 1.0)
+        self.assertAlmostEqual(ranking_weights(8, "redraft")[2], 0.75)
+
     def test_percentiles_handle_ties(self) -> None:
         result = percentile_scores({1: 10, 2: 20, 3: 20, 4: 40})
         self.assertEqual(result[1], 0)
