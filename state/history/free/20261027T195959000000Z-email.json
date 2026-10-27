@@ -1,0 +1,175 @@
+{
+  "generated_at": "2026-10-27T15:59:59-04:00",
+  "league_id": "1339055357728686080",
+  "post_key": "2026-week-8-sat-2026-10-24",
+  "previous_rank_by_roster_id": {
+    "1": 11,
+    "10": 16,
+    "11": 12,
+    "12": 7,
+    "13": 3,
+    "14": 10,
+    "15": 6,
+    "16": 14,
+    "2": 8,
+    "3": 9,
+    "4": 2,
+    "5": 13,
+    "6": 5,
+    "7": 15,
+    "8": 1,
+    "9": 4
+  },
+  "publication": "email",
+  "rank_by_roster_id": {
+    "1": 11,
+    "10": 16,
+    "11": 13,
+    "12": 6,
+    "13": 3,
+    "14": 10,
+    "15": 5,
+    "16": 14,
+    "2": 9,
+    "3": 8,
+    "4": 2,
+    "5": 12,
+    "6": 4,
+    "7": 15,
+    "8": 1,
+    "9": 7
+  },
+  "ranking_week": 8,
+  "schema_version": 1,
+  "season": 2026,
+  "teams": [
+    {
+      "movement": 0,
+      "previous_rank": 1,
+      "rank": 1,
+      "roster_id": 8,
+      "score": 96.9,
+      "team": "The #1 Loser"
+    },
+    {
+      "movement": 0,
+      "previous_rank": 2,
+      "rank": 2,
+      "roster_id": 4,
+      "score": 84.6,
+      "team": "The Blacksmith"
+    },
+    {
+      "movement": 0,
+      "previous_rank": 3,
+      "rank": 3,
+      "roster_id": 13,
+      "score": 74.6,
+      "team": "nkroeze20"
+    },
+    {
+      "movement": 1,
+      "previous_rank": 5,
+      "rank": 4,
+      "roster_id": 6,
+      "score": 74.1,
+      "team": "Walker Texas Ranger"
+    },
+    {
+      "movement": 1,
+      "previous_rank": 6,
+      "rank": 5,
+      "roster_id": 15,
+      "score": 69.2,
+      "team": "Rainman"
+    },
+    {
+      "movement": 1,
+      "previous_rank": 7,
+      "rank": 6,
+      "roster_id": 12,
+      "score": 67.0,
+      "team": "Mr. Loveland\u2019s Club"
+    },
+    {
+      "movement": -3,
+      "previous_rank": 4,
+      "rank": 7,
+      "roster_id": 9,
+      "score": 65.5,
+      "team": "Prescott Pussybacks"
+    },
+    {
+      "movement": 1,
+      "previous_rank": 9,
+      "rank": 8,
+      "roster_id": 3,
+      "score": 60.6,
+      "team": "\ud83c\uddf5\ud83c\udded Barangay 828 \ud83c\uddfa\ud83c\uddf8"
+    },
+    {
+      "movement": -1,
+      "previous_rank": 8,
+      "rank": 9,
+      "roster_id": 2,
+      "score": 49.3,
+      "team": "Dropswitch Legion MMXXVI"
+    },
+    {
+      "movement": 0,
+      "previous_rank": 10,
+      "rank": 10,
+      "roster_id": 14,
+      "score": 36.3,
+      "team": "Lemon scented Pearsall"
+    },
+    {
+      "movement": 0,
+      "previous_rank": 11,
+      "rank": 11,
+      "roster_id": 1,
+      "score": 28.3,
+      "team": "The Mus\ud835\udc02\ud835\udc00\ud835\udc13eers"
+    },
+    {
+      "movement": 1,
+      "previous_rank": 13,
+      "rank": 12,
+      "roster_id": 5,
+      "score": 25.9,
+      "team": "Campbell's Kneecap Soup"
+    },
+    {
+      "movement": -1,
+      "previous_rank": 12,
+      "rank": 13,
+      "roster_id": 11,
+      "score": 21.6,
+      "team": "The fraudinals"
+    },
+    {
+      "movement": 0,
+      "previous_rank": 14,
+      "rank": 14,
+      "roster_id": 16,
+      "score": 19.3,
+      "team": "FullMetalJacketRequired"
+    },
+    {
+      "movement": 0,
+      "previous_rank": 15,
+      "rank": 15,
+      "roster_id": 7,
+      "score": 18.9,
+      "team": "Chiefbighill"
+    },
+    {
+      "movement": 0,
+      "previous_rank": 16,
+      "rank": 16,
+      "roster_id": 10,
+      "score": 8.0,
+      "team": "Roadkill"
+    }
+  ]
+}

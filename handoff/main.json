@@ -9,379 +9,379 @@
   "official_power_rankings": [
     {
       "components": {
-        "market_percentile": 78.3,
-        "market_points": 9.79,
+        "market_percentile": 68.3,
+        "market_points": 8.54,
         "ros_scoring_percentile": 100.0,
-        "ros_scoring_points": 18.75,
+        "ros_scoring_points": 15.62,
         "ros_starters_percentile": 100.0,
-        "ros_starters_points": 18.75,
-        "season_results_percentile": 100.0,
-        "season_results_points": 68.75,
+        "ros_starters_points": 15.62,
+        "season_results_percentile": 98.3,
+        "season_results_points": 70.68,
         "weights": {
           "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
         }
       },
       "movement": 0,
       "previous_rank": 1,
       "rank": 1,
       "roster_id": 8,
-      "score": 97.3,
+      "score": 94.8,
       "team": "Madtown Coyotes"
     },
     {
       "components": {
-        "market_percentile": 48.3,
-        "market_points": 6.04,
+        "market_percentile": 45.0,
+        "market_points": 5.62,
         "ros_scoring_percentile": 93.3,
-        "ros_scoring_points": 17.5,
+        "ros_scoring_points": 14.58,
         "ros_starters_percentile": 93.3,
-        "ros_starters_points": 17.5,
-        "season_results_percentile": 80.8,
-        "season_results_points": 55.57,
+        "ros_starters_points": 14.58,
+        "season_results_percentile": 87.5,
+        "season_results_points": 62.89,
         "weights": {
           "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
         }
       },
-      "movement": 2,
-      "previous_rank": 4,
+      "movement": 0,
+      "previous_rank": 2,
       "rank": 2,
       "roster_id": 1,
-      "score": 79.1,
+      "score": 83.1,
       "team": "The Buckaneers"
+    },
+    {
+      "components": {
+        "market_percentile": 60.0,
+        "market_points": 7.5,
+        "ros_scoring_percentile": 80.0,
+        "ros_scoring_points": 12.5,
+        "ros_starters_percentile": 80.0,
+        "ros_starters_points": 12.5,
+        "season_results_percentile": 82.5,
+        "season_results_points": 59.3,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
+        }
+      },
+      "movement": 1,
+      "previous_rank": 4,
+      "rank": 3,
+      "roster_id": 3,
+      "score": 79.3,
+      "team": "At least I have chicken"
     },
     {
       "components": {
         "market_percentile": 23.3,
         "market_points": 2.92,
         "ros_scoring_percentile": 86.7,
-        "ros_scoring_points": 16.25,
+        "ros_scoring_points": 13.54,
         "ros_starters_percentile": 86.7,
-        "ros_starters_points": 16.25,
-        "season_results_percentile": 85.8,
-        "season_results_points": 59.01,
+        "ros_starters_points": 13.54,
+        "season_results_percentile": 75.0,
+        "season_results_points": 53.91,
         "weights": {
           "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
-        }
-      },
-      "movement": 2,
-      "previous_rank": 5,
-      "rank": 3,
-      "roster_id": 15,
-      "score": 78.2,
-      "team": "The Night Sky Hellhawks"
-    },
-    {
-      "components": {
-        "market_percentile": 78.3,
-        "market_points": 9.79,
-        "ros_scoring_percentile": 33.3,
-        "ros_scoring_points": 6.25,
-        "ros_starters_percentile": 33.3,
-        "ros_starters_points": 6.25,
-        "season_results_percentile": 84.2,
-        "season_results_points": 57.86,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
         }
       },
       "movement": -1,
       "previous_rank": 3,
       "rank": 4,
-      "roster_id": 5,
-      "score": 73.9,
-      "team": "Martian Targaryen"
-    },
-    {
-      "components": {
-        "market_percentile": 56.7,
-        "market_points": 7.08,
-        "ros_scoring_percentile": 73.3,
-        "ros_scoring_points": 13.75,
-        "ros_starters_percentile": 73.3,
-        "ros_starters_points": 13.75,
-        "season_results_percentile": 74.2,
-        "season_results_points": 50.99,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
-        }
-      },
-      "movement": 1,
-      "previous_rank": 6,
-      "rank": 5,
-      "roster_id": 3,
-      "score": 71.8,
-      "team": "At least I have chicken"
-    },
-    {
-      "components": {
-        "market_percentile": 55.0,
-        "market_points": 6.88,
-        "ros_scoring_percentile": 80.0,
-        "ros_scoring_points": 15.0,
-        "ros_starters_percentile": 80.0,
-        "ros_starters_points": 15.0,
-        "season_results_percentile": 52.5,
-        "season_results_points": 36.09,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
-        }
-      },
-      "movement": -4,
-      "previous_rank": 2,
-      "rank": 6,
-      "roster_id": 12,
-      "score": 58.0,
-      "team": "Blue Moose"
+      "roster_id": 15,
+      "score": 70.4,
+      "team": "The Night Sky Hellhawks"
     },
     {
       "components": {
         "market_percentile": 41.7,
         "market_points": 5.21,
-        "ros_scoring_percentile": 60.0,
-        "ros_scoring_points": 11.25,
-        "ros_starters_percentile": 60.0,
-        "ros_starters_points": 11.25,
-        "season_results_percentile": 57.5,
-        "season_results_points": 39.53,
+        "ros_scoring_percentile": 66.7,
+        "ros_scoring_points": 10.42,
+        "ros_starters_percentile": 66.7,
+        "ros_starters_points": 10.42,
+        "season_results_percentile": 71.7,
+        "season_results_points": 51.51,
         "weights": {
           "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
         }
       },
-      "movement": 0,
-      "previous_rank": 7,
-      "rank": 7,
+      "movement": 1,
+      "previous_rank": 6,
+      "rank": 5,
       "roster_id": 7,
-      "score": 56.0,
+      "score": 67.1,
       "team": "San Carlos FC"
     },
     {
       "components": {
-        "market_percentile": 45.0,
-        "market_points": 5.62,
-        "ros_scoring_percentile": 53.3,
-        "ros_scoring_points": 10.0,
-        "ros_starters_percentile": 53.3,
-        "ros_starters_points": 10.0,
-        "season_results_percentile": 54.2,
-        "season_results_points": 37.24,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
-        }
-      },
-      "movement": 2,
-      "previous_rank": 10,
-      "rank": 8,
-      "roster_id": 6,
-      "score": 52.9,
-      "team": "The Frozen Tundraners"
-    },
-    {
-      "components": {
-        "market_percentile": 51.7,
-        "market_points": 6.46,
-        "ros_scoring_percentile": 20.0,
-        "ros_scoring_points": 3.75,
-        "ros_starters_percentile": 20.0,
-        "ros_starters_points": 3.75,
-        "season_results_percentile": 50.8,
-        "season_results_points": 34.95,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
-        }
-      },
-      "movement": 4,
-      "previous_rank": 13,
-      "rank": 9,
-      "roster_id": 11,
-      "score": 45.2,
-      "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™"
-    },
-    {
-      "components": {
-        "market_percentile": 28.3,
-        "market_points": 3.54,
+        "market_percentile": 81.7,
+        "market_points": 10.21,
         "ros_scoring_percentile": 26.7,
-        "ros_scoring_points": 5.0,
+        "ros_scoring_points": 4.17,
         "ros_starters_percentile": 26.7,
-        "ros_starters_points": 5.0,
-        "season_results_percentile": 44.2,
-        "season_results_points": 30.36,
+        "ros_starters_points": 4.17,
+        "season_results_percentile": 68.3,
+        "season_results_points": 49.11,
         "weights": {
           "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
         }
       },
-      "movement": -2,
-      "previous_rank": 8,
-      "rank": 10,
-      "roster_id": 4,
-      "score": 38.9,
-      "team": "Granite Mountain Drakes"
-    },
-    {
-      "components": {
-        "market_percentile": 51.7,
-        "market_points": 6.46,
-        "ros_scoring_percentile": 0.0,
-        "ros_scoring_points": 0.0,
-        "ros_starters_percentile": 0.0,
-        "ros_starters_points": 0.0,
-        "season_results_percentile": 40.8,
-        "season_results_points": 28.07,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
-        }
-      },
-      "movement": 3,
-      "previous_rank": 14,
-      "rank": 11,
-      "roster_id": 16,
-      "score": 34.5,
-      "team": "The Mad Hatters FC"
+      "movement": -1,
+      "previous_rank": 5,
+      "rank": 6,
+      "roster_id": 5,
+      "score": 63.5,
+      "team": "Martian Targaryen"
     },
     {
       "components": {
         "market_percentile": 48.3,
         "market_points": 6.04,
-        "ros_scoring_percentile": 66.7,
-        "ros_scoring_points": 12.5,
-        "ros_starters_percentile": 66.7,
-        "ros_starters_points": 12.5,
-        "season_results_percentile": 17.5,
-        "season_results_points": 12.03,
+        "ros_scoring_percentile": 53.3,
+        "ros_scoring_points": 8.33,
+        "ros_starters_percentile": 53.3,
+        "ros_starters_points": 8.33,
+        "season_results_percentile": 66.7,
+        "season_results_points": 47.92,
         "weights": {
           "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
         }
       },
-      "movement": -1,
-      "previous_rank": 11,
-      "rank": 12,
+      "movement": 1,
+      "previous_rank": 8,
+      "rank": 7,
+      "roster_id": 6,
+      "score": 62.3,
+      "team": "The Frozen Tundraners"
+    },
+    {
+      "components": {
+        "market_percentile": 56.7,
+        "market_points": 7.08,
+        "ros_scoring_percentile": 33.3,
+        "ros_scoring_points": 5.21,
+        "ros_starters_percentile": 33.3,
+        "ros_starters_points": 5.21,
+        "season_results_percentile": 63.3,
+        "season_results_points": 45.52,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
+        }
+      },
+      "movement": 1,
+      "previous_rank": 9,
+      "rank": 8,
+      "roster_id": 11,
+      "score": 57.8,
+      "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™"
+    },
+    {
+      "components": {
+        "market_percentile": 58.3,
+        "market_points": 7.29,
+        "ros_scoring_percentile": 73.3,
+        "ros_scoring_points": 11.46,
+        "ros_starters_percentile": 73.3,
+        "ros_starters_points": 11.46,
+        "season_results_percentile": 36.7,
+        "season_results_points": 26.35,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
+        }
+      },
+      "movement": -2,
+      "previous_rank": 7,
+      "rank": 9,
+      "roster_id": 12,
+      "score": 45.1,
+      "team": "Blue Moose"
+    },
+    {
+      "components": {
+        "market_percentile": 46.7,
+        "market_points": 5.83,
+        "ros_scoring_percentile": 60.0,
+        "ros_scoring_points": 9.38,
+        "ros_starters_percentile": 60.0,
+        "ros_starters_points": 9.38,
+        "season_results_percentile": 35.0,
+        "season_results_points": 25.16,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
+        }
+      },
+      "movement": 2,
+      "previous_rank": 12,
+      "rank": 10,
       "roster_id": 9,
-      "score": 30.6,
+      "score": 40.4,
       "team": "Scenic City Beavers"
     },
     {
       "components": {
-        "market_percentile": 38.3,
-        "market_points": 4.79,
-        "ros_scoring_percentile": 40.0,
-        "ros_scoring_points": 7.5,
-        "ros_starters_percentile": 40.0,
-        "ros_starters_points": 7.5,
-        "season_results_percentile": 22.5,
-        "season_results_points": 15.47,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
-        }
-      },
-      "movement": -4,
-      "previous_rank": 9,
-      "rank": 13,
-      "roster_id": 10,
-      "score": 27.8,
-      "team": "The #1 Loser"
-    },
-    {
-      "components": {
-        "market_percentile": 23.3,
-        "market_points": 2.92,
-        "ros_scoring_percentile": 46.7,
-        "ros_scoring_points": 8.75,
-        "ros_starters_percentile": 46.7,
-        "ros_starters_points": 8.75,
-        "season_results_percentile": 20.8,
-        "season_results_points": 14.32,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
-        }
-      },
-      "movement": -2,
-      "previous_rank": 12,
-      "rank": 14,
-      "roster_id": 2,
-      "score": 26.0,
-      "team": "Pikeville Strip Miners"
-    },
-    {
-      "components": {
-        "market_percentile": 80.0,
-        "market_points": 10.0,
+        "market_percentile": 73.3,
+        "market_points": 9.17,
         "ros_scoring_percentile": 13.3,
-        "ros_scoring_points": 2.5,
+        "ros_scoring_points": 2.08,
         "ros_starters_percentile": 13.3,
-        "ros_starters_points": 2.5,
-        "season_results_percentile": 12.5,
-        "season_results_points": 8.59,
+        "ros_starters_points": 2.08,
+        "season_results_percentile": 28.3,
+        "season_results_points": 20.36,
         "weights": {
           "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
         }
       },
-      "movement": 0,
+      "movement": 4,
       "previous_rank": 15,
-      "rank": 15,
+      "rank": 11,
       "roster_id": 14,
-      "score": 21.1,
+      "score": 31.6,
       "team": "The Cheek Seekers"
     },
     {
       "components": {
-        "market_percentile": 51.7,
-        "market_points": 6.46,
-        "ros_scoring_percentile": 6.7,
-        "ros_scoring_points": 1.25,
-        "ros_starters_percentile": 6.7,
-        "ros_starters_points": 1.25,
-        "season_results_percentile": 1.7,
-        "season_results_points": 1.15,
+        "market_percentile": 28.3,
+        "market_points": 3.54,
+        "ros_scoring_percentile": 20.0,
+        "ros_scoring_points": 3.12,
+        "ros_starters_percentile": 20.0,
+        "ros_starters_points": 3.12,
+        "season_results_percentile": 31.7,
+        "season_results_points": 22.76,
         "weights": {
           "market": 0.125,
-          "ros_scoring": 0.1875,
-          "ros_starters": 0.1875,
-          "season_results": 0.6875
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
+        }
+      },
+      "movement": -2,
+      "previous_rank": 10,
+      "rank": 12,
+      "roster_id": 4,
+      "score": 29.4,
+      "team": "Granite Mountain Drakes"
+    },
+    {
+      "components": {
+        "market_percentile": 50.0,
+        "market_points": 6.25,
+        "ros_scoring_percentile": 0.0,
+        "ros_scoring_points": 0.0,
+        "ros_starters_percentile": 0.0,
+        "ros_starters_points": 0.0,
+        "season_results_percentile": 25.0,
+        "season_results_points": 17.97,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
+        }
+      },
+      "movement": -2,
+      "previous_rank": 11,
+      "rank": 13,
+      "roster_id": 16,
+      "score": 24.2,
+      "team": "The Mad Hatters FC"
+    },
+    {
+      "components": {
+        "market_percentile": 40.0,
+        "market_points": 5.0,
+        "ros_scoring_percentile": 46.7,
+        "ros_scoring_points": 7.29,
+        "ros_starters_percentile": 46.7,
+        "ros_starters_points": 7.29,
+        "season_results_percentile": 15.8,
+        "season_results_points": 11.38,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
+        }
+      },
+      "movement": -1,
+      "previous_rank": 13,
+      "rank": 14,
+      "roster_id": 10,
+      "score": 23.7,
+      "team": "The #1 Loser"
+    },
+    {
+      "components": {
+        "market_percentile": 25.0,
+        "market_points": 3.12,
+        "ros_scoring_percentile": 40.0,
+        "ros_scoring_points": 6.25,
+        "ros_starters_percentile": 40.0,
+        "ros_starters_points": 6.25,
+        "season_results_percentile": 12.5,
+        "season_results_points": 8.98,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
+        }
+      },
+      "movement": -1,
+      "previous_rank": 14,
+      "rank": 15,
+      "roster_id": 2,
+      "score": 18.4,
+      "team": "Pikeville Strip Miners"
+    },
+    {
+      "components": {
+        "market_percentile": 53.3,
+        "market_points": 6.67,
+        "ros_scoring_percentile": 6.7,
+        "ros_scoring_points": 1.04,
+        "ros_starters_percentile": 6.7,
+        "ros_starters_points": 1.04,
+        "season_results_percentile": 1.7,
+        "season_results_points": 1.2,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.15625,
+          "ros_starters": 0.15625,
+          "season_results": 0.71875
         }
       },
       "movement": 0,
@@ -394,447 +394,239 @@
   ],
   "playoff_odds": [
     {
-      "bye": 80.5,
-      "championship": 38.2,
-      "division": 90.9,
-      "final": 61.0,
-      "playoff": 98.5,
-      "projected_record": "12-2",
+      "bye": 70.1,
+      "championship": 33.0,
+      "division": 95.2,
+      "final": 55.6,
+      "playoff": 99.9,
+      "projected_record": "11-3",
       "roster_id": 8,
       "team": "Madtown Coyotes"
     },
     {
-      "bye": 5.5,
-      "championship": 14.0,
-      "division": 55.8,
-      "final": 29.8,
-      "playoff": 92.5,
-      "projected_record": "9-5",
+      "bye": 13.8,
+      "championship": 15.2,
+      "division": 83.0,
+      "final": 32.5,
+      "playoff": 97.3,
+      "projected_record": "10-4",
       "roster_id": 1,
       "team": "The Buckaneers"
     },
     {
-      "bye": 4.3,
-      "championship": 15.6,
-      "division": 6.7,
-      "final": 29.6,
-      "playoff": 84.8,
-      "projected_record": "9-5",
-      "roster_id": 15,
-      "team": "The Night Sky Hellhawks"
-    },
-    {
-      "bye": 3.7,
-      "championship": 7.4,
-      "division": 42.7,
-      "final": 19.1,
-      "playoff": 88.3,
-      "projected_record": "9-5",
-      "roster_id": 5,
-      "team": "Martian Targaryen"
-    },
-    {
-      "bye": 2.9,
-      "championship": 7.8,
-      "division": 70.2,
-      "final": 18.5,
-      "playoff": 83.6,
-      "projected_record": "9-5",
+      "bye": 9.6,
+      "championship": 14.6,
+      "division": 74.6,
+      "final": 29.9,
+      "playoff": 95.3,
+      "projected_record": "10-4",
       "roster_id": 3,
       "team": "At least I have chicken"
     },
     {
-      "bye": 0.6,
-      "championship": 4.6,
-      "division": 1.7,
-      "final": 11.4,
-      "playoff": 53.7,
+      "bye": 1.7,
+      "championship": 10.6,
+      "division": 4.5,
+      "final": 21.2,
+      "playoff": 77.0,
       "projected_record": "8-6",
-      "roster_id": 12,
-      "team": "Blue Moose"
+      "roster_id": 15,
+      "team": "The Night Sky Hellhawks"
     },
     {
-      "bye": 0.4,
-      "championship": 3.3,
-      "division": 18.8,
-      "final": 7.7,
-      "playoff": 42.2,
-      "projected_record": "7-7",
+      "bye": 1.3,
+      "championship": 8.2,
+      "division": 18.6,
+      "final": 17.2,
+      "playoff": 71.8,
+      "projected_record": "8-6",
       "roster_id": 7,
       "team": "San Carlos FC"
     },
     {
-      "bye": 0.7,
-      "championship": 6.4,
-      "division": 73.3,
-      "final": 14.9,
-      "playoff": 77.0,
+      "bye": 0.6,
+      "championship": 3.9,
+      "division": 16.1,
+      "final": 10.7,
+      "playoff": 70.3,
       "projected_record": "8-6",
+      "roster_id": 5,
+      "team": "Martian Targaryen"
+    },
+    {
+      "bye": 2.7,
+      "championship": 10.5,
+      "division": 95.3,
+      "final": 22.5,
+      "playoff": 96.2,
+      "projected_record": "9-5",
       "roster_id": 6,
       "team": "The Frozen Tundraners"
     },
     {
       "bye": 0.2,
-      "championship": 0.9,
-      "division": 7.7,
-      "final": 2.5,
-      "playoff": 20.3,
-      "projected_record": "6-8",
+      "championship": 2.1,
+      "division": 6.7,
+      "final": 5.5,
+      "playoff": 41.5,
+      "projected_record": "7-7",
       "roster_id": 11,
       "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™"
     },
     {
-      "bye": 0.2,
-      "championship": 0.2,
-      "division": 0.7,
-      "final": 0.8,
-      "playoff": 8.1,
-      "projected_record": "6-8",
-      "roster_id": 4,
-      "team": "Granite Mountain Drakes"
+      "bye": 0.0,
+      "championship": 1.6,
+      "division": 0.3,
+      "final": 4.0,
+      "playoff": 26.5,
+      "projected_record": "7-7",
+      "roster_id": 12,
+      "team": "Blue Moose"
     },
     {
-      "bye": 0.2,
+      "bye": 0.0,
       "championship": 0.2,
-      "division": 3.3,
-      "final": 0.7,
-      "playoff": 10.0,
+      "division": 0.9,
+      "final": 0.6,
+      "playoff": 9.6,
       "projected_record": "6-8",
-      "roster_id": 16,
-      "team": "The Mad Hatters FC"
-    },
-    {
-      "bye": 0.2,
-      "championship": 0.2,
-      "division": 0.8,
-      "final": 0.4,
-      "playoff": 3.2,
-      "projected_record": "5-9",
       "roster_id": 9,
       "team": "Scenic City Beavers"
     },
     {
-      "bye": 0.2,
-      "championship": 0.4,
-      "division": 10.0,
-      "final": 1.1,
-      "playoff": 14.0,
+      "bye": 0.0,
+      "championship": 0.0,
+      "division": 2.9,
+      "final": 0.1,
+      "playoff": 7.6,
       "projected_record": "6-8",
-      "roster_id": 10,
-      "team": "The #1 Loser"
-    },
-    {
-      "bye": 0.2,
-      "championship": 0.5,
-      "division": 13.7,
-      "final": 1.8,
-      "playoff": 18.4,
-      "projected_record": "6-8",
-      "roster_id": 2,
-      "team": "Pikeville Strip Miners"
-    },
-    {
-      "bye": 0.2,
-      "championship": 0.2,
-      "division": 3.0,
-      "final": 0.4,
-      "playoff": 4.2,
-      "projected_record": "5-9",
       "roster_id": 14,
       "team": "The Cheek Seekers"
     },
     {
-      "bye": 0.2,
-      "championship": 0.2,
-      "division": 0.6,
-      "final": 0.3,
-      "playoff": 1.1,
-      "projected_record": "2-12",
+      "bye": 0.0,
+      "championship": 0.0,
+      "division": 0.0,
+      "final": 0.0,
+      "playoff": 1.5,
+      "projected_record": "5-9",
+      "roster_id": 4,
+      "team": "Granite Mountain Drakes"
+    },
+    {
+      "bye": 0.0,
+      "championship": 0.0,
+      "division": 0.1,
+      "final": 0.0,
+      "playoff": 1.5,
+      "projected_record": "5-9",
+      "roster_id": 16,
+      "team": "The Mad Hatters FC"
+    },
+    {
+      "bye": 0.0,
+      "championship": 0.0,
+      "division": 0.5,
+      "final": 0.1,
+      "playoff": 1.2,
+      "projected_record": "5-9",
+      "roster_id": 10,
+      "team": "The #1 Loser"
+    },
+    {
+      "bye": 0.0,
+      "championship": 0.0,
+      "division": 1.4,
+      "final": 0.1,
+      "playoff": 2.8,
+      "projected_record": "5-9",
+      "roster_id": 2,
+      "team": "Pikeville Strip Miners"
+    },
+    {
+      "bye": 0.0,
+      "championship": 0.0,
+      "division": 0.0,
+      "final": 0.0,
+      "playoff": 0.1,
+      "projected_record": "3-11",
       "roster_id": 13,
       "team": "Mormonts of Bear Island"
     }
   ],
   "publication_assets": {
     "playoff_forecast": {
-      "bytes": 309653,
+      "bytes": 308192,
       "filename": "ironbound_weekly-playoff-forecast.png",
-      "generated_at": "2026-10-20T15:08:15-04:00",
+      "generated_at": "2026-10-27T15:59:59-04:00",
       "media_type": "image/png",
       "owner": "Ironbound_power_ranks",
       "placement_policy": "use supplied graphic unchanged",
       "repo_path": "handoff/assets/ironbound_weekly-playoff-forecast.png",
-      "sha256": "66dd468900e31a6a4bef39cca08263b897ac2f82e4facb7fa8c54a49aa3c65d2"
+      "sha256": "c1c38981a0a14d6d22eecfaab1a52f572029d2d6eae482b62cbc519398db1833"
     },
     "power_rankings": {
-      "bytes": 319648,
+      "bytes": 316244,
       "filename": "ironbound_weekly-power-rankings.png",
-      "generated_at": "2026-10-20T15:08:15-04:00",
+      "generated_at": "2026-10-27T15:59:59-04:00",
       "media_type": "image/png",
       "owner": "Ironbound_power_ranks",
       "placement_policy": "use supplied graphic unchanged",
       "repo_path": "handoff/assets/ironbound_weekly-power-rankings.png",
-      "sha256": "4f0193b2bd80b558eb49c5011e012c96de7b0c92ae02fd081d0b88b741332e7f"
+      "sha256": "013921bad8129cbba024c6c6776342ece9272c274b0178358af1e074a7585f0b"
     }
   },
   "publication_key": "ironbound_weekly",
   "remaining_schedule_strength": [
     {
-      "average_opponent_index": 64.5,
+      "average_opponent_index": 61.9,
       "difficulty_rank": 1,
       "grade": "F",
       "opponents": [
         {
-          "power_index": 56.0,
-          "roster_id": 7,
-          "team": "San Carlos FC",
-          "week": 7
-        },
-        {
-          "power_index": 97.3,
-          "roster_id": 8,
-          "team": "Madtown Coyotes",
-          "week": 8
-        },
-        {
-          "power_index": 58.0,
-          "roster_id": 12,
-          "team": "Blue Moose",
-          "week": 9
-        },
-        {
-          "power_index": 73.9,
-          "roster_id": 5,
-          "team": "Martian Targaryen",
-          "week": 10
-        },
-        {
-          "power_index": 78.2,
-          "roster_id": 15,
-          "team": "The Night Sky Hellhawks",
-          "week": 11
-        },
-        {
-          "power_index": 97.3,
-          "roster_id": 8,
-          "team": "Madtown Coyotes",
-          "week": 12
-        },
-        {
-          "power_index": 34.5,
-          "roster_id": 16,
-          "team": "The Mad Hatters FC",
-          "week": 13
-        },
-        {
-          "power_index": 21.1,
-          "roster_id": 14,
-          "team": "The Cheek Seekers",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        7,
-        8,
-        12,
-        5,
-        15,
-        8,
-        16,
-        14
-      ],
-      "roster_id": 4,
-      "team": "Granite Mountain Drakes"
-    },
-    {
-      "average_opponent_index": 63.0,
-      "difficulty_rank": 2,
-      "grade": "D-",
-      "opponents": [
-        {
-          "power_index": 79.1,
-          "roster_id": 1,
-          "team": "The Buckaneers",
-          "week": 7
-        },
-        {
-          "power_index": 58.0,
-          "roster_id": 12,
-          "team": "Blue Moose",
-          "week": 8
-        },
-        {
-          "power_index": 97.3,
-          "roster_id": 8,
-          "team": "Madtown Coyotes",
-          "week": 9
-        },
-        {
-          "power_index": 45.2,
-          "roster_id": 11,
-          "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™",
-          "week": 10
-        },
-        {
-          "power_index": 38.9,
-          "roster_id": 4,
-          "team": "Granite Mountain Drakes",
-          "week": 11
-        },
-        {
-          "power_index": 58.0,
-          "roster_id": 12,
-          "team": "Blue Moose",
-          "week": 12
-        },
-        {
-          "power_index": 56.0,
-          "roster_id": 7,
-          "team": "San Carlos FC",
-          "week": 13
-        },
-        {
-          "power_index": 71.8,
-          "roster_id": 3,
-          "team": "At least I have chicken",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        1,
-        12,
-        8,
-        11,
-        4,
-        12,
-        7,
-        3
-      ],
-      "roster_id": 15,
-      "team": "The Night Sky Hellhawks"
-    },
-    {
-      "average_opponent_index": 62.0,
-      "difficulty_rank": 3,
-      "grade": "D-",
-      "opponents": [
-        {
-          "power_index": 58.0,
-          "roster_id": 12,
-          "team": "Blue Moose",
-          "week": 7
-        },
-        {
-          "power_index": 34.5,
-          "roster_id": 16,
-          "team": "The Mad Hatters FC",
-          "week": 8
-        },
-        {
-          "power_index": 71.8,
-          "roster_id": 3,
-          "team": "At least I have chicken",
-          "week": 9
-        },
-        {
-          "power_index": 78.2,
-          "roster_id": 15,
-          "team": "The Night Sky Hellhawks",
-          "week": 10
-        },
-        {
-          "power_index": 56.0,
-          "roster_id": 7,
-          "team": "San Carlos FC",
-          "week": 11
-        },
-        {
-          "power_index": 26.0,
-          "roster_id": 2,
-          "team": "Pikeville Strip Miners",
-          "week": 12
-        },
-        {
-          "power_index": 97.3,
-          "roster_id": 8,
-          "team": "Madtown Coyotes",
-          "week": 13
-        },
-        {
-          "power_index": 73.9,
-          "roster_id": 5,
-          "team": "Martian Targaryen",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        12,
-        16,
-        3,
-        15,
-        7,
-        2,
-        8,
-        5
-      ],
-      "roster_id": 11,
-      "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™"
-    },
-    {
-      "average_opponent_index": 59.1,
-      "difficulty_rank": 4,
-      "grade": "D",
-      "opponents": [
-        {
-          "power_index": 38.9,
-          "roster_id": 4,
-          "team": "Granite Mountain Drakes",
-          "week": 7
-        },
-        {
-          "power_index": 71.8,
+          "power_index": 79.3,
           "roster_id": 3,
           "team": "At least I have chicken",
           "week": 8
         },
         {
-          "power_index": 34.5,
+          "power_index": 24.2,
           "roster_id": 16,
           "team": "The Mad Hatters FC",
           "week": 9
         },
         {
-          "power_index": 97.3,
+          "power_index": 94.8,
           "roster_id": 8,
           "team": "Madtown Coyotes",
           "week": 10
         },
         {
-          "power_index": 45.2,
+          "power_index": 57.8,
           "roster_id": 11,
           "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™",
           "week": 11
         },
         {
-          "power_index": 79.1,
+          "power_index": 83.1,
           "roster_id": 1,
           "team": "The Buckaneers",
           "week": 12
         },
         {
-          "power_index": 78.2,
+          "power_index": 70.4,
           "roster_id": 15,
           "team": "The Night Sky Hellhawks",
           "week": 13
         },
         {
-          "power_index": 27.8,
+          "power_index": 23.7,
           "roster_id": 10,
           "team": "The #1 Loser",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        4,
         3,
         16,
         8,
@@ -847,262 +639,114 @@
       "team": "San Carlos FC"
     },
     {
-      "average_opponent_index": 56.1,
-      "difficulty_rank": 5,
-      "grade": "D",
+      "average_opponent_index": 60.6,
+      "difficulty_rank": 2,
+      "grade": "D-",
       "opponents": [
         {
-          "power_index": 45.2,
-          "roster_id": 11,
-          "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™",
-          "week": 7
-        },
-        {
-          "power_index": 78.2,
-          "roster_id": 15,
-          "team": "The Night Sky Hellhawks",
-          "week": 8
-        },
-        {
-          "power_index": 38.9,
-          "roster_id": 4,
-          "team": "Granite Mountain Drakes",
-          "week": 9
-        },
-        {
-          "power_index": 30.6,
-          "roster_id": 9,
-          "team": "Scenic City Beavers",
-          "week": 10
-        },
-        {
-          "power_index": 97.3,
+          "power_index": 94.8,
           "roster_id": 8,
           "team": "Madtown Coyotes",
-          "week": 11
-        },
-        {
-          "power_index": 78.2,
-          "roster_id": 15,
-          "team": "The Night Sky Hellhawks",
-          "week": 12
-        },
-        {
-          "power_index": 71.8,
-          "roster_id": 3,
-          "team": "At least I have chicken",
-          "week": 13
-        },
-        {
-          "power_index": 8.9,
-          "roster_id": 13,
-          "team": "Mormonts of Bear Island",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        11,
-        15,
-        4,
-        9,
-        8,
-        15,
-        3,
-        13
-      ],
-      "roster_id": 12,
-      "team": "Blue Moose"
-    },
-    {
-      "average_opponent_index": 50.3,
-      "difficulty_rank": 6,
-      "grade": "D+",
-      "opponents": [
-        {
-          "power_index": 52.9,
-          "roster_id": 6,
-          "team": "The Frozen Tundraners",
-          "week": 7
-        },
-        {
-          "power_index": 38.9,
-          "roster_id": 4,
-          "team": "Granite Mountain Drakes",
           "week": 8
         },
         {
-          "power_index": 78.2,
-          "roster_id": 15,
-          "team": "The Night Sky Hellhawks",
+          "power_index": 45.1,
+          "roster_id": 12,
+          "team": "Blue Moose",
           "week": 9
         },
         {
-          "power_index": 56.0,
-          "roster_id": 7,
-          "team": "San Carlos FC",
-          "week": 10
-        },
-        {
-          "power_index": 58.0,
-          "roster_id": 12,
-          "team": "Blue Moose",
-          "week": 11
-        },
-        {
-          "power_index": 38.9,
-          "roster_id": 4,
-          "team": "Granite Mountain Drakes",
-          "week": 12
-        },
-        {
-          "power_index": 45.2,
-          "roster_id": 11,
-          "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™",
-          "week": 13
-        },
-        {
-          "power_index": 34.5,
-          "roster_id": 16,
-          "team": "The Mad Hatters FC",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        6,
-        4,
-        15,
-        7,
-        12,
-        4,
-        11,
-        16
-      ],
-      "roster_id": 8,
-      "team": "Madtown Coyotes"
-    },
-    {
-      "average_opponent_index": 49.8,
-      "difficulty_rank": 7,
-      "grade": "D+",
-      "opponents": [
-        {
-          "power_index": 27.8,
-          "roster_id": 10,
-          "team": "The #1 Loser",
-          "week": 7
-        },
-        {
-          "power_index": 26.0,
-          "roster_id": 2,
-          "team": "Pikeville Strip Miners",
-          "week": 8
-        },
-        {
-          "power_index": 73.9,
+          "power_index": 63.5,
           "roster_id": 5,
           "team": "Martian Targaryen",
-          "week": 9
-        },
-        {
-          "power_index": 58.0,
-          "roster_id": 12,
-          "team": "Blue Moose",
           "week": 10
         },
         {
-          "power_index": 79.1,
-          "roster_id": 1,
-          "team": "The Buckaneers",
+          "power_index": 70.4,
+          "roster_id": 15,
+          "team": "The Night Sky Hellhawks",
           "week": 11
         },
         {
-          "power_index": 71.8,
-          "roster_id": 3,
-          "team": "At least I have chicken",
+          "power_index": 94.8,
+          "roster_id": 8,
+          "team": "Madtown Coyotes",
           "week": 12
         },
         {
-          "power_index": 8.9,
-          "roster_id": 13,
-          "team": "Mormonts of Bear Island",
+          "power_index": 24.2,
+          "roster_id": 16,
+          "team": "The Mad Hatters FC",
           "week": 13
         },
         {
-          "power_index": 52.9,
-          "roster_id": 6,
-          "team": "The Frozen Tundraners",
+          "power_index": 31.6,
+          "roster_id": 14,
+          "team": "The Cheek Seekers",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        10,
-        2,
-        5,
+        8,
         12,
-        1,
-        3,
-        13,
-        6
+        5,
+        15,
+        8,
+        16,
+        14
       ],
-      "roster_id": 9,
-      "team": "Scenic City Beavers"
+      "roster_id": 4,
+      "team": "Granite Mountain Drakes"
     },
     {
-      "average_opponent_index": 49.0,
-      "difficulty_rank": 8,
-      "grade": "C",
+      "average_opponent_index": 60.3,
+      "difficulty_rank": 3,
+      "grade": "D-",
       "opponents": [
         {
-          "power_index": 8.9,
-          "roster_id": 13,
-          "team": "Mormonts of Bear Island",
-          "week": 7
-        },
-        {
-          "power_index": 45.2,
+          "power_index": 57.8,
           "roster_id": 11,
           "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™",
           "week": 8
         },
         {
-          "power_index": 56.0,
+          "power_index": 67.1,
           "roster_id": 7,
           "team": "San Carlos FC",
           "week": 9
         },
         {
-          "power_index": 21.1,
+          "power_index": 31.6,
           "roster_id": 14,
           "team": "The Cheek Seekers",
           "week": 10
         },
         {
-          "power_index": 71.8,
+          "power_index": 79.3,
           "roster_id": 3,
           "team": "At least I have chicken",
           "week": 11
         },
         {
-          "power_index": 52.9,
+          "power_index": 62.3,
           "roster_id": 6,
           "team": "The Frozen Tundraners",
           "week": 12
         },
         {
-          "power_index": 38.9,
+          "power_index": 29.4,
           "roster_id": 4,
           "team": "Granite Mountain Drakes",
           "week": 13
         },
         {
-          "power_index": 97.3,
+          "power_index": 94.8,
           "roster_id": 8,
           "team": "Madtown Coyotes",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        13,
         11,
         7,
         14,
@@ -1115,351 +759,250 @@
       "team": "The Mad Hatters FC"
     },
     {
-      "average_opponent_index": 48.8,
-      "difficulty_rank": 9,
-      "grade": "C",
+      "average_opponent_index": 59.8,
+      "difficulty_rank": 4,
+      "grade": "D",
       "opponents": [
         {
-          "power_index": 97.3,
+          "power_index": 45.1,
+          "roster_id": 12,
+          "team": "Blue Moose",
+          "week": 8
+        },
+        {
+          "power_index": 94.8,
           "roster_id": 8,
           "team": "Madtown Coyotes",
-          "week": 7
-        },
-        {
-          "power_index": 73.9,
-          "roster_id": 5,
-          "team": "Martian Targaryen",
-          "week": 8
-        },
-        {
-          "power_index": 21.1,
-          "roster_id": 14,
-          "team": "The Cheek Seekers",
           "week": 9
         },
         {
-          "power_index": 79.1,
-          "roster_id": 1,
-          "team": "The Buckaneers",
-          "week": 10
-        },
-        {
-          "power_index": 27.8,
-          "roster_id": 10,
-          "team": "The #1 Loser",
-          "week": 11
-        },
-        {
-          "power_index": 34.5,
-          "roster_id": 16,
-          "team": "The Mad Hatters FC",
-          "week": 12
-        },
-        {
-          "power_index": 26.0,
-          "roster_id": 2,
-          "team": "Pikeville Strip Miners",
-          "week": 13
-        },
-        {
-          "power_index": 30.6,
-          "roster_id": 9,
-          "team": "Scenic City Beavers",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        8,
-        5,
-        14,
-        1,
-        10,
-        16,
-        2,
-        9
-      ],
-      "roster_id": 6,
-      "team": "The Frozen Tundraners"
-    },
-    {
-      "average_opponent_index": 44.5,
-      "difficulty_rank": 10,
-      "grade": "B-",
-      "opponents": [
-        {
-          "power_index": 26.0,
-          "roster_id": 2,
-          "team": "Pikeville Strip Miners",
-          "week": 7
-        },
-        {
-          "power_index": 56.0,
-          "roster_id": 7,
-          "team": "San Carlos FC",
-          "week": 8
-        },
-        {
-          "power_index": 45.2,
+          "power_index": 57.8,
           "roster_id": 11,
           "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™",
-          "week": 9
-        },
-        {
-          "power_index": 27.8,
-          "roster_id": 10,
-          "team": "The #1 Loser",
           "week": 10
         },
         {
-          "power_index": 34.5,
-          "roster_id": 16,
-          "team": "The Mad Hatters FC",
+          "power_index": 29.4,
+          "roster_id": 4,
+          "team": "Granite Mountain Drakes",
           "week": 11
         },
         {
-          "power_index": 30.6,
-          "roster_id": 9,
-          "team": "Scenic City Beavers",
+          "power_index": 45.1,
+          "roster_id": 12,
+          "team": "Blue Moose",
           "week": 12
         },
         {
-          "power_index": 58.0,
-          "roster_id": 12,
-          "team": "Blue Moose",
+          "power_index": 67.1,
+          "roster_id": 7,
+          "team": "San Carlos FC",
           "week": 13
         },
         {
-          "power_index": 78.2,
-          "roster_id": 15,
-          "team": "The Night Sky Hellhawks",
+          "power_index": 79.3,
+          "roster_id": 3,
+          "team": "At least I have chicken",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        2,
-        7,
-        11,
-        10,
-        16,
-        9,
         12,
-        15
+        8,
+        11,
+        4,
+        12,
+        7,
+        3
       ],
-      "roster_id": 3,
-      "team": "At least I have chicken"
+      "roster_id": 15,
+      "team": "The Night Sky Hellhawks"
     },
     {
-      "average_opponent_index": 43.9,
-      "difficulty_rank": 11,
-      "grade": "B-",
+      "average_opponent_index": 59.7,
+      "difficulty_rank": 5,
+      "grade": "D",
       "opponents": [
         {
-          "power_index": 34.5,
+          "power_index": 24.2,
           "roster_id": 16,
           "team": "The Mad Hatters FC",
-          "week": 7
-        },
-        {
-          "power_index": 27.8,
-          "roster_id": 10,
-          "team": "The #1 Loser",
           "week": 8
         },
         {
-          "power_index": 79.1,
-          "roster_id": 1,
-          "team": "The Buckaneers",
+          "power_index": 79.3,
+          "roster_id": 3,
+          "team": "At least I have chicken",
           "week": 9
         },
         {
-          "power_index": 26.0,
+          "power_index": 70.4,
+          "roster_id": 15,
+          "team": "The Night Sky Hellhawks",
+          "week": 10
+        },
+        {
+          "power_index": 67.1,
+          "roster_id": 7,
+          "team": "San Carlos FC",
+          "week": 11
+        },
+        {
+          "power_index": 18.4,
           "roster_id": 2,
           "team": "Pikeville Strip Miners",
-          "week": 10
-        },
-        {
-          "power_index": 73.9,
-          "roster_id": 5,
-          "team": "Martian Targaryen",
-          "week": 11
-        },
-        {
-          "power_index": 21.1,
-          "roster_id": 14,
-          "team": "The Cheek Seekers",
           "week": 12
         },
         {
-          "power_index": 30.6,
-          "roster_id": 9,
-          "team": "Scenic City Beavers",
+          "power_index": 94.8,
+          "roster_id": 8,
+          "team": "Madtown Coyotes",
           "week": 13
         },
         {
-          "power_index": 58.0,
-          "roster_id": 12,
-          "team": "Blue Moose",
+          "power_index": 63.5,
+          "roster_id": 5,
+          "team": "Martian Targaryen",
           "week": 14
         }
       ],
       "remaining_opponents": [
         16,
-        10,
-        1,
+        3,
+        15,
+        7,
         2,
-        5,
-        14,
-        9,
-        12
+        8,
+        5
       ],
-      "roster_id": 13,
-      "team": "Mormonts of Bear Island"
+      "roster_id": 11,
+      "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™"
     },
     {
-      "average_opponent_index": 43.5,
-      "difficulty_rank": 12,
-      "grade": "B",
+      "average_opponent_index": 56.2,
+      "difficulty_rank": 6,
+      "grade": "D+",
       "opponents": [
         {
-          "power_index": 78.2,
+          "power_index": 70.4,
           "roster_id": 15,
           "team": "The Night Sky Hellhawks",
-          "week": 7
+          "week": 8
         },
         {
-          "power_index": 21.1,
-          "roster_id": 14,
-          "team": "The Cheek Seekers",
-          "week": 8
+          "power_index": 29.4,
+          "roster_id": 4,
+          "team": "Granite Mountain Drakes",
+          "week": 9
+        },
+        {
+          "power_index": 40.4,
+          "roster_id": 9,
+          "team": "Scenic City Beavers",
+          "week": 10
+        },
+        {
+          "power_index": 94.8,
+          "roster_id": 8,
+          "team": "Madtown Coyotes",
+          "week": 11
+        },
+        {
+          "power_index": 70.4,
+          "roster_id": 15,
+          "team": "The Night Sky Hellhawks",
+          "week": 12
+        },
+        {
+          "power_index": 79.3,
+          "roster_id": 3,
+          "team": "At least I have chicken",
+          "week": 13
         },
         {
           "power_index": 8.9,
           "roster_id": 13,
           "team": "Mormonts of Bear Island",
-          "week": 9
-        },
-        {
-          "power_index": 52.9,
-          "roster_id": 6,
-          "team": "The Frozen Tundraners",
-          "week": 10
-        },
-        {
-          "power_index": 30.6,
-          "roster_id": 9,
-          "team": "Scenic City Beavers",
-          "week": 11
-        },
-        {
-          "power_index": 56.0,
-          "roster_id": 7,
-          "team": "San Carlos FC",
-          "week": 12
-        },
-        {
-          "power_index": 73.9,
-          "roster_id": 5,
-          "team": "Martian Targaryen",
-          "week": 13
-        },
-        {
-          "power_index": 26.0,
-          "roster_id": 2,
-          "team": "Pikeville Strip Miners",
           "week": 14
         }
       ],
       "remaining_opponents": [
         15,
-        14,
-        13,
-        6,
+        4,
         9,
-        7,
-        5,
-        2
+        8,
+        15,
+        3,
+        13
       ],
-      "roster_id": 1,
-      "team": "The Buckaneers"
+      "roster_id": 12,
+      "team": "Blue Moose"
     },
     {
-      "average_opponent_index": 42.8,
-      "difficulty_rank": 13,
-      "grade": "B",
+      "average_opponent_index": 51.5,
+      "difficulty_rank": 7,
+      "grade": "D+",
       "opponents": [
         {
-          "power_index": 73.9,
-          "roster_id": 5,
-          "team": "Martian Targaryen",
-          "week": 7
-        },
-        {
-          "power_index": 79.1,
-          "roster_id": 1,
-          "team": "The Buckaneers",
+          "power_index": 18.4,
+          "roster_id": 2,
+          "team": "Pikeville Strip Miners",
           "week": 8
         },
         {
-          "power_index": 52.9,
-          "roster_id": 6,
-          "team": "The Frozen Tundraners",
+          "power_index": 63.5,
+          "roster_id": 5,
+          "team": "Martian Targaryen",
           "week": 9
         },
         {
-          "power_index": 34.5,
-          "roster_id": 16,
-          "team": "The Mad Hatters FC",
+          "power_index": 45.1,
+          "roster_id": 12,
+          "team": "Blue Moose",
           "week": 10
         },
         {
-          "power_index": 26.0,
-          "roster_id": 2,
-          "team": "Pikeville Strip Miners",
+          "power_index": 83.1,
+          "roster_id": 1,
+          "team": "The Buckaneers",
           "week": 11
+        },
+        {
+          "power_index": 79.3,
+          "roster_id": 3,
+          "team": "At least I have chicken",
+          "week": 12
         },
         {
           "power_index": 8.9,
           "roster_id": 13,
           "team": "Mormonts of Bear Island",
-          "week": 12
-        },
-        {
-          "power_index": 27.8,
-          "roster_id": 10,
-          "team": "The #1 Loser",
           "week": 13
         },
         {
-          "power_index": 38.9,
-          "roster_id": 4,
-          "team": "Granite Mountain Drakes",
+          "power_index": 62.3,
+          "roster_id": 6,
+          "team": "The Frozen Tundraners",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        5,
-        1,
-        6,
-        16,
         2,
+        5,
+        12,
+        1,
+        3,
         13,
-        10,
-        4
+        6
       ],
-      "roster_id": 14,
-      "team": "The Cheek Seekers"
+      "roster_id": 9,
+      "team": "Scenic City Beavers"
     },
     {
-      "average_opponent_index": 42.6,
-      "difficulty_rank": 14,
-      "grade": "A",
+      "average_opponent_index": 47.3,
+      "difficulty_rank": 8,
+      "grade": "C",
       "opponents": [
-        {
-          "power_index": 30.6,
-          "roster_id": 9,
-          "team": "Scenic City Beavers",
-          "week": 7
-        },
         {
           "power_index": 8.9,
           "roster_id": 13,
@@ -1467,44 +1010,43 @@
           "week": 8
         },
         {
-          "power_index": 26.0,
+          "power_index": 18.4,
           "roster_id": 2,
           "team": "Pikeville Strip Miners",
           "week": 9
         },
         {
-          "power_index": 71.8,
+          "power_index": 79.3,
           "roster_id": 3,
           "team": "At least I have chicken",
           "week": 10
         },
         {
-          "power_index": 52.9,
+          "power_index": 62.3,
           "roster_id": 6,
           "team": "The Frozen Tundraners",
           "week": 11
         },
         {
-          "power_index": 73.9,
+          "power_index": 63.5,
           "roster_id": 5,
           "team": "Martian Targaryen",
           "week": 12
         },
         {
-          "power_index": 21.1,
+          "power_index": 31.6,
           "roster_id": 14,
           "team": "The Cheek Seekers",
           "week": 13
         },
         {
-          "power_index": 56.0,
+          "power_index": 67.1,
           "roster_id": 7,
           "team": "San Carlos FC",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        9,
         13,
         2,
         3,
@@ -1517,24 +1059,138 @@
       "team": "The #1 Loser"
     },
     {
-      "average_opponent_index": 42.2,
-      "difficulty_rank": 15,
-      "grade": "A",
+      "average_opponent_index": 47.0,
+      "difficulty_rank": 9,
+      "grade": "C",
       "opponents": [
         {
-          "power_index": 71.8,
-          "roster_id": 3,
-          "team": "At least I have chicken",
-          "week": 7
+          "power_index": 67.1,
+          "roster_id": 7,
+          "team": "San Carlos FC",
+          "week": 8
         },
         {
-          "power_index": 30.6,
+          "power_index": 57.8,
+          "roster_id": 11,
+          "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™",
+          "week": 9
+        },
+        {
+          "power_index": 23.7,
+          "roster_id": 10,
+          "team": "The #1 Loser",
+          "week": 10
+        },
+        {
+          "power_index": 24.2,
+          "roster_id": 16,
+          "team": "The Mad Hatters FC",
+          "week": 11
+        },
+        {
+          "power_index": 40.4,
+          "roster_id": 9,
+          "team": "Scenic City Beavers",
+          "week": 12
+        },
+        {
+          "power_index": 45.1,
+          "roster_id": 12,
+          "team": "Blue Moose",
+          "week": 13
+        },
+        {
+          "power_index": 70.4,
+          "roster_id": 15,
+          "team": "The Night Sky Hellhawks",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        7,
+        11,
+        10,
+        16,
+        9,
+        12,
+        15
+      ],
+      "roster_id": 3,
+      "team": "At least I have chicken"
+    },
+    {
+      "average_opponent_index": 46.2,
+      "difficulty_rank": 10,
+      "grade": "B-",
+      "opponents": [
+        {
+          "power_index": 29.4,
+          "roster_id": 4,
+          "team": "Granite Mountain Drakes",
+          "week": 8
+        },
+        {
+          "power_index": 70.4,
+          "roster_id": 15,
+          "team": "The Night Sky Hellhawks",
+          "week": 9
+        },
+        {
+          "power_index": 67.1,
+          "roster_id": 7,
+          "team": "San Carlos FC",
+          "week": 10
+        },
+        {
+          "power_index": 45.1,
+          "roster_id": 12,
+          "team": "Blue Moose",
+          "week": 11
+        },
+        {
+          "power_index": 29.4,
+          "roster_id": 4,
+          "team": "Granite Mountain Drakes",
+          "week": 12
+        },
+        {
+          "power_index": 57.8,
+          "roster_id": 11,
+          "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™",
+          "week": 13
+        },
+        {
+          "power_index": 24.2,
+          "roster_id": 16,
+          "team": "The Mad Hatters FC",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        4,
+        15,
+        7,
+        12,
+        4,
+        11,
+        16
+      ],
+      "roster_id": 8,
+      "team": "Madtown Coyotes"
+    },
+    {
+      "average_opponent_index": 44.0,
+      "difficulty_rank": 11,
+      "grade": "B-",
+      "opponents": [
+        {
+          "power_index": 40.4,
           "roster_id": 9,
           "team": "Scenic City Beavers",
           "week": 8
         },
         {
-          "power_index": 27.8,
+          "power_index": 23.7,
           "roster_id": 10,
           "team": "The #1 Loser",
           "week": 9
@@ -1546,32 +1202,31 @@
           "week": 10
         },
         {
-          "power_index": 21.1,
+          "power_index": 31.6,
           "roster_id": 14,
           "team": "The Cheek Seekers",
           "week": 11
         },
         {
-          "power_index": 45.2,
+          "power_index": 57.8,
           "roster_id": 11,
           "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™",
           "week": 12
         },
         {
-          "power_index": 52.9,
+          "power_index": 62.3,
           "roster_id": 6,
           "team": "The Frozen Tundraners",
           "week": 13
         },
         {
-          "power_index": 79.1,
+          "power_index": 83.1,
           "roster_id": 1,
           "team": "The Buckaneers",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        3,
         9,
         10,
         13,
@@ -1584,30 +1239,24 @@
       "team": "Pikeville Strip Miners"
     },
     {
-      "average_opponent_index": 38.1,
-      "difficulty_rank": 16,
-      "grade": "A+",
+      "average_opponent_index": 43.7,
+      "difficulty_rank": 12,
+      "grade": "B",
       "opponents": [
         {
-          "power_index": 21.1,
-          "roster_id": 14,
-          "team": "The Cheek Seekers",
-          "week": 7
-        },
-        {
-          "power_index": 52.9,
+          "power_index": 62.3,
           "roster_id": 6,
           "team": "The Frozen Tundraners",
           "week": 8
         },
         {
-          "power_index": 30.6,
+          "power_index": 40.4,
           "roster_id": 9,
           "team": "Scenic City Beavers",
           "week": 9
         },
         {
-          "power_index": 38.9,
+          "power_index": 29.4,
           "roster_id": 4,
           "team": "Granite Mountain Drakes",
           "week": 10
@@ -1619,26 +1268,25 @@
           "week": 11
         },
         {
-          "power_index": 27.8,
+          "power_index": 23.7,
           "roster_id": 10,
           "team": "The #1 Loser",
           "week": 12
         },
         {
-          "power_index": 79.1,
+          "power_index": 83.1,
           "roster_id": 1,
           "team": "The Buckaneers",
           "week": 13
         },
         {
-          "power_index": 45.2,
+          "power_index": 57.8,
           "roster_id": 11,
           "team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        14,
         6,
         9,
         4,
@@ -1649,6 +1297,246 @@
       ],
       "roster_id": 5,
       "team": "Martian Targaryen"
+    },
+    {
+      "average_opponent_index": 43.7,
+      "difficulty_rank": 13,
+      "grade": "B",
+      "opponents": [
+        {
+          "power_index": 23.7,
+          "roster_id": 10,
+          "team": "The #1 Loser",
+          "week": 8
+        },
+        {
+          "power_index": 83.1,
+          "roster_id": 1,
+          "team": "The Buckaneers",
+          "week": 9
+        },
+        {
+          "power_index": 18.4,
+          "roster_id": 2,
+          "team": "Pikeville Strip Miners",
+          "week": 10
+        },
+        {
+          "power_index": 63.5,
+          "roster_id": 5,
+          "team": "Martian Targaryen",
+          "week": 11
+        },
+        {
+          "power_index": 31.6,
+          "roster_id": 14,
+          "team": "The Cheek Seekers",
+          "week": 12
+        },
+        {
+          "power_index": 40.4,
+          "roster_id": 9,
+          "team": "Scenic City Beavers",
+          "week": 13
+        },
+        {
+          "power_index": 45.1,
+          "roster_id": 12,
+          "team": "Blue Moose",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        10,
+        1,
+        2,
+        5,
+        14,
+        9,
+        12
+      ],
+      "roster_id": 13,
+      "team": "Mormonts of Bear Island"
+    },
+    {
+      "average_opponent_index": 41.7,
+      "difficulty_rank": 14,
+      "grade": "A",
+      "opponents": [
+        {
+          "power_index": 31.6,
+          "roster_id": 14,
+          "team": "The Cheek Seekers",
+          "week": 8
+        },
+        {
+          "power_index": 8.9,
+          "roster_id": 13,
+          "team": "Mormonts of Bear Island",
+          "week": 9
+        },
+        {
+          "power_index": 62.3,
+          "roster_id": 6,
+          "team": "The Frozen Tundraners",
+          "week": 10
+        },
+        {
+          "power_index": 40.4,
+          "roster_id": 9,
+          "team": "Scenic City Beavers",
+          "week": 11
+        },
+        {
+          "power_index": 67.1,
+          "roster_id": 7,
+          "team": "San Carlos FC",
+          "week": 12
+        },
+        {
+          "power_index": 63.5,
+          "roster_id": 5,
+          "team": "Martian Targaryen",
+          "week": 13
+        },
+        {
+          "power_index": 18.4,
+          "roster_id": 2,
+          "team": "Pikeville Strip Miners",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        14,
+        13,
+        6,
+        9,
+        7,
+        5,
+        2
+      ],
+      "roster_id": 1,
+      "team": "The Buckaneers"
+    },
+    {
+      "average_opponent_index": 40.7,
+      "difficulty_rank": 15,
+      "grade": "A",
+      "opponents": [
+        {
+          "power_index": 63.5,
+          "roster_id": 5,
+          "team": "Martian Targaryen",
+          "week": 8
+        },
+        {
+          "power_index": 31.6,
+          "roster_id": 14,
+          "team": "The Cheek Seekers",
+          "week": 9
+        },
+        {
+          "power_index": 83.1,
+          "roster_id": 1,
+          "team": "The Buckaneers",
+          "week": 10
+        },
+        {
+          "power_index": 23.7,
+          "roster_id": 10,
+          "team": "The #1 Loser",
+          "week": 11
+        },
+        {
+          "power_index": 24.2,
+          "roster_id": 16,
+          "team": "The Mad Hatters FC",
+          "week": 12
+        },
+        {
+          "power_index": 18.4,
+          "roster_id": 2,
+          "team": "Pikeville Strip Miners",
+          "week": 13
+        },
+        {
+          "power_index": 40.4,
+          "roster_id": 9,
+          "team": "Scenic City Beavers",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        5,
+        14,
+        1,
+        10,
+        16,
+        2,
+        9
+      ],
+      "roster_id": 6,
+      "team": "The Frozen Tundraners"
+    },
+    {
+      "average_opponent_index": 35.7,
+      "difficulty_rank": 16,
+      "grade": "A+",
+      "opponents": [
+        {
+          "power_index": 83.1,
+          "roster_id": 1,
+          "team": "The Buckaneers",
+          "week": 8
+        },
+        {
+          "power_index": 62.3,
+          "roster_id": 6,
+          "team": "The Frozen Tundraners",
+          "week": 9
+        },
+        {
+          "power_index": 24.2,
+          "roster_id": 16,
+          "team": "The Mad Hatters FC",
+          "week": 10
+        },
+        {
+          "power_index": 18.4,
+          "roster_id": 2,
+          "team": "Pikeville Strip Miners",
+          "week": 11
+        },
+        {
+          "power_index": 8.9,
+          "roster_id": 13,
+          "team": "Mormonts of Bear Island",
+          "week": 12
+        },
+        {
+          "power_index": 23.7,
+          "roster_id": 10,
+          "team": "The #1 Loser",
+          "week": 13
+        },
+        {
+          "power_index": 29.4,
+          "roster_id": 4,
+          "team": "Granite Mountain Drakes",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        1,
+        6,
+        16,
+        2,
+        13,
+        10,
+        4
+      ],
+      "roster_id": 14,
+      "team": "The Cheek Seekers"
     }
   ],
   "schema_version": 3,
@@ -1661,18 +1549,17 @@
     ],
     "forecast_model": "Elo-adjusted Sleeper ROS scoring projections",
     "forecast_simulations": 10000,
-    "generated_at": "2026-10-20T15:08:15-04:00",
+    "generated_at": "2026-10-27T15:59:59-04:00",
     "league_id": "1314016187998294016",
     "league_key": "main",
     "lineup_sources": [
       "Sleeper ROS scoring projections"
     ],
     "producer": "Ironbound_power_ranks",
-    "ranking_week": 7,
-    "results_through_week": 6,
+    "ranking_week": 8,
+    "results_through_week": 7,
     "ros_projection_weeks": [
       9,
-      10,
       12,
       14,
       15,
@@ -1686,10 +1573,100 @@
   "weekly_matchup_forecast": [
     {
       "availability_checked": true,
-      "favorite_by": 6.9,
+      "favorite_by": 23.8,
+      "favorite_roster_id": 11,
+      "favorite_team": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™",
+      "matchup_id": 3,
+      "model": "Sleeper projected-optimal legal lineup Monte Carlo",
+      "optimal_lineup_one": [
+        "12469",
+        "12490",
+        "12499",
+        "12519",
+        "12517",
+        "12507",
+        "9487",
+        "11560"
+      ],
+      "optimal_lineup_two": [
+        "12048",
+        "4147",
+        "12547",
+        "13274",
+        "12506",
+        "13346",
+        "9501",
+        "6797"
+      ],
+      "over_under": 172.0,
+      "projected_margin": 23.7,
+      "projected_score_one": 97.8,
+      "projected_score_two": 74.1,
+      "projected_total": 171.9,
+      "projection_fetched_at": "2026-10-27T15:59:59-04:00",
+      "projection_source": "Sleeper weekly projections scored with league settings",
+      "roster_one": 11,
+      "roster_two": 16,
+      "simulated_margin": 23.8,
+      "simulations": 10000,
+      "spread": 24.0,
+      "team_one": "卄𝚊𝚙𝚙𝚢 卄𝚒𝚙𝚙𝚒𝚎𝚜™",
+      "team_two": "The Mad Hatters FC",
+      "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
+      "week": 8,
+      "win_probability_one": 93.7
+    },
+    {
+      "availability_checked": true,
+      "favorite_by": 0.6,
+      "favorite_roster_id": 3,
+      "favorite_team": "At least I have chicken",
+      "matchup_id": 4,
+      "model": "Sleeper projected-optimal legal lineup Monte Carlo",
+      "optimal_lineup_one": [
+        "4199",
+        "4866",
+        "11620",
+        "9997",
+        "1466",
+        "6813",
+        "9484",
+        "3294"
+      ],
+      "optimal_lineup_two": [
+        "11576",
+        "11584",
+        "6794",
+        "7526",
+        "3214",
+        "12527",
+        "8126",
+        "7523"
+      ],
+      "over_under": 244.0,
+      "projected_margin": 0.5,
+      "projected_score_one": 122.3,
+      "projected_score_two": 121.8,
+      "projected_total": 244.1,
+      "projection_fetched_at": "2026-10-27T15:59:59-04:00",
+      "projection_source": "Sleeper weekly projections scored with league settings",
+      "roster_one": 3,
+      "roster_two": 7,
+      "simulated_margin": 0.6,
+      "simulations": 10000,
+      "spread": 0.5,
+      "team_one": "At least I have chicken",
+      "team_two": "San Carlos FC",
+      "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
+      "week": 8,
+      "win_probability_one": 51.8
+    },
+    {
+      "availability_checked": true,
+      "favorite_by": 14.1,
       "favorite_roster_id": 1,
       "favorite_team": "The Buckaneers",
-      "matchup_id": 1,
+      "matchup_id": 5,
       "model": "Sleeper projected-optimal legal lineup Monte Carlo",
       "optimal_lineup_one": [
         "11435",
@@ -1697,217 +1674,127 @@
         "6786",
         "8112",
         "11604",
-        "4217",
+        "8129",
         "9500",
-        "1166"
+        "3257"
       ],
       "optimal_lineup_two": [
-        "5967",
-        "7594",
-        "11646",
-        "11783",
-        "5857",
-        "7569",
-        "8137",
-        "6770"
+        "12512",
+        "13345",
+        "11610",
+        "13279",
+        "13330",
+        "13298",
+        "9493",
+        "1373"
       ],
-      "over_under": 230.5,
-      "projected_margin": 6.9,
-      "projected_score_one": 118.6,
-      "projected_score_two": 111.7,
-      "projected_total": 230.3,
-      "projection_fetched_at": "2026-10-20T15:08:15-04:00",
+      "over_under": 225.0,
+      "projected_margin": 13.9,
+      "projected_score_one": 119.4,
+      "projected_score_two": 105.5,
+      "projected_total": 224.9,
+      "projection_fetched_at": "2026-10-27T15:59:59-04:00",
       "projection_source": "Sleeper weekly projections scored with league settings",
       "roster_one": 1,
-      "roster_two": 15,
-      "simulated_margin": 6.9,
+      "roster_two": 14,
+      "simulated_margin": 14.1,
       "simulations": 10000,
-      "spread": 7.0,
+      "spread": 14.0,
       "team_one": "The Buckaneers",
-      "team_two": "The Night Sky Hellhawks",
+      "team_two": "The Cheek Seekers",
       "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
-      "week": 7,
-      "win_probability_one": 63.0
+      "week": 8,
+      "win_probability_one": 74.8
     },
     {
       "availability_checked": true,
-      "favorite_by": 13.1,
-      "favorite_roster_id": 5,
-      "favorite_team": "Martian Targaryen",
-      "matchup_id": 2,
+      "favorite_by": 20.7,
+      "favorite_roster_id": 10,
+      "favorite_team": "The #1 Loser",
+      "matchup_id": 6,
       "model": "Sleeper projected-optimal legal lineup Monte Carlo",
       "optimal_lineup_one": [
-        "12474",
+        "5995",
+        "9224",
+        "4039",
+        "4454",
+        "10859",
+        "5844",
+        "5859",
+        "4984"
+      ],
+      "optimal_lineup_two": [
+        "11586",
+        "13305",
+        "13301",
+        "8146",
+        "3271",
+        "7021",
+        "9482",
+        "9228"
+      ],
+      "over_under": 192.5,
+      "projected_margin": 20.6,
+      "projected_score_one": 106.5,
+      "projected_score_two": 85.9,
+      "projected_total": 192.4,
+      "projection_fetched_at": "2026-10-27T15:59:59-04:00",
+      "projection_source": "Sleeper weekly projections scored with league settings",
+      "roster_one": 10,
+      "roster_two": 13,
+      "simulated_margin": 20.7,
+      "simulations": 10000,
+      "spread": 20.5,
+      "team_one": "The #1 Loser",
+      "team_two": "Mormonts of Bear Island",
+      "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
+      "week": 8,
+      "win_probability_one": 88.2
+    },
+    {
+      "availability_checked": true,
+      "favorite_by": 22.5,
+      "favorite_roster_id": 6,
+      "favorite_team": "The Frozen Tundraners",
+      "matchup_id": 7,
+      "model": "Sleeper projected-optimal legal lineup Monte Carlo",
+      "optimal_lineup_one": [
         "6790",
+        "9511",
         "11624",
-        "11834",
+        "12505",
         "12498",
-        "7525",
+        "5906",
         "7547",
         "5849"
       ],
       "optimal_lineup_two": [
-        "11571",
-        "13414",
-        "11610",
-        "12514",
-        "13330",
-        "13279",
-        "9493",
-        "1373"
-      ],
-      "over_under": 193.0,
-      "projected_margin": 13.6,
-      "projected_score_one": 102.9,
-      "projected_score_two": 89.3,
-      "projected_total": 192.2,
-      "projection_fetched_at": "2026-10-20T15:08:15-04:00",
-      "projection_source": "Sleeper weekly projections scored with league settings",
-      "roster_one": 5,
-      "roster_two": 14,
-      "simulated_margin": 13.1,
-      "simulations": 10000,
-      "spread": 13.0,
-      "team_one": "Martian Targaryen",
-      "team_two": "The Cheek Seekers",
-      "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
-      "week": 7,
-      "win_probability_one": 75.9
-    },
-    {
-      "availability_checked": true,
-      "favorite_by": 23.8,
-      "favorite_roster_id": 9,
-      "favorite_team": "Scenic City Beavers",
-      "matchup_id": 3,
-      "model": "Sleeper projected-optimal legal lineup Monte Carlo",
-      "optimal_lineup_one": [
-        "12489",
-        "8132",
-        "5045",
-        "7564",
-        "4993",
-        "8130",
-        "9488",
-        "11563"
-      ],
-      "optimal_lineup_two": [
-        "5995",
-        "6130",
-        "4039",
-        "4454",
-        "10859",
-        "5859",
-        "9224",
-        "3163"
-      ],
-      "over_under": 210.5,
-      "projected_margin": 23.7,
-      "projected_score_one": 116.9,
-      "projected_score_two": 93.2,
-      "projected_total": 210.1,
-      "projection_fetched_at": "2026-10-20T15:08:15-04:00",
-      "projection_source": "Sleeper weekly projections scored with league settings",
-      "roster_one": 9,
-      "roster_two": 10,
-      "simulated_margin": 23.8,
-      "simulations": 10000,
-      "spread": 24.0,
-      "team_one": "Scenic City Beavers",
-      "team_two": "The #1 Loser",
-      "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
-      "week": 7,
-      "win_probability_one": 88.6
-    },
-    {
-      "availability_checked": true,
-      "favorite_by": 12.6,
-      "favorite_roster_id": 8,
-      "favorite_team": "Madtown Coyotes",
-      "matchup_id": 6,
-      "model": "Sleeper projected-optimal legal lineup Monte Carlo",
-      "optimal_lineup_one": [
         "3198",
-        "7567",
-        "11632",
-        "9486",
-        "5001",
-        "5022",
         "7588",
+        "11637",
+        "6783",
+        "10236",
+        "11603",
+        "5022",
         "6804"
       ],
-      "optimal_lineup_two": [
-        "8151",
-        "9221",
-        "10213",
-        "12501",
-        "8111",
-        "12526",
-        "8119",
-        "8183"
-      ],
-      "over_under": 238.0,
-      "projected_margin": -12.3,
-      "projected_score_one": 112.9,
-      "projected_score_two": 125.2,
-      "projected_total": 238.1,
-      "projection_fetched_at": "2026-10-20T15:08:15-04:00",
+      "over_under": 175.5,
+      "projected_margin": -22.4,
+      "projected_score_one": 76.4,
+      "projected_score_two": 98.8,
+      "projected_total": 175.2,
+      "projection_fetched_at": "2026-10-27T15:59:59-04:00",
       "projection_source": "Sleeper weekly projections scored with league settings",
-      "roster_one": 6,
-      "roster_two": 8,
-      "simulated_margin": -12.6,
+      "roster_one": 5,
+      "roster_two": 6,
+      "simulated_margin": -22.5,
       "simulations": 10000,
-      "spread": 12.5,
-      "team_one": "The Frozen Tundraners",
-      "team_two": "Madtown Coyotes",
+      "spread": 22.5,
+      "team_one": "Martian Targaryen",
+      "team_two": "The Frozen Tundraners",
       "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
-      "week": 7,
-      "win_probability_one": 28.1
-    },
-    {
-      "availability_checked": true,
-      "favorite_by": 4.8,
-      "favorite_roster_id": 7,
-      "favorite_team": "San Carlos FC",
-      "matchup_id": 7,
-      "model": "Sleeper projected-optimal legal lineup Monte Carlo",
-      "optimal_lineup_one": [
-        "12529",
-        "8228",
-        "2197",
-        "3634",
-        "7002",
-        "6801",
-        "8144",
-        "11564"
-      ],
-      "optimal_lineup_two": [
-        "11584",
-        "12527",
-        "6794",
-        "7526",
-        "3214",
-        "8148",
-        "9757",
-        "4017"
-      ],
-      "over_under": 222.5,
-      "projected_margin": -4.9,
-      "projected_score_one": 108.5,
-      "projected_score_two": 113.4,
-      "projected_total": 221.9,
-      "projection_fetched_at": "2026-10-20T15:08:15-04:00",
-      "projection_source": "Sleeper weekly projections scored with league settings",
-      "roster_one": 4,
-      "roster_two": 7,
-      "simulated_margin": -4.8,
-      "simulations": 10000,
-      "spread": 5.0,
-      "team_one": "Granite Mountain Drakes",
-      "team_two": "San Carlos FC",
-      "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
-      "week": 7,
-      "win_probability_one": 40.5
+      "week": 8,
+      "win_probability_one": 8.9
     }
   ]
 }

@@ -1,0 +1,175 @@
+{
+  "generated_at": "2026-10-27T15:59:59-04:00",
+  "league_id": "1314016187998294016",
+  "post_key": "2026-week-8-sat-2026-10-24",
+  "previous_rank_by_roster_id": {
+    "1": 2,
+    "10": 13,
+    "11": 9,
+    "12": 7,
+    "13": 16,
+    "14": 15,
+    "15": 3,
+    "16": 11,
+    "2": 14,
+    "3": 4,
+    "4": 10,
+    "5": 5,
+    "6": 8,
+    "7": 6,
+    "8": 1,
+    "9": 12
+  },
+  "publication": "email",
+  "rank_by_roster_id": {
+    "1": 2,
+    "10": 14,
+    "11": 8,
+    "12": 9,
+    "13": 16,
+    "14": 11,
+    "15": 4,
+    "16": 13,
+    "2": 15,
+    "3": 3,
+    "4": 12,
+    "5": 6,
+    "6": 7,
+    "7": 5,
+    "8": 1,
+    "9": 10
+  },
+  "ranking_week": 8,
+  "schema_version": 1,
+  "season": 2026,
+  "teams": [
+    {
+      "movement": 0,
+      "previous_rank": 1,
+      "rank": 1,
+      "roster_id": 8,
+      "score": 94.8,
+      "team": "Madtown Coyotes"
+    },
+    {
+      "movement": 0,
+      "previous_rank": 2,
+      "rank": 2,
+      "roster_id": 1,
+      "score": 83.1,
+      "team": "The Buckaneers"
+    },
+    {
+      "movement": 1,
+      "previous_rank": 4,
+      "rank": 3,
+      "roster_id": 3,
+      "score": 79.3,
+      "team": "At least I have chicken"
+    },
+    {
+      "movement": -1,
+      "previous_rank": 3,
+      "rank": 4,
+      "roster_id": 15,
+      "score": 70.4,
+      "team": "The Night Sky Hellhawks"
+    },
+    {
+      "movement": 1,
+      "previous_rank": 6,
+      "rank": 5,
+      "roster_id": 7,
+      "score": 67.1,
+      "team": "San Carlos FC"
+    },
+    {
+      "movement": -1,
+      "previous_rank": 5,
+      "rank": 6,
+      "roster_id": 5,
+      "score": 63.5,
+      "team": "Martian Targaryen"
+    },
+    {
+      "movement": 1,
+      "previous_rank": 8,
+      "rank": 7,
+      "roster_id": 6,
+      "score": 62.3,
+      "team": "The Frozen Tundraners"
+    },
+    {
+      "movement": 1,
+      "previous_rank": 9,
+      "rank": 8,
+      "roster_id": 11,
+      "score": 57.8,
+      "team": "\u5344\ud835\ude8a\ud835\ude99\ud835\ude99\ud835\udea2 \u5344\ud835\ude92\ud835\ude99\ud835\ude99\ud835\ude92\ud835\ude8e\ud835\ude9c\u2122"
+    },
+    {
+      "movement": -2,
+      "previous_rank": 7,
+      "rank": 9,
+      "roster_id": 12,
+      "score": 45.1,
+      "team": "Blue Moose"
+    },
+    {
+      "movement": 2,
+      "previous_rank": 12,
+      "rank": 10,
+      "roster_id": 9,
+      "score": 40.4,
+      "team": "Scenic City Beavers"
+    },
+    {
+      "movement": 4,
+      "previous_rank": 15,
+      "rank": 11,
+      "roster_id": 14,
+      "score": 31.6,
+      "team": "The Cheek Seekers"
+    },
+    {
+      "movement": -2,
+      "previous_rank": 10,
+      "rank": 12,
+      "roster_id": 4,
+      "score": 29.4,
+      "team": "Granite Mountain Drakes"
+    },
+    {
+      "movement": -2,
+      "previous_rank": 11,
+      "rank": 13,
+      "roster_id": 16,
+      "score": 24.2,
+      "team": "The Mad Hatters FC"
+    },
+    {
+      "movement": -1,
+      "previous_rank": 13,
+      "rank": 14,
+      "roster_id": 10,
+      "score": 23.7,
+      "team": "The #1 Loser"
+    },
+    {
+      "movement": -1,
+      "previous_rank": 14,
+      "rank": 15,
+      "roster_id": 2,
+      "score": 18.4,
+      "team": "Pikeville Strip Miners"
+    },
+    {
+      "movement": 0,
+      "previous_rank": 16,
+      "rank": 16,
+      "roster_id": 13,
+      "score": 8.9,
+      "team": "Mormonts of Bear Island"
+    }
+  ]
+}
