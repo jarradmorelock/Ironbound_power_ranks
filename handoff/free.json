@@ -9,14 +9,14 @@
   "official_power_rankings": [
     {
       "components": {
-        "market_percentile": 71.7,
-        "market_points": 8.96,
+        "market_percentile": 58.3,
+        "market_points": 7.29,
         "ros_scoring_percentile": 100.0,
         "ros_scoring_points": 12.5,
         "ros_starters_percentile": 100.0,
         "ros_starters_points": 12.5,
-        "season_results_percentile": 90.8,
-        "season_results_points": 68.12,
+        "season_results_percentile": 93.3,
+        "season_results_points": 70.0,
         "weights": {
           "market": 0.125,
           "ros_scoring": 0.125,
@@ -28,19 +28,19 @@
       "previous_rank": 1,
       "rank": 1,
       "roster_id": 8,
-      "score": 89.6,
+      "score": 89.8,
       "team": "The #1 Loser"
     },
     {
       "components": {
-        "market_percentile": 38.3,
-        "market_points": 4.79,
-        "ros_scoring_percentile": 90.0,
-        "ros_scoring_points": 11.25,
-        "ros_starters_percentile": 90.0,
-        "ros_starters_points": 11.25,
-        "season_results_percentile": 92.5,
-        "season_results_points": 69.38,
+        "market_percentile": 40.0,
+        "market_points": 5.0,
+        "ros_scoring_percentile": 86.7,
+        "ros_scoring_points": 10.83,
+        "ros_starters_percentile": 86.7,
+        "ros_starters_points": 10.83,
+        "season_results_percentile": 95.0,
+        "season_results_points": 71.25,
         "weights": {
           "market": 0.125,
           "ros_scoring": 0.125,
@@ -52,139 +52,19 @@
       "previous_rank": 2,
       "rank": 2,
       "roster_id": 4,
-      "score": 85.4,
+      "score": 87.1,
       "team": "The Blacksmith"
     },
     {
       "components": {
-        "market_percentile": 61.7,
-        "market_points": 7.71,
+        "market_percentile": 55.0,
+        "market_points": 6.87,
         "ros_scoring_percentile": 53.3,
         "ros_scoring_points": 6.67,
         "ros_starters_percentile": 53.3,
         "ros_starters_points": 6.67,
-        "season_results_percentile": 89.2,
-        "season_results_points": 66.88,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.125,
-          "ros_starters": 0.125,
-          "season_results": 0.75
-        }
-      },
-      "movement": 0,
-      "previous_rank": 3,
-      "rank": 3,
-      "roster_id": 6,
-      "score": 81.2,
-      "team": "Walker Texas Ranger"
-    },
-    {
-      "components": {
-        "market_percentile": 60.0,
-        "market_points": 7.5,
-        "ros_scoring_percentile": 46.7,
-        "ros_scoring_points": 5.83,
-        "ros_starters_percentile": 46.7,
-        "ros_starters_points": 5.83,
-        "season_results_percentile": 84.2,
-        "season_results_points": 63.12,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.125,
-          "ros_starters": 0.125,
-          "season_results": 0.75
-        }
-      },
-      "movement": 0,
-      "previous_rank": 4,
-      "rank": 4,
-      "roster_id": 15,
-      "score": 76.5,
-      "team": "Rainman"
-    },
-    {
-      "components": {
-        "market_percentile": 85.0,
-        "market_points": 10.62,
-        "ros_scoring_percentile": 63.3,
-        "ros_scoring_points": 7.92,
-        "ros_starters_percentile": 63.3,
-        "ros_starters_points": 7.92,
-        "season_results_percentile": 67.5,
-        "season_results_points": 50.62,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.125,
-          "ros_starters": 0.125,
-          "season_results": 0.75
-        }
-      },
-      "movement": 0,
-      "previous_rank": 5,
-      "rank": 5,
-      "roster_id": 9,
-      "score": 69.2,
-      "team": "Prescott Pussybacks"
-    },
-    {
-      "components": {
-        "market_percentile": 53.3,
-        "market_points": 6.67,
-        "ros_scoring_percentile": 90.0,
-        "ros_scoring_points": 11.25,
-        "ros_starters_percentile": 90.0,
-        "ros_starters_points": 11.25,
-        "season_results_percentile": 65.8,
-        "season_results_points": 49.38,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.125,
-          "ros_starters": 0.125,
-          "season_results": 0.75
-        }
-      },
-      "movement": 0,
-      "previous_rank": 6,
-      "rank": 6,
-      "roster_id": 13,
-      "score": 67.3,
-      "team": "nkroeze20"
-    },
-    {
-      "components": {
-        "market_percentile": 50.0,
-        "market_points": 6.25,
-        "ros_scoring_percentile": 73.3,
-        "ros_scoring_points": 9.17,
-        "ros_starters_percentile": 73.3,
-        "ros_starters_points": 9.17,
-        "season_results_percentile": 62.5,
-        "season_results_points": 46.88,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.125,
-          "ros_starters": 0.125,
-          "season_results": 0.75
-        }
-      },
-      "movement": 0,
-      "previous_rank": 7,
-      "rank": 7,
-      "roster_id": 2,
-      "score": 62.3,
-      "team": "Dropswitch Legion MMXXVI"
-    },
-    {
-      "components": {
-        "market_percentile": 41.7,
-        "market_points": 5.21,
-        "ros_scoring_percentile": 80.0,
-        "ros_scoring_points": 10.0,
-        "ros_starters_percentile": 80.0,
-        "ros_starters_points": 10.0,
-        "season_results_percentile": 60.8,
-        "season_results_points": 45.62,
+        "season_results_percentile": 85.0,
+        "season_results_points": 63.75,
         "weights": {
           "market": 0.125,
           "ros_scoring": 0.125,
@@ -193,20 +73,140 @@
         }
       },
       "movement": 1,
-      "previous_rank": 9,
-      "rank": 8,
-      "roster_id": 3,
-      "score": 60.8,
-      "team": "🇵🇭 Barangay 828 🇺🇸"
+      "previous_rank": 4,
+      "rank": 3,
+      "roster_id": 15,
+      "score": 77.3,
+      "team": "Rainman"
+    },
+    {
+      "components": {
+        "market_percentile": 83.3,
+        "market_points": 10.42,
+        "ros_scoring_percentile": 60.0,
+        "ros_scoring_points": 7.5,
+        "ros_starters_percentile": 60.0,
+        "ros_starters_points": 7.5,
+        "season_results_percentile": 74.2,
+        "season_results_points": 55.62,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.125,
+          "ros_starters": 0.125,
+          "season_results": 0.75
+        }
+      },
+      "movement": 1,
+      "previous_rank": 5,
+      "rank": 4,
+      "roster_id": 9,
+      "score": 73.5,
+      "team": "Prescott Pussybacks"
     },
     {
       "components": {
         "market_percentile": 58.3,
         "market_points": 7.29,
-        "ros_scoring_percentile": 6.7,
-        "ros_scoring_points": 0.83,
-        "ros_starters_percentile": 6.7,
-        "ros_starters_points": 0.83,
+        "ros_scoring_percentile": 93.3,
+        "ros_scoring_points": 11.67,
+        "ros_starters_percentile": 93.3,
+        "ros_starters_points": 11.67,
+        "season_results_percentile": 70.8,
+        "season_results_points": 53.12,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.125,
+          "ros_starters": 0.125,
+          "season_results": 0.75
+        }
+      },
+      "movement": 1,
+      "previous_rank": 6,
+      "rank": 5,
+      "roster_id": 13,
+      "score": 72.1,
+      "team": "nkroeze20"
+    },
+    {
+      "components": {
+        "market_percentile": 51.7,
+        "market_points": 6.46,
+        "ros_scoring_percentile": 73.3,
+        "ros_scoring_points": 9.17,
+        "ros_starters_percentile": 73.3,
+        "ros_starters_points": 9.17,
+        "season_results_percentile": 69.2,
+        "season_results_points": 51.87,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.125,
+          "ros_starters": 0.125,
+          "season_results": 0.75
+        }
+      },
+      "movement": 1,
+      "previous_rank": 7,
+      "rank": 6,
+      "roster_id": 2,
+      "score": 67.5,
+      "team": "Dropswitch Legion MMXXVI"
+    },
+    {
+      "components": {
+        "market_percentile": 56.7,
+        "market_points": 7.08,
+        "ros_scoring_percentile": 46.7,
+        "ros_scoring_points": 5.83,
+        "ros_starters_percentile": 46.7,
+        "ros_starters_points": 5.83,
+        "season_results_percentile": 72.5,
+        "season_results_points": 54.38,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.125,
+          "ros_starters": 0.125,
+          "season_results": 0.75
+        }
+      },
+      "movement": -4,
+      "previous_rank": 3,
+      "rank": 7,
+      "roster_id": 6,
+      "score": 67.3,
+      "team": "Walker Texas Ranger"
+    },
+    {
+      "components": {
+        "market_percentile": 45.0,
+        "market_points": 5.62,
+        "ros_scoring_percentile": 80.0,
+        "ros_scoring_points": 10.0,
+        "ros_starters_percentile": 80.0,
+        "ros_starters_points": 10.0,
+        "season_results_percentile": 53.3,
+        "season_results_points": 40.0,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.125,
+          "ros_starters": 0.125,
+          "season_results": 0.75
+        }
+      },
+      "movement": 0,
+      "previous_rank": 8,
+      "rank": 8,
+      "roster_id": 3,
+      "score": 55.6,
+      "team": "🇵🇭 Barangay 828 🇺🇸"
+    },
+    {
+      "components": {
+        "market_percentile": 53.3,
+        "market_points": 6.67,
+        "ros_scoring_percentile": 20.0,
+        "ros_scoring_points": 2.5,
+        "ros_starters_percentile": 20.0,
+        "ros_starters_points": 2.5,
         "season_results_percentile": 46.7,
         "season_results_points": 35.0,
         "weights": {
@@ -216,23 +216,23 @@
           "season_results": 0.75
         }
       },
-      "movement": -1,
-      "previous_rank": 8,
+      "movement": 0,
+      "previous_rank": 9,
       "rank": 9,
       "roster_id": 12,
-      "score": 43.1,
+      "score": 44.2,
       "team": "Mr. Loveland’s Club"
     },
     {
       "components": {
-        "market_percentile": 53.3,
-        "market_points": 6.67,
-        "ros_scoring_percentile": 26.7,
-        "ros_scoring_points": 3.33,
-        "ros_starters_percentile": 26.7,
-        "ros_starters_points": 3.33,
-        "season_results_percentile": 40.0,
-        "season_results_points": 30.0,
+        "market_percentile": 55.0,
+        "market_points": 6.88,
+        "ros_scoring_percentile": 40.0,
+        "ros_scoring_points": 5.0,
+        "ros_starters_percentile": 40.0,
+        "ros_starters_points": 5.0,
+        "season_results_percentile": 38.3,
+        "season_results_points": 28.75,
         "weights": {
           "market": 0.125,
           "ros_scoring": 0.125,
@@ -244,19 +244,19 @@
       "previous_rank": 10,
       "rank": 10,
       "roster_id": 14,
-      "score": 40.0,
+      "score": 40.6,
       "team": "Lemon scented Pearsall"
     },
     {
       "components": {
-        "market_percentile": 43.3,
-        "market_points": 5.42,
-        "ros_scoring_percentile": 63.3,
-        "ros_scoring_points": 7.92,
-        "ros_starters_percentile": 63.3,
-        "ros_starters_points": 7.92,
-        "season_results_percentile": 23.3,
-        "season_results_points": 17.5,
+        "market_percentile": 38.3,
+        "market_points": 4.79,
+        "ros_scoring_percentile": 0.0,
+        "ros_scoring_points": 0.0,
+        "ros_starters_percentile": 0.0,
+        "ros_starters_points": 0.0,
+        "season_results_percentile": 32.5,
+        "season_results_points": 24.38,
         "weights": {
           "market": 0.125,
           "ros_scoring": 0.125,
@@ -264,23 +264,23 @@
           "season_results": 0.75
         }
       },
-      "movement": 3,
-      "previous_rank": 14,
+      "movement": 2,
+      "previous_rank": 13,
       "rank": 11,
-      "roster_id": 7,
-      "score": 30.8,
-      "team": "Chiefbighill"
+      "roster_id": 16,
+      "score": 29.2,
+      "team": "FullMetalJacketRequired"
     },
     {
       "components": {
-        "market_percentile": 20.0,
-        "market_points": 2.5,
-        "ros_scoring_percentile": 13.3,
-        "ros_scoring_points": 1.67,
-        "ros_starters_percentile": 13.3,
-        "ros_starters_points": 1.67,
-        "season_results_percentile": 28.3,
-        "season_results_points": 21.25,
+        "market_percentile": 25.0,
+        "market_points": 3.12,
+        "ros_scoring_percentile": 26.7,
+        "ros_scoring_points": 3.33,
+        "ros_starters_percentile": 26.7,
+        "ros_starters_points": 3.33,
+        "season_results_percentile": 29.2,
+        "season_results_points": 21.88,
         "weights": {
           "market": 0.125,
           "ros_scoring": 0.125,
@@ -292,67 +292,19 @@
       "previous_rank": 12,
       "rank": 12,
       "roster_id": 5,
-      "score": 25.4,
+      "score": 28.3,
       "team": "Campbell's Kneecap Soup"
-    },
-    {
-      "components": {
-        "market_percentile": 33.3,
-        "market_points": 4.17,
-        "ros_scoring_percentile": 40.0,
-        "ros_scoring_points": 5.0,
-        "ros_starters_percentile": 40.0,
-        "ros_starters_points": 5.0,
-        "season_results_percentile": 20.0,
-        "season_results_points": 15.0,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.125,
-          "ros_starters": 0.125,
-          "season_results": 0.75
-        }
-      },
-      "movement": 0,
-      "previous_rank": 13,
-      "rank": 13,
-      "roster_id": 16,
-      "score": 24.2,
-      "team": "FullMetalJacketRequired"
-    },
-    {
-      "components": {
-        "market_percentile": 31.7,
-        "market_points": 3.96,
-        "ros_scoring_percentile": 20.0,
-        "ros_scoring_points": 2.5,
-        "ros_starters_percentile": 20.0,
-        "ros_starters_points": 2.5,
-        "season_results_percentile": 21.7,
-        "season_results_points": 16.25,
-        "weights": {
-          "market": 0.125,
-          "ros_scoring": 0.125,
-          "ros_starters": 0.125,
-          "season_results": 0.75
-        }
-      },
-      "movement": -3,
-      "previous_rank": 11,
-      "rank": 14,
-      "roster_id": 1,
-      "score": 22.7,
-      "team": "The Mus𝐂𝐀𝐓eers"
     },
     {
       "components": {
         "market_percentile": 46.7,
         "market_points": 5.83,
-        "ros_scoring_percentile": 33.3,
-        "ros_scoring_points": 4.17,
-        "ros_starters_percentile": 33.3,
-        "ros_starters_points": 4.17,
-        "season_results_percentile": 4.2,
-        "season_results_points": 3.12,
+        "ros_scoring_percentile": 66.7,
+        "ros_scoring_points": 8.33,
+        "ros_starters_percentile": 66.7,
+        "ros_starters_points": 8.33,
+        "season_results_percentile": 15.0,
+        "season_results_points": 11.25,
         "weights": {
           "market": 0.125,
           "ros_scoring": 0.125,
@@ -360,23 +312,71 @@
           "season_results": 0.75
         }
       },
-      "movement": 0,
+      "movement": -2,
+      "previous_rank": 11,
+      "rank": 13,
+      "roster_id": 7,
+      "score": 25.4,
+      "team": "maaximus"
+    },
+    {
+      "components": {
+        "market_percentile": 50.0,
+        "market_points": 6.25,
+        "ros_scoring_percentile": 33.3,
+        "ros_scoring_points": 4.17,
+        "ros_starters_percentile": 33.3,
+        "ros_starters_points": 4.17,
+        "season_results_percentile": 11.7,
+        "season_results_points": 8.75,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.125,
+          "ros_starters": 0.125,
+          "season_results": 0.75
+        }
+      },
+      "movement": 1,
       "previous_rank": 15,
-      "rank": 15,
+      "rank": 14,
       "roster_id": 11,
-      "score": 13.1,
+      "score": 19.2,
       "team": "The fraudinals"
+    },
+    {
+      "components": {
+        "market_percentile": 31.7,
+        "market_points": 3.96,
+        "ros_scoring_percentile": 13.3,
+        "ros_scoring_points": 1.67,
+        "ros_starters_percentile": 13.3,
+        "ros_starters_points": 1.67,
+        "season_results_percentile": 13.3,
+        "season_results_points": 10.0,
+        "weights": {
+          "market": 0.125,
+          "ros_scoring": 0.125,
+          "ros_starters": 0.125,
+          "season_results": 0.75
+        }
+      },
+      "movement": -1,
+      "previous_rank": 14,
+      "rank": 15,
+      "roster_id": 1,
+      "score": 15.6,
+      "team": "The Mus𝐂𝐀𝐓eers"
     },
     {
       "components": {
         "market_percentile": 51.7,
         "market_points": 6.46,
-        "ros_scoring_percentile": 0.0,
-        "ros_scoring_points": 0.0,
-        "ros_starters_percentile": 0.0,
-        "ros_starters_points": 0.0,
-        "season_results_percentile": 2.5,
-        "season_results_points": 1.88,
+        "ros_scoring_percentile": 6.7,
+        "ros_scoring_points": 0.83,
+        "ros_starters_percentile": 6.7,
+        "ros_starters_points": 0.83,
+        "season_results_percentile": 0.0,
+        "season_results_points": 0.0,
         "weights": {
           "market": 0.125,
           "ros_scoring": 0.125,
@@ -388,107 +388,107 @@
       "previous_rank": 16,
       "rank": 16,
       "roster_id": 10,
-      "score": 8.3,
+      "score": 7.3,
       "team": "Roadkill"
     }
   ],
   "playoff_odds": [
     {
-      "bye": 46.7,
-      "championship": 26.1,
-      "division": 92.7,
-      "final": 45.7,
-      "playoff": 99.6,
+      "bye": 57.9,
+      "championship": 27.1,
+      "division": 95.2,
+      "final": 48.9,
+      "playoff": 100.0,
       "projected_record": "11-3",
       "roster_id": 8,
       "team": "The #1 Loser"
     },
     {
-      "bye": 19.3,
-      "championship": 19.5,
-      "division": 68.0,
-      "final": 35.9,
-      "playoff": 97.0,
-      "projected_record": "10-4",
+      "bye": 23.5,
+      "championship": 20.7,
+      "division": 70.7,
+      "final": 37.5,
+      "playoff": 99.1,
+      "projected_record": "11-3",
       "roster_id": 4,
       "team": "The Blacksmith"
     },
     {
-      "bye": 18.3,
-      "championship": 13.7,
-      "division": 79.5,
-      "final": 28.4,
-      "playoff": 96.5,
-      "projected_record": "10-4",
-      "roster_id": 6,
-      "team": "Walker Texas Ranger"
-    },
-    {
-      "bye": 9.8,
-      "championship": 10.2,
+      "bye": 11.8,
+      "championship": 11.8,
       "division": 100.0,
-      "final": 22.8,
+      "final": 24.9,
       "playoff": 100.0,
       "projected_record": "10-4",
       "roster_id": 15,
       "team": "Rainman"
     },
     {
-      "bye": 0.8,
-      "championship": 5.5,
-      "division": 9.8,
-      "final": 13.0,
-      "playoff": 66.4,
+      "bye": 1.1,
+      "championship": 7.4,
+      "division": 8.8,
+      "final": 16.8,
+      "playoff": 82.4,
       "projected_record": "9-5",
       "roster_id": 9,
       "team": "Prescott Pussybacks"
     },
     {
-      "bye": 2.1,
-      "championship": 9.6,
-      "division": 22.2,
-      "final": 20.4,
-      "playoff": 84.3,
-      "projected_record": "9-5",
+      "bye": 2.3,
+      "championship": 12.2,
+      "division": 20.5,
+      "final": 24.7,
+      "playoff": 91.4,
+      "projected_record": "10-4",
       "roster_id": 13,
       "team": "nkroeze20"
     },
     {
-      "bye": 1.2,
-      "championship": 7.3,
-      "division": 6.9,
-      "final": 16.0,
-      "playoff": 74.7,
+      "bye": 1.4,
+      "championship": 8.7,
+      "division": 4.7,
+      "final": 19.1,
+      "playoff": 84.7,
       "projected_record": "9-5",
       "roster_id": 2,
       "team": "Dropswitch Legion MMXXVI"
     },
     {
-      "bye": 1.8,
-      "championship": 7.9,
-      "division": 20.4,
-      "final": 16.9,
-      "playoff": 71.7,
+      "bye": 1.9,
+      "championship": 7.2,
+      "division": 71.5,
+      "final": 17.0,
+      "playoff": 84.9,
       "projected_record": "9-5",
+      "roster_id": 6,
+      "team": "Walker Texas Ranger"
+    },
+    {
+      "bye": 0.1,
+      "championship": 4.8,
+      "division": 28.2,
+      "final": 10.6,
+      "playoff": 52.8,
+      "projected_record": "8-6",
       "roster_id": 3,
       "team": "🇵🇭 Barangay 828 🇺🇸"
     },
     {
       "bye": 0.0,
-      "championship": 0.2,
-      "division": 0.4,
-      "final": 0.6,
-      "playoff": 6.6,
-      "projected_record": "7-7",
+      "championship": 0.1,
+      "division": 0.0,
+      "final": 0.3,
+      "playoff": 3.3,
+      "projected_record": "6-8",
       "roster_id": 12,
       "team": "Mr. Loveland’s Club"
     },
     {
       "bye": 0.0,
       "championship": 0.1,
-      "division": 0.1,
-      "final": 0.2,
-      "playoff": 3.2,
+      "division": 0.4,
+      "final": 0.1,
+      "playoff": 1.4,
       "projected_record": "6-8",
       "roster_id": 14,
       "team": "Lemon scented Pearsall"
@@ -500,8 +500,8 @@
       "final": 0.0,
       "playoff": 0.0,
       "projected_record": "4-10",
-      "roster_id": 7,
-      "team": "Chiefbighill"
+      "roster_id": 16,
+      "team": "FullMetalJacketRequired"
     },
     {
       "bye": 0.0,
@@ -520,8 +520,18 @@
       "final": 0.0,
       "playoff": 0.0,
       "projected_record": "4-10",
-      "roster_id": 16,
-      "team": "FullMetalJacketRequired"
+      "roster_id": 7,
+      "team": "maaximus"
+    },
+    {
+      "bye": 0.0,
+      "championship": 0.0,
+      "division": 0.0,
+      "final": 0.0,
+      "playoff": 0.0,
+      "projected_record": "4-10",
+      "roster_id": 11,
+      "team": "The fraudinals"
     },
     {
       "bye": 0.0,
@@ -539,16 +549,6 @@
       "division": 0.0,
       "final": 0.0,
       "playoff": 0.0,
-      "projected_record": "3-11",
-      "roster_id": 11,
-      "team": "The fraudinals"
-    },
-    {
-      "bye": 0.0,
-      "championship": 0.0,
-      "division": 0.0,
-      "final": 0.0,
-      "playoff": 0.0,
       "projected_record": "2-12",
       "roster_id": 10,
       "team": "Roadkill"
@@ -556,204 +556,59 @@
   ],
   "publication_assets": {
     "playoff_forecast": {
-      "bytes": 302176,
+      "bytes": 299617,
       "filename": "unbound_weekly-playoff-forecast.png",
-      "generated_at": "2026-11-10T16:47:04-05:00",
+      "generated_at": "2026-11-17T18:28:37-05:00",
       "media_type": "image/png",
       "owner": "Ironbound_power_ranks",
       "placement_policy": "use supplied graphic unchanged",
       "repo_path": "handoff/assets/unbound_weekly-playoff-forecast.png",
-      "sha256": "04b6fa68cb489507a31215fad4ae4e180275ac8b9ad36d894ce8714970a0a92a"
+      "sha256": "47b74cfb35d8d1e36a74ea2ea034befe676489d494aa176a2884f3cfc0adec99"
     },
     "power_rankings": {
-      "bytes": 308991,
+      "bytes": 306904,
       "filename": "unbound_weekly-power-rankings.png",
-      "generated_at": "2026-11-10T16:47:04-05:00",
+      "generated_at": "2026-11-17T18:28:37-05:00",
       "media_type": "image/png",
       "owner": "Ironbound_power_ranks",
       "placement_policy": "use supplied graphic unchanged",
       "repo_path": "handoff/assets/unbound_weekly-power-rankings.png",
-      "sha256": "f5446894e137568c2d4df5400b28c3e2143e4df0855331067ea140646234ae39"
+      "sha256": "9b4afe2999344d4e796d57bf18d59423e4aedf57c7fb9f3da36522a96f548823"
     }
   },
   "publication_key": "unbound_weekly",
   "remaining_schedule_strength": [
     {
-      "average_opponent_index": 69.8,
+      "average_opponent_index": 67.5,
       "difficulty_rank": 1,
       "grade": "F",
       "opponents": [
         {
-          "power_index": 89.6,
-          "roster_id": 8,
-          "team": "The #1 Loser",
-          "week": 10
-        },
-        {
-          "power_index": 40.0,
-          "roster_id": 14,
-          "team": "Lemon scented Pearsall",
-          "week": 11
-        },
-        {
-          "power_index": 62.3,
-          "roster_id": 2,
-          "team": "Dropswitch Legion MMXXVI",
-          "week": 12
-        },
-        {
-          "power_index": 89.6,
-          "roster_id": 8,
-          "team": "The #1 Loser",
-          "week": 13
-        },
-        {
-          "power_index": 67.3,
-          "roster_id": 13,
-          "team": "nkroeze20",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        8,
-        14,
-        2,
-        8,
-        13
-      ],
-      "roster_id": 12,
-      "team": "Mr. Loveland’s Club"
-    },
-    {
-      "average_opponent_index": 61.2,
-      "difficulty_rank": 2,
-      "grade": "D-",
-      "opponents": [
-        {
-          "power_index": 85.4,
-          "roster_id": 4,
-          "team": "The Blacksmith",
-          "week": 10
-        },
-        {
-          "power_index": 81.2,
-          "roster_id": 6,
-          "team": "Walker Texas Ranger",
-          "week": 11
-        },
-        {
-          "power_index": 40.0,
-          "roster_id": 14,
-          "team": "Lemon scented Pearsall",
-          "week": 12
-        },
-        {
-          "power_index": 22.7,
-          "roster_id": 1,
-          "team": "The Mus𝐂𝐀𝐓eers",
-          "week": 13
-        },
-        {
-          "power_index": 76.5,
-          "roster_id": 15,
-          "team": "Rainman",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        4,
-        6,
-        14,
-        1,
-        15
-      ],
-      "roster_id": 3,
-      "team": "🇵🇭 Barangay 828 🇺🇸"
-    },
-    {
-      "average_opponent_index": 58.3,
-      "difficulty_rank": 3,
-      "grade": "D-",
-      "opponents": [
-        {
-          "power_index": 67.3,
-          "roster_id": 13,
-          "team": "nkroeze20",
-          "week": 10
-        },
-        {
-          "power_index": 89.6,
-          "roster_id": 8,
-          "team": "The #1 Loser",
-          "week": 11
-        },
-        {
-          "power_index": 30.8,
-          "roster_id": 7,
-          "team": "Chiefbighill",
-          "week": 12
-        },
-        {
-          "power_index": 81.2,
-          "roster_id": 6,
-          "team": "Walker Texas Ranger",
-          "week": 13
-        },
-        {
-          "power_index": 22.7,
-          "roster_id": 1,
-          "team": "The Mus𝐂𝐀𝐓eers",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        13,
-        8,
-        7,
-        6,
-        1
-      ],
-      "roster_id": 5,
-      "team": "Campbell's Kneecap Soup"
-    },
-    {
-      "average_opponent_index": 58.2,
-      "difficulty_rank": 4,
-      "grade": "D",
-      "opponents": [
-        {
-          "power_index": 13.1,
-          "roster_id": 11,
-          "team": "The fraudinals",
-          "week": 10
-        },
-        {
-          "power_index": 67.3,
+          "power_index": 72.1,
           "roster_id": 13,
           "team": "nkroeze20",
           "week": 11
         },
         {
-          "power_index": 81.2,
+          "power_index": 67.3,
           "roster_id": 6,
           "team": "Walker Texas Ranger",
           "week": 12
         },
         {
-          "power_index": 40.0,
+          "power_index": 40.6,
           "roster_id": 14,
           "team": "Lemon scented Pearsall",
           "week": 13
         },
         {
-          "power_index": 89.6,
+          "power_index": 89.8,
           "roster_id": 8,
           "team": "The #1 Loser",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        11,
         13,
         6,
         14,
@@ -763,181 +618,75 @@
       "team": "Roadkill"
     },
     {
-      "average_opponent_index": 55.2,
-      "difficulty_rank": 5,
-      "grade": "D",
+      "average_opponent_index": 67.5,
+      "difficulty_rank": 2,
+      "grade": "D-",
       "opponents": [
         {
-          "power_index": 81.2,
-          "roster_id": 6,
-          "team": "Walker Texas Ranger",
-          "week": 10
-        },
-        {
-          "power_index": 22.7,
-          "roster_id": 1,
-          "team": "The Mus𝐂𝐀𝐓eers",
-          "week": 11
-        },
-        {
-          "power_index": 89.6,
-          "roster_id": 8,
-          "team": "The #1 Loser",
-          "week": 12
-        },
-        {
-          "power_index": 69.2,
-          "roster_id": 9,
-          "team": "Prescott Pussybacks",
-          "week": 13
-        },
-        {
-          "power_index": 13.1,
-          "roster_id": 11,
-          "team": "The fraudinals",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        6,
-        1,
-        8,
-        9,
-        11
-      ],
-      "roster_id": 16,
-      "team": "FullMetalJacketRequired"
-    },
-    {
-      "average_opponent_index": 53.0,
-      "difficulty_rank": 6,
-      "grade": "D+",
-      "opponents": [
-        {
-          "power_index": 69.2,
-          "roster_id": 9,
-          "team": "Prescott Pussybacks",
-          "week": 10
-        },
-        {
-          "power_index": 24.2,
-          "roster_id": 16,
-          "team": "FullMetalJacketRequired",
-          "week": 11
-        },
-        {
-          "power_index": 85.4,
-          "roster_id": 4,
-          "team": "The Blacksmith",
-          "week": 12
-        },
-        {
-          "power_index": 60.8,
-          "roster_id": 3,
-          "team": "🇵🇭 Barangay 828 🇺🇸",
-          "week": 13
-        },
-        {
-          "power_index": 25.4,
-          "roster_id": 5,
-          "team": "Campbell's Kneecap Soup",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        9,
-        16,
-        4,
-        3,
-        5
-      ],
-      "roster_id": 1,
-      "team": "The Mus𝐂𝐀𝐓eers"
-    },
-    {
-      "average_opponent_index": 51.9,
-      "difficulty_rank": 7,
-      "grade": "D+",
-      "opponents": [
-        {
-          "power_index": 40.0,
+          "power_index": 40.6,
           "roster_id": 14,
           "team": "Lemon scented Pearsall",
-          "week": 10
-        },
-        {
-          "power_index": 30.8,
-          "roster_id": 7,
-          "team": "Chiefbighill",
           "week": 11
         },
         {
-          "power_index": 43.1,
-          "roster_id": 12,
-          "team": "Mr. Loveland’s Club",
+          "power_index": 67.5,
+          "roster_id": 2,
+          "team": "Dropswitch Legion MMXXVI",
           "week": 12
         },
         {
-          "power_index": 76.5,
-          "roster_id": 15,
-          "team": "Rainman",
+          "power_index": 89.8,
+          "roster_id": 8,
+          "team": "The #1 Loser",
           "week": 13
         },
         {
-          "power_index": 69.2,
-          "roster_id": 9,
-          "team": "Prescott Pussybacks",
+          "power_index": 72.1,
+          "roster_id": 13,
+          "team": "nkroeze20",
           "week": 14
         }
       ],
       "remaining_opponents": [
         14,
-        7,
-        12,
-        15,
-        9
+        2,
+        8,
+        13
       ],
-      "roster_id": 2,
-      "team": "Dropswitch Legion MMXXVI"
+      "roster_id": 12,
+      "team": "Mr. Loveland’s Club"
     },
     {
-      "average_opponent_index": 50.6,
-      "difficulty_rank": 8,
-      "grade": "C",
+      "average_opponent_index": 61.5,
+      "difficulty_rank": 3,
+      "grade": "D-",
       "opponents": [
         {
-          "power_index": 22.7,
-          "roster_id": 1,
-          "team": "The Mus𝐂𝐀𝐓eers",
-          "week": 10
-        },
-        {
-          "power_index": 76.5,
+          "power_index": 77.3,
           "roster_id": 15,
           "team": "Rainman",
           "week": 11
         },
         {
-          "power_index": 67.3,
+          "power_index": 72.1,
           "roster_id": 13,
           "team": "nkroeze20",
           "week": 12
         },
         {
-          "power_index": 24.2,
+          "power_index": 29.2,
           "roster_id": 16,
           "team": "FullMetalJacketRequired",
           "week": 13
         },
         {
-          "power_index": 62.3,
+          "power_index": 67.5,
           "roster_id": 2,
           "team": "Dropswitch Legion MMXXVI",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        1,
         15,
         13,
         16,
@@ -947,181 +696,75 @@
       "team": "Prescott Pussybacks"
     },
     {
-      "average_opponent_index": 49.0,
-      "difficulty_rank": 9,
-      "grade": "C",
+      "average_opponent_index": 55.1,
+      "difficulty_rank": 4,
+      "grade": "D",
       "opponents": [
         {
-          "power_index": 60.8,
-          "roster_id": 3,
-          "team": "🇵🇭 Barangay 828 🇺🇸",
-          "week": 10
-        },
-        {
-          "power_index": 13.1,
-          "roster_id": 11,
-          "team": "The fraudinals",
+          "power_index": 25.4,
+          "roster_id": 7,
+          "team": "maaximus",
           "week": 11
         },
         {
-          "power_index": 22.7,
-          "roster_id": 1,
-          "team": "The Mus𝐂𝐀𝐓eers",
+          "power_index": 44.2,
+          "roster_id": 12,
+          "team": "Mr. Loveland’s Club",
           "week": 12
         },
         {
-          "power_index": 67.3,
-          "roster_id": 13,
-          "team": "nkroeze20",
+          "power_index": 77.3,
+          "roster_id": 15,
+          "team": "Rainman",
           "week": 13
         },
         {
-          "power_index": 81.2,
-          "roster_id": 6,
-          "team": "Walker Texas Ranger",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        3,
-        11,
-        1,
-        13,
-        6
-      ],
-      "roster_id": 4,
-      "team": "The Blacksmith"
-    },
-    {
-      "average_opponent_index": 47.2,
-      "difficulty_rank": 10,
-      "grade": "B-",
-      "opponents": [
-        {
-          "power_index": 30.8,
-          "roster_id": 7,
-          "team": "Chiefbighill",
-          "week": 10
-        },
-        {
-          "power_index": 69.2,
+          "power_index": 73.5,
           "roster_id": 9,
           "team": "Prescott Pussybacks",
-          "week": 11
-        },
-        {
-          "power_index": 13.1,
-          "roster_id": 11,
-          "team": "The fraudinals",
-          "week": 12
-        },
-        {
-          "power_index": 62.3,
-          "roster_id": 2,
-          "team": "Dropswitch Legion MMXXVI",
-          "week": 13
-        },
-        {
-          "power_index": 60.8,
-          "roster_id": 3,
-          "team": "🇵🇭 Barangay 828 🇺🇸",
           "week": 14
         }
       ],
       "remaining_opponents": [
         7,
-        9,
-        11,
-        2,
-        3
+        12,
+        15,
+        9
       ],
-      "roster_id": 15,
-      "team": "Rainman"
+      "roster_id": 2,
+      "team": "Dropswitch Legion MMXXVI"
     },
     {
-      "average_opponent_index": 46.3,
-      "difficulty_rank": 11,
-      "grade": "B-",
+      "average_opponent_index": 54.8,
+      "difficulty_rank": 5,
+      "grade": "D",
       "opponents": [
         {
-          "power_index": 25.4,
-          "roster_id": 5,
-          "team": "Campbell's Kneecap Soup",
-          "week": 10
-        },
-        {
-          "power_index": 8.3,
-          "roster_id": 10,
-          "team": "Roadkill",
-          "week": 11
-        },
-        {
-          "power_index": 69.2,
-          "roster_id": 9,
-          "team": "Prescott Pussybacks",
-          "week": 12
-        },
-        {
-          "power_index": 85.4,
-          "roster_id": 4,
-          "team": "The Blacksmith",
-          "week": 13
-        },
-        {
-          "power_index": 43.1,
-          "roster_id": 12,
-          "team": "Mr. Loveland’s Club",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        5,
-        10,
-        9,
-        4,
-        12
-      ],
-      "roster_id": 13,
-      "team": "nkroeze20"
-    },
-    {
-      "average_opponent_index": 45.0,
-      "difficulty_rank": 12,
-      "grade": "B",
-      "opponents": [
-        {
-          "power_index": 8.3,
-          "roster_id": 10,
-          "team": "Roadkill",
-          "week": 10
-        },
-        {
-          "power_index": 85.4,
+          "power_index": 87.1,
           "roster_id": 4,
           "team": "The Blacksmith",
           "week": 11
         },
         {
-          "power_index": 76.5,
+          "power_index": 77.3,
           "roster_id": 15,
           "team": "Rainman",
           "week": 12
         },
         {
-          "power_index": 30.8,
+          "power_index": 25.4,
           "roster_id": 7,
-          "team": "Chiefbighill",
+          "team": "maaximus",
           "week": 13
         },
         {
-          "power_index": 24.2,
+          "power_index": 29.2,
           "roster_id": 16,
           "team": "FullMetalJacketRequired",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        10,
         4,
         15,
         7,
@@ -1131,135 +774,270 @@
       "team": "The fraudinals"
     },
     {
-      "average_opponent_index": 43.5,
-      "difficulty_rank": 13,
+      "average_opponent_index": 54.0,
+      "difficulty_rank": 6,
+      "grade": "D+",
+      "opponents": [
+        {
+          "power_index": 73.5,
+          "roster_id": 9,
+          "team": "Prescott Pussybacks",
+          "week": 11
+        },
+        {
+          "power_index": 19.2,
+          "roster_id": 11,
+          "team": "The fraudinals",
+          "week": 12
+        },
+        {
+          "power_index": 67.5,
+          "roster_id": 2,
+          "team": "Dropswitch Legion MMXXVI",
+          "week": 13
+        },
+        {
+          "power_index": 55.6,
+          "roster_id": 3,
+          "team": "🇵🇭 Barangay 828 🇺🇸",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        9,
+        11,
+        2,
+        3
+      ],
+      "roster_id": 15,
+      "team": "Rainman"
+    },
+    {
+      "average_opponent_index": 53.0,
+      "difficulty_rank": 7,
+      "grade": "D+",
+      "opponents": [
+        {
+          "power_index": 7.3,
+          "roster_id": 10,
+          "team": "Roadkill",
+          "week": 11
+        },
+        {
+          "power_index": 73.5,
+          "roster_id": 9,
+          "team": "Prescott Pussybacks",
+          "week": 12
+        },
+        {
+          "power_index": 87.1,
+          "roster_id": 4,
+          "team": "The Blacksmith",
+          "week": 13
+        },
+        {
+          "power_index": 44.2,
+          "roster_id": 12,
+          "team": "Mr. Loveland’s Club",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        10,
+        9,
+        4,
+        12
+      ],
+      "roster_id": 13,
+      "team": "nkroeze20"
+    },
+    {
+      "average_opponent_index": 50.2,
+      "difficulty_rank": 8,
+      "grade": "C",
+      "opponents": [
+        {
+          "power_index": 67.3,
+          "roster_id": 6,
+          "team": "Walker Texas Ranger",
+          "week": 11
+        },
+        {
+          "power_index": 40.6,
+          "roster_id": 14,
+          "team": "Lemon scented Pearsall",
+          "week": 12
+        },
+        {
+          "power_index": 15.6,
+          "roster_id": 1,
+          "team": "The Mus𝐂𝐀𝐓eers",
+          "week": 13
+        },
+        {
+          "power_index": 77.3,
+          "roster_id": 15,
+          "team": "Rainman",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        6,
+        14,
+        1,
+        15
+      ],
+      "roster_id": 3,
+      "team": "🇵🇭 Barangay 828 🇺🇸"
+    },
+    {
+      "average_opponent_index": 50.0,
+      "difficulty_rank": 9,
+      "grade": "C",
+      "opponents": [
+        {
+          "power_index": 29.2,
+          "roster_id": 16,
+          "team": "FullMetalJacketRequired",
+          "week": 11
+        },
+        {
+          "power_index": 87.1,
+          "roster_id": 4,
+          "team": "The Blacksmith",
+          "week": 12
+        },
+        {
+          "power_index": 55.6,
+          "roster_id": 3,
+          "team": "🇵🇭 Barangay 828 🇺🇸",
+          "week": 13
+        },
+        {
+          "power_index": 28.3,
+          "roster_id": 5,
+          "team": "Campbell's Kneecap Soup",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        16,
+        4,
+        3,
+        5
+      ],
+      "roster_id": 1,
+      "team": "The Mus𝐂𝐀𝐓eers"
+    },
+    {
+      "average_opponent_index": 49.5,
+      "difficulty_rank": 10,
+      "grade": "B-",
+      "opponents": [
+        {
+          "power_index": 89.8,
+          "roster_id": 8,
+          "team": "The #1 Loser",
+          "week": 11
+        },
+        {
+          "power_index": 25.4,
+          "roster_id": 7,
+          "team": "maaximus",
+          "week": 12
+        },
+        {
+          "power_index": 67.3,
+          "roster_id": 6,
+          "team": "Walker Texas Ranger",
+          "week": 13
+        },
+        {
+          "power_index": 15.6,
+          "roster_id": 1,
+          "team": "The Mus𝐂𝐀𝐓eers",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        8,
+        7,
+        6,
+        1
+      ],
+      "roster_id": 5,
+      "team": "Campbell's Kneecap Soup"
+    },
+    {
+      "average_opponent_index": 49.5,
+      "difficulty_rank": 11,
+      "grade": "B-",
+      "opponents": [
+        {
+          "power_index": 15.6,
+          "roster_id": 1,
+          "team": "The Mus𝐂𝐀𝐓eers",
+          "week": 11
+        },
+        {
+          "power_index": 89.8,
+          "roster_id": 8,
+          "team": "The #1 Loser",
+          "week": 12
+        },
+        {
+          "power_index": 73.5,
+          "roster_id": 9,
+          "team": "Prescott Pussybacks",
+          "week": 13
+        },
+        {
+          "power_index": 19.2,
+          "roster_id": 11,
+          "team": "The fraudinals",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        1,
+        8,
+        9,
+        11
+      ],
+      "roster_id": 16,
+      "team": "FullMetalJacketRequired"
+    },
+    {
+      "average_opponent_index": 44.6,
+      "difficulty_rank": 12,
       "grade": "B",
       "opponents": [
         {
-          "power_index": 76.5,
-          "roster_id": 15,
-          "team": "Rainman",
-          "week": 10
-        },
-        {
-          "power_index": 62.3,
-          "roster_id": 2,
-          "team": "Dropswitch Legion MMXXVI",
-          "week": 11
-        },
-        {
-          "power_index": 25.4,
-          "roster_id": 5,
-          "team": "Campbell's Kneecap Soup",
-          "week": 12
-        },
-        {
-          "power_index": 13.1,
-          "roster_id": 11,
-          "team": "The fraudinals",
-          "week": 13
-        },
-        {
-          "power_index": 40.0,
-          "roster_id": 14,
-          "team": "Lemon scented Pearsall",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        15,
-        2,
-        5,
-        11,
-        14
-      ],
-      "roster_id": 7,
-      "team": "Chiefbighill"
-    },
-    {
-      "average_opponent_index": 41.1,
-      "difficulty_rank": 14,
-      "grade": "A",
-      "opponents": [
-        {
-          "power_index": 62.3,
-          "roster_id": 2,
-          "team": "Dropswitch Legion MMXXVI",
-          "week": 10
-        },
-        {
-          "power_index": 43.1,
-          "roster_id": 12,
-          "team": "Mr. Loveland’s Club",
-          "week": 11
-        },
-        {
-          "power_index": 60.8,
-          "roster_id": 3,
-          "team": "🇵🇭 Barangay 828 🇺🇸",
-          "week": 12
-        },
-        {
-          "power_index": 8.3,
-          "roster_id": 10,
-          "team": "Roadkill",
-          "week": 13
-        },
-        {
-          "power_index": 30.8,
-          "roster_id": 7,
-          "team": "Chiefbighill",
-          "week": 14
-        }
-      ],
-      "remaining_opponents": [
-        2,
-        12,
-        3,
-        10,
-        7
-      ],
-      "roster_id": 14,
-      "team": "Lemon scented Pearsall"
-    },
-    {
-      "average_opponent_index": 40.8,
-      "difficulty_rank": 15,
-      "grade": "A",
-      "opponents": [
-        {
-          "power_index": 24.2,
-          "roster_id": 16,
-          "team": "FullMetalJacketRequired",
-          "week": 10
-        },
-        {
-          "power_index": 60.8,
+          "power_index": 55.6,
           "roster_id": 3,
           "team": "🇵🇭 Barangay 828 🇺🇸",
           "week": 11
         },
         {
-          "power_index": 8.3,
+          "power_index": 7.3,
           "roster_id": 10,
           "team": "Roadkill",
           "week": 12
         },
         {
-          "power_index": 25.4,
+          "power_index": 28.3,
           "roster_id": 5,
           "team": "Campbell's Kneecap Soup",
           "week": 13
         },
         {
-          "power_index": 85.4,
+          "power_index": 87.1,
           "roster_id": 4,
           "team": "The Blacksmith",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        16,
         3,
         10,
         5,
@@ -1269,43 +1047,153 @@
       "team": "Walker Texas Ranger"
     },
     {
-      "average_opponent_index": 28.8,
+      "average_opponent_index": 43.5,
+      "difficulty_rank": 13,
+      "grade": "B",
+      "opponents": [
+        {
+          "power_index": 19.2,
+          "roster_id": 11,
+          "team": "The fraudinals",
+          "week": 11
+        },
+        {
+          "power_index": 15.6,
+          "roster_id": 1,
+          "team": "The Mus𝐂𝐀𝐓eers",
+          "week": 12
+        },
+        {
+          "power_index": 72.1,
+          "roster_id": 13,
+          "team": "nkroeze20",
+          "week": 13
+        },
+        {
+          "power_index": 67.3,
+          "roster_id": 6,
+          "team": "Walker Texas Ranger",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        11,
+        1,
+        13,
+        6
+      ],
+      "roster_id": 4,
+      "team": "The Blacksmith"
+    },
+    {
+      "average_opponent_index": 38.9,
+      "difficulty_rank": 14,
+      "grade": "A",
+      "opponents": [
+        {
+          "power_index": 67.5,
+          "roster_id": 2,
+          "team": "Dropswitch Legion MMXXVI",
+          "week": 11
+        },
+        {
+          "power_index": 28.3,
+          "roster_id": 5,
+          "team": "Campbell's Kneecap Soup",
+          "week": 12
+        },
+        {
+          "power_index": 19.2,
+          "roster_id": 11,
+          "team": "The fraudinals",
+          "week": 13
+        },
+        {
+          "power_index": 40.6,
+          "roster_id": 14,
+          "team": "Lemon scented Pearsall",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        2,
+        5,
+        11,
+        14
+      ],
+      "roster_id": 7,
+      "team": "maaximus"
+    },
+    {
+      "average_opponent_index": 33.1,
+      "difficulty_rank": 15,
+      "grade": "A",
+      "opponents": [
+        {
+          "power_index": 44.2,
+          "roster_id": 12,
+          "team": "Mr. Loveland’s Club",
+          "week": 11
+        },
+        {
+          "power_index": 55.6,
+          "roster_id": 3,
+          "team": "🇵🇭 Barangay 828 🇺🇸",
+          "week": 12
+        },
+        {
+          "power_index": 7.3,
+          "roster_id": 10,
+          "team": "Roadkill",
+          "week": 13
+        },
+        {
+          "power_index": 25.4,
+          "roster_id": 7,
+          "team": "maaximus",
+          "week": 14
+        }
+      ],
+      "remaining_opponents": [
+        12,
+        3,
+        10,
+        7
+      ],
+      "roster_id": 14,
+      "team": "Lemon scented Pearsall"
+    },
+    {
+      "average_opponent_index": 27.2,
       "difficulty_rank": 16,
       "grade": "A+",
       "opponents": [
         {
-          "power_index": 43.1,
-          "roster_id": 12,
-          "team": "Mr. Loveland’s Club",
-          "week": 10
-        },
-        {
-          "power_index": 25.4,
+          "power_index": 28.3,
           "roster_id": 5,
           "team": "Campbell's Kneecap Soup",
           "week": 11
         },
         {
-          "power_index": 24.2,
+          "power_index": 29.2,
           "roster_id": 16,
           "team": "FullMetalJacketRequired",
           "week": 12
         },
         {
-          "power_index": 43.1,
+          "power_index": 44.2,
           "roster_id": 12,
           "team": "Mr. Loveland’s Club",
           "week": 13
         },
         {
-          "power_index": 8.3,
+          "power_index": 7.3,
           "roster_id": 10,
           "team": "Roadkill",
           "week": 14
         }
       ],
       "remaining_opponents": [
-        12,
         5,
         16,
         12,
@@ -1325,15 +1213,15 @@
     ],
     "forecast_model": "Elo-adjusted Dynasty Daddy ROS",
     "forecast_simulations": 10000,
-    "generated_at": "2026-11-10T16:47:04-05:00",
+    "generated_at": "2026-11-17T18:28:37-05:00",
     "league_id": "1339055357728686080",
     "league_key": "free",
     "lineup_sources": [
       "Dynasty Daddy ROS"
     ],
     "producer": "Ironbound_power_ranks",
-    "ranking_week": 10,
-    "results_through_week": 9,
+    "ranking_week": 11,
+    "results_through_week": 10,
     "ros_projection_weeks": [],
     "season": 2026,
     "weekly_matchup_model": "Sleeper projected-optimal legal lineup Monte Carlo",
@@ -1342,93 +1230,183 @@
   "weekly_matchup_forecast": [
     {
       "availability_checked": true,
-      "favorite_by": 30.5,
-      "favorite_roster_id": 2,
-      "favorite_team": "Dropswitch Legion MMXXVI",
-      "matchup_id": 2,
+      "favorite_by": 11.5,
+      "favorite_roster_id": 15,
+      "favorite_team": "Rainman",
+      "matchup_id": 4,
       "model": "Sleeper projected-optimal legal lineup Monte Carlo",
       "optimal_lineup_one": [
-        "12512",
-        "12527",
-        "12501",
-        "12526",
-        "5844",
-        "6130",
-        "7547",
-        "7523"
+        "12495",
+        "7594",
+        "13281",
+        "9487",
+        "7002",
+        "9224",
+        "9500",
+        "3294"
       ],
       "optimal_lineup_two": [
-        "12474",
-        "8136",
-        "11635",
-        "13298",
-        "4993",
-        "8134",
-        "8155",
+        "5967",
+        "6790",
+        "12499",
+        "6801",
+        "2505",
+        "8138",
+        "9508",
         "1166"
       ],
-      "over_under": 212.0,
-      "projected_margin": 30.2,
-      "projected_score_one": 120.9,
-      "projected_score_two": 90.7,
-      "projected_total": 211.6,
-      "projection_fetched_at": "2026-11-10T16:47:04-05:00",
+      "over_under": 246.5,
+      "projected_margin": -11.5,
+      "projected_score_one": 117.5,
+      "projected_score_two": 129.0,
+      "projected_total": 246.5,
+      "projection_fetched_at": "2026-11-17T18:28:37-05:00",
       "projection_source": "Sleeper weekly projections scored with league settings",
-      "roster_one": 2,
-      "roster_two": 14,
-      "simulated_margin": 30.5,
+      "roster_one": 9,
+      "roster_two": 15,
+      "simulated_margin": -11.5,
       "simulations": 10000,
-      "spread": 30.5,
-      "team_one": "Dropswitch Legion MMXXVI",
-      "team_two": "Lemon scented Pearsall",
+      "spread": 11.5,
+      "team_one": "Prescott Pussybacks",
+      "team_two": "Rainman",
       "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
-      "week": 10,
-      "win_probability_one": 94.8
+      "week": 11,
+      "win_probability_one": 29.9
     },
     {
       "availability_checked": true,
-      "favorite_by": 33.6,
-      "favorite_roster_id": 9,
-      "favorite_team": "Prescott Pussybacks",
+      "favorite_by": 8.8,
+      "favorite_roster_id": 12,
+      "favorite_team": "Mr. Loveland’s Club",
+      "matchup_id": 6,
+      "model": "Sleeper projected-optimal legal lineup Monte Carlo",
+      "optimal_lineup_one": [
+        "4035",
+        "4199",
+        "11637",
+        "11646",
+        "12517",
+        "13296",
+        "9480",
+        "8183"
+      ],
+      "optimal_lineup_two": [
+        "11647",
+        "8136",
+        "11834",
+        "8134",
+        "4993",
+        "5022",
+        "8155",
+        "12494"
+      ],
+      "over_under": 164.0,
+      "projected_margin": 8.9,
+      "projected_score_one": 86.3,
+      "projected_score_two": 77.4,
+      "projected_total": 163.7,
+      "projection_fetched_at": "2026-11-17T18:28:37-05:00",
+      "projection_source": "Sleeper weekly projections scored with league settings",
+      "roster_one": 12,
+      "roster_two": 14,
+      "simulated_margin": 8.8,
+      "simulations": 10000,
+      "spread": 9.0,
+      "team_one": "Mr. Loveland’s Club",
+      "team_two": "Lemon scented Pearsall",
+      "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
+      "week": 11,
+      "win_probability_one": 72.8
+    },
+    {
+      "availability_checked": true,
+      "favorite_by": 42.8,
+      "favorite_roster_id": 8,
+      "favorite_team": "The #1 Loser",
+      "matchup_id": 7,
+      "model": "Sleeper projected-optimal legal lineup Monte Carlo",
+      "optimal_lineup_one": [
+        "12481",
+        "12507",
+        "11610",
+        "11631",
+        "12498",
+        "12535",
+        "9754",
+        "6770"
+      ],
+      "optimal_lineup_two": [
+        "4034",
+        "6813",
+        "6794",
+        "9997",
+        "10859",
+        "1466",
+        "4217",
+        "4984"
+      ],
+      "over_under": 230.5,
+      "projected_margin": -42.8,
+      "projected_score_one": 93.6,
+      "projected_score_two": 136.4,
+      "projected_total": 230.0,
+      "projection_fetched_at": "2026-11-17T18:28:37-05:00",
+      "projection_source": "Sleeper weekly projections scored with league settings",
+      "roster_one": 5,
+      "roster_two": 8,
+      "simulated_margin": -42.8,
+      "simulations": 10000,
+      "spread": 43.0,
+      "team_one": "Campbell's Kneecap Soup",
+      "team_two": "The #1 Loser",
+      "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
+      "week": 11,
+      "win_probability_one": 2.2
+    },
+    {
+      "availability_checked": true,
+      "favorite_by": 12.7,
+      "favorite_roster_id": 2,
+      "favorite_team": "Dropswitch Legion MMXXVI",
       "matchup_id": 8,
       "model": "Sleeper projected-optimal legal lineup Monte Carlo",
       "optimal_lineup_one": [
-        "11579",
-        "12490",
-        "12718",
-        "13274",
-        "11604",
-        "13285",
-        "8172",
-        "1373"
+        "12527",
+        "13337",
+        "12526",
+        "7547",
+        "12502",
+        "13345",
+        "6130",
+        "7523"
       ],
       "optimal_lineup_two": [
-        "12491",
-        "12495",
-        "8167",
-        "9487",
-        "7002",
-        "7594",
-        "9224",
-        "3294"
+        "7021",
+        "7567",
+        "11625",
+        "8144",
+        "12493",
+        "7588",
+        "9511",
+        "11560"
       ],
-      "over_under": 214.0,
-      "projected_margin": -33.3,
-      "projected_score_one": 90.2,
-      "projected_score_two": 123.5,
-      "projected_total": 213.7,
-      "projection_fetched_at": "2026-11-10T16:47:04-05:00",
+      "over_under": 213.0,
+      "projected_margin": 13.1,
+      "projected_score_one": 113.1,
+      "projected_score_two": 100.0,
+      "projected_total": 213.1,
+      "projection_fetched_at": "2026-11-17T18:28:37-05:00",
       "projection_source": "Sleeper weekly projections scored with league settings",
-      "roster_one": 1,
-      "roster_two": 9,
-      "simulated_margin": -33.6,
+      "roster_one": 2,
+      "roster_two": 7,
+      "simulated_margin": 12.7,
       "simulations": 10000,
-      "spread": 33.5,
-      "team_one": "The Mus𝐂𝐀𝐓eers",
-      "team_two": "Prescott Pussybacks",
+      "spread": 12.5,
+      "team_one": "Dropswitch Legion MMXXVI",
+      "team_two": "maaximus",
       "uncertainty_note": "Experimental independent-player normal draws with positional heuristic volatility; no calibrated player/game correlations. Reserve, taxi, and known unavailable players excluded.",
-      "week": 10,
-      "win_probability_one": 4.1
+      "week": 11,
+      "win_probability_one": 74.6
     }
   ]
 }
