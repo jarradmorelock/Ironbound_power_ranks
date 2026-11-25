@@ -1,27 +1,27 @@
 {
   "last_discord_published_at": "2026-11-21T17:09:23-05:00",
   "last_discord_published_key": "2026-week-11-sat-2026-11-21",
-  "last_email_published_at": "2026-11-17T18:28:37-05:00",
-  "last_email_published_key": "2026-week-11-sat-2026-11-14",
-  "last_ranking_published_at": "2026-11-21T17:09:23-05:00",
+  "last_email_published_at": "2026-11-24T19:35:21-05:00",
+  "last_email_published_key": "2026-week-12-sat-2026-11-21",
+  "last_ranking_published_at": "2026-11-24T19:35:21-05:00",
   "league_id": "1314016187998294016",
   "rank_by_roster_id": {
     "1": 2,
     "10": 16,
-    "11": 5,
-    "12": 13,
+    "11": 7,
+    "12": 12,
     "13": 14,
     "14": 10,
     "15": 4,
-    "16": 11,
+    "16": 13,
     "2": 15,
-    "3": 8,
-    "4": 12,
+    "3": 5,
+    "4": 11,
     "5": 3,
-    "6": 9,
-    "7": 7,
+    "6": 8,
+    "7": 6,
     "8": 1,
-    "9": 6
+    "9": 9
   },
   "version": 2
 }
